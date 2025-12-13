@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "prism",
   "name": "crisisIQ Documentation",
   "colors": {
     "primary": "#2563EB",
@@ -8,113 +8,109 @@
     "dark": "#1E40AF"
   },
   "favicon": "/favicon.svg",
-  "navigation": {
-    "pages": [
-      "index"
-    ],
-    "tabs": [
-      {
-        "tab": "User Manual",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "user-manual/getting-started/introduction",
-              "user-manual/getting-started/system-requirements",
-              "user-manual/getting-started/account-setup"
-            ]
-          },
-          {
-            "group": "Authentication",
-            "pages": [
-              "user-manual/authentication/login",
-              "user-manual/authentication/password-reset",
-              "user-manual/authentication/email-verification",
-              "user-manual/authentication/invitations"
-            ]
-          },
-          {
-            "group": "Dashboard",
-            "pages": [
-              "user-manual/dashboard/overview",
-              "user-manual/dashboard/navigation",
-              "user-manual/dashboard/roles"
-            ]
-          },
-          {
-            "group": "Administration",
-            "pages": [
-              "user-manual/administration/company-management",
-              "user-manual/administration/user-management",
-              "user-manual/administration/role-assignments"
-            ]
-          },
-          {
-            "group": "Scenario Management",
-            "pages": [
-              "user-manual/scenarios/creating-scenarios",
-              "user-manual/scenarios/editing-scenarios",
-              "user-manual/scenarios/timeline-builder"
-            ]
-          },
-          {
-            "group": "Group Simulations",
-            "pages": [
-              "user-manual/group-simulations/overview",
-              "user-manual/group-simulations/preparation",
-              "user-manual/group-simulations/briefing",
-              "user-manual/group-simulations/execution",
-              "user-manual/group-simulations/debriefing",
-              "user-manual/group-simulations/reports"
-            ]
-          },
-          {
-            "group": "Solo Training",
-            "pages": [
-              "user-manual/solo-training/overview",
-              "user-manual/solo-training/getting-started",
-              "user-manual/solo-training/during-simulation",
-              "user-manual/solo-training/results"
-            ]
-          },
-          {
-            "group": "Simulation Features",
-            "pages": [
-              "user-manual/simulation-features/making-decisions",
-              "user-manual/simulation-features/communication",
-              "user-manual/simulation-features/ai-mentor",
-              "user-manual/simulation-features/timeline-events",
-              "user-manual/simulation-features/documents"
-            ]
-          },
-          {
-            "group": "Reports & Analytics",
-            "pages": [
-              "user-manual/reports/understanding-reports",
-              "user-manual/reports/performance-metrics",
-              "user-manual/reports/certificates"
-            ]
-          },
-          {
-            "group": "Settings",
-            "pages": [
-              "user-manual/settings/profile",
-              "user-manual/settings/preferences",
-              "user-manual/settings/language"
-            ]
-          },
-          {
-            "group": "Mobile & PWA",
-            "pages": [
-              "user-manual/mobile/ios-installation",
-              "user-manual/mobile/android-installation",
-              "user-manual/mobile/offline-mode"
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  "navigation": [
+    {
+      "group": "Home",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "group": "Getting Started",
+      "pages": [
+        "user-manual/getting-started/introduction",
+        "user-manual/getting-started/system-requirements",
+        "user-manual/getting-started/account-setup"
+      ]
+    },
+    {
+      "group": "Authentication",
+      "pages": [
+        "user-manual/authentication/login",
+        "user-manual/authentication/password-reset",
+        "user-manual/authentication/email-verification",
+        "user-manual/authentication/invitations"
+      ]
+    },
+    {
+      "group": "Dashboard",
+      "pages": [
+        "user-manual/dashboard/overview",
+        "user-manual/dashboard/navigation",
+        "user-manual/dashboard/roles"
+      ]
+    },
+    {
+      "group": "Administration",
+      "pages": [
+        "user-manual/administration/company-management",
+        "user-manual/administration/user-management",
+        "user-manual/administration/role-assignments"
+      ]
+    },
+    {
+      "group": "Scenario Management",
+      "pages": [
+        "user-manual/scenarios/creating-scenarios",
+        "user-manual/scenarios/editing-scenarios",
+        "user-manual/scenarios/timeline-builder"
+      ]
+    },
+    {
+      "group": "Group Simulations",
+      "pages": [
+        "user-manual/group-simulations/overview",
+        "user-manual/group-simulations/preparation",
+        "user-manual/group-simulations/briefing",
+        "user-manual/group-simulations/execution",
+        "user-manual/group-simulations/debriefing",
+        "user-manual/group-simulations/reports"
+      ]
+    },
+    {
+      "group": "Solo Training",
+      "pages": [
+        "user-manual/solo-training/overview",
+        "user-manual/solo-training/getting-started",
+        "user-manual/solo-training/during-simulation",
+        "user-manual/solo-training/results"
+      ]
+    },
+    {
+      "group": "Simulation Features",
+      "pages": [
+        "user-manual/simulation-features/making-decisions",
+        "user-manual/simulation-features/communication",
+        "user-manual/simulation-features/ai-mentor",
+        "user-manual/simulation-features/timeline-events",
+        "user-manual/simulation-features/documents"
+      ]
+    },
+    {
+      "group": "Reports & Analytics",
+      "pages": [
+        "user-manual/reports/understanding-reports",
+        "user-manual/reports/performance-metrics",
+        "user-manual/reports/certificates"
+      ]
+    },
+    {
+      "group": "Settings",
+      "pages": [
+        "user-manual/settings/profile",
+        "user-manual/settings/preferences",
+        "user-manual/settings/language"
+      ]
+    },
+    {
+      "group": "Mobile & PWA",
+      "pages": [
+        "user-manual/mobile/ios-installation",
+        "user-manual/mobile/android-installation",
+        "user-manual/mobile/offline-mode"
+      ]
+    }
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -133,9 +129,9 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view"
-   ]
+      "copy",
+      "view"
+    ]
   },
   "footer": {
     "socials": {}
