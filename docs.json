@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "crisisIQ User Manual",
+  "name": "crisisIQ Documentation",
   "colors": {
     "primary": "#2563EB",
     "light": "#3B82F6",
@@ -9,6 +9,9 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
+    "pages": [
+      "index"
+    ],
     "tabs": [
       {
         "tab": "User Manual",
@@ -120,7 +123,11 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:support@crisisiq.com"
+        "href": "mailto:support@crisisiq.de"
+      },
+      {
+        "label": "Website",
+        "href": "https://crisisiq.de"
       }
     ]
   },
