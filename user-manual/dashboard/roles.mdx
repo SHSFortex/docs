@@ -1,0 +1,402 @@
+---
+title: "Roles & Permissions"
+description: "Understanding user roles and what you can do in crisisIQ"
+---
+
+# Roles & Permissions
+
+crisisIQ uses role-based access control (RBAC) to determine what features and actions are available to you.
+
+## User Roles
+
+There are four main roles in crisisIQ:
+
+<CardGroup cols={2}>
+  <Card title="Participant" icon="user">
+    Join and complete training simulations
+  </Card>
+  <Card title="Content Creator" icon="pen-to-square">
+    Build scenarios and training materials
+  </Card>
+  <Card title="Company Admin" icon="user-tie">
+    Manage organization and users
+  </Card>
+  <Card title="System Admin" icon="shield-halved">
+    Full platform administration
+  </Card>
+</CardGroup>
+
+## Participant Role
+
+**Primary Function**: Engage in training simulations
+
+### Permissions
+
+<Tabs>
+  <Tab title="Can Do ✓">
+    - Join assigned group simulations
+    - Complete solo training exercises
+    - Make decisions during simulations
+    - Communicate with team members and AI Mentor
+    - View personal performance reports
+    - Download earned certificates
+    - Update own profile and settings
+  </Tab>
+
+  <Tab title="Cannot Do ✗">
+    - Create or edit scenarios
+    - Manage other users
+    - Assign simulations to others
+    - View other participants' detailed reports
+    - Access administrative settings
+    - Invite new users
+  </Tab>
+</Tabs>
+
+### Typical Use Cases
+
+- **Employees**: Undergoing crisis management training
+- **Team Members**: Participating in group exercises
+- **Learners**: Completing solo training modules
+- **Trainees**: Building skills through practice scenarios
+
+<Note>
+Participants must have verified email addresses to join most simulations.
+</Note>
+
+## Content Creator Role
+
+**Primary Function**: Design training scenarios and content
+
+### Permissions
+
+<Tabs>
+  <Tab title="Everything Participants Can Do, Plus">
+    - Create new scenarios
+    - Edit existing scenarios
+    - Build timeline events and sequences
+    - Upload and manage media resources
+    - Preview scenarios before publishing
+    - Duplicate and modify scenarios
+    - Access scenario analytics
+  </Tab>
+
+  <Tab title="Cannot Do ✗">
+    - Assign simulations to participants
+    - Manage users or roles
+    - View all company reports
+    - Access company settings
+    - Delete other creators' scenarios (organization dependent)
+  </Tab>
+</Tabs>
+
+### Typical Use Cases
+
+- **Trainers**: Developing custom training materials
+- **Subject Matter Experts**: Creating realistic scenarios
+- **Instructional Designers**: Building educational content
+- **Facilitators**: Preparing simulation exercises
+
+### Scenario Builder Access
+
+Content Creators have access to:
+
+- **Scenario Wizard**: Step-by-step scenario creation
+- **Timeline Builder**: Visual event sequencing
+- **Decision Designer**: Create decision points and options
+- **Media Library**: Upload documents, images, videos
+- **Assessment Tools**: Define scoring criteria
+
+<Card title="Creating Scenarios" icon="wand-magic-sparkles" href="/user-manual/scenarios/creating-scenarios">
+  Learn how to build scenarios
+</Card>
+
+## Company Admin Role
+
+**Primary Function**: Manage organization and training programs
+
+### Permissions
+
+<Tabs>
+  <Tab title="Everything Creators Can Do, Plus">
+    - Manage all company users
+    - Send invitations and generate join codes
+    - Assign and revoke roles
+    - Create and assign simulations
+    - View all participant reports
+    - Access company-wide analytics
+    - Configure company settings
+    - Manage teams and groups
+    - Archive and delete scenarios
+  </Tab>
+
+  <Tab title="Cannot Do ✗">
+    - Access other organizations (unless also a member)
+    - Modify system-level settings
+    - View platform audit logs
+    - Manage billing (depends on setup)
+  </Tab>
+</Tabs>
+
+### Typical Use Cases
+
+- **Training Managers**: Overseeing organizational training
+- **HR Leaders**: Managing employee development
+- **Department Heads**: Coordinating team training
+- **Program Directors**: Running comprehensive training programs
+
+### Admin Features
+
+Company Admins can access:
+
+<CardGroup cols={2}>
+  <Card title="User Management" icon="users">
+    Invite, edit, deactivate users
+  </Card>
+  <Card title="Assignment Control" icon="clipboard-list">
+    Assign simulations to individuals or teams
+  </Card>
+  <Card title="Company Reports" icon="chart-pie">
+    Organization-wide performance analytics
+  </Card>
+  <Card title="Settings" icon="gear">
+    Configure company preferences
+  </Card>
+</CardGroup>
+
+<Card title="User Management Guide" icon="users-gear" href="/user-manual/administration/user-management">
+  Learn how to manage users
+</Card>
+
+## System Admin Role
+
+**Primary Function**: Platform-wide administration
+
+### Permissions
+
+<Tabs>
+  <Tab title="Full Access">
+    - All Company Admin capabilities across all organizations
+    - Manage multiple companies
+    - Create new organizations
+    - Access system settings
+    - View platform audit logs
+    - Monitor system health
+    - Configure platform-wide defaults
+    - Access database and logs
+  </Tab>
+
+  <Tab title="Responsibilities">
+    - Platform maintenance
+    - Security monitoring
+    - User support escalation
+    - Data backups
+    - Performance optimization
+  </Tab>
+</Tabs>
+
+<Warning>
+System Admin role should be granted only to trusted personnel responsible for platform operations.
+</Warning>
+
+### System Features
+
+System Admins have unique access to:
+
+- **Company Management**: Create, configure, archive organizations
+- **Global Settings**: Platform-wide configuration
+- **Audit Logs**: Security and activity monitoring
+- **User Support Tools**: Impersonate users for troubleshooting (with proper authorization)
+- **System Health**: Performance monitoring and alerts
+
+## Permission Matrix
+
+Here's a quick reference of what each role can do:
+
+| Feature | Participant | Content Creator | Company Admin | System Admin |
+|---------|-------------|-----------------|---------------|--------------|
+| Join simulations | ✓ | ✓ | ✓ | ✓ |
+| Solo training | ✓ | ✓ | ✓ | ✓ |
+| View own reports | ✓ | ✓ | ✓ | ✓ |
+| Create scenarios | ✗ | ✓ | ✓ | ✓ |
+| Edit scenarios | ✗ | ✓* | ✓ | ✓ |
+| Assign simulations | ✗ | ✗ | ✓ | ✓ |
+| Manage users | ✗ | ✗ | ✓ | ✓ |
+| View all reports | ✗ | ✗ | ✓ | ✓ |
+| Company settings | ✗ | ✗ | ✓ | ✓ |
+| Manage companies | ✗ | ✗ | ✗ | ✓ |
+| System settings | ✗ | ✗ | ✗ | ✓ |
+
+*Content Creators can typically only edit their own scenarios
+
+## Multiple Roles
+
+Users can have different roles in different organizations:
+
+### Example
+
+You might be:
+- **Company Admin** in Organization A (your employer)
+- **Participant** in Organization B (partner training)
+- **Content Creator** in Organization C (freelance work)
+
+### Managing Multiple Roles
+
+<Steps>
+  <Step title="Use Company Switcher">
+    Select the organization you want to work with
+  </Step>
+
+  <Step title="Role Updates Automatically">
+    Your permissions change based on your role in that company
+  </Step>
+
+  <Step title="UI Adapts">
+    Navigation menu shows features available to your current role
+  </Step>
+
+  <Step title="Context Maintained">
+    Each organization maintains separate data and settings
+  </Step>
+</Steps>
+
+## Checking Your Role
+
+To see your current role:
+
+1. Look at the **Company Switcher** dropdown
+   - Shows your role next to each organization name
+
+2. Check your **Profile** page
+   - Lists all organizations and your role in each
+
+3. Note the **Navigation Menu**
+   - Available features reflect your current role
+
+## Role Requests
+
+If you need a different role:
+
+<Steps>
+  <Step title="Contact Your Admin">
+    Reach out to your organization's Company Admin
+  </Step>
+
+  <Step title="Explain Your Need">
+    Describe why you need the role (e.g., "I need to create scenarios for my team")
+  </Step>
+
+  <Step title="Admin Updates Role">
+    Admin can promote or change your role
+  </Step>
+
+  <Step title="Refresh Your Session">
+    Log out and back in to see updated permissions
+  </Step>
+</Steps>
+
+<Note>
+Only Company Admins (or System Admins) can grant or revoke roles. Role changes take effect immediately but may require a page refresh.
+</Note>
+
+## Role Best Practices
+
+### For Participants
+
+<Check>Complete assigned simulations before deadlines</Check>
+<Check>Review feedback and reports to improve</Check>
+<Check>Verify your email for full access</Check>
+<Check>Update your profile with accurate information</Check>
+
+### For Content Creators
+
+<Check>Test scenarios before publishing</Check>
+<Check>Use descriptive names and tags</Check>
+<Check>Provide clear instructions in scenarios</Check>
+<Check>Keep media files organized</Check>
+
+### For Company Admins
+
+<Check>Grant minimum necessary permissions</Check>
+<Check>Regularly review user access</Check>
+<Check>Remove access for departed users promptly</Check>
+<Check>Use groups/teams for easier management</Check>
+
+### For System Admins
+
+<Check>Monitor platform security regularly</Check>
+<Check>Document configuration changes</Check>
+<Check>Maintain audit trails</Check>
+<Check>Communicate platform updates to users</Check>
+
+## Security & Access Control
+
+### Role Security Features
+
+<CardGroup cols={2}>
+  <Card title="Principle of Least Privilege" icon="shield">
+    Users get only the permissions they need
+  </Card>
+  <Card title="Audit Logging" icon="file-lines">
+    All role changes are logged
+  </Card>
+  <Card title="Session Management" icon="clock">
+    Roles enforced in real-time
+  </Card>
+  <Card title="Company Isolation" icon="building">
+    Roles are scoped to organizations
+  </Card>
+</CardGroup>
+
+### What's Protected
+
+- **Data Access**: Users see only what their role permits
+- **API Endpoints**: Backend enforces role-based access
+- **UI Elements**: Features hidden if not permitted
+- **Audit Trail**: Who did what, when, in which role
+
+## Troubleshooting Permissions
+
+<AccordionGroup>
+  <Accordion title="I can't see a feature I need">
+    1. Check your current role in the Company Switcher
+    2. Verify you're in the correct organization
+    3. Contact your admin if you need elevated permissions
+    4. Confirm your email is verified (required for some features)
+  </Accordion>
+
+  <Accordion title="My role changed unexpectedly">
+    - An admin may have updated your permissions
+    - Check with your organization administrator
+    - View audit logs if you're an admin
+  </Accordion>
+
+  <Accordion title="Can't access after role update">
+    - Log out and log back in
+    - Clear browser cache
+    - Verify the role change was saved (check with admin)
+  </Accordion>
+
+  <Accordion title="Need higher permissions temporarily">
+    - Contact your admin to request temporary elevation
+    - Explain the specific task you need to complete
+    - Admin can grant and later revoke the role
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Dashboard Overview" icon="gauge" href="/user-manual/dashboard/overview">
+    Navigate the dashboard
+  </Card>
+  <Card title="For Admins" icon="user-shield" href="/user-manual/administration/company-management">
+    Manage your organization
+  </Card>
+  <Card title="For Creators" icon="wand-magic" href="/user-manual/scenarios/creating-scenarios">
+    Build scenarios
+  </Card>
+  <Card title="For Participants" icon="graduation-cap" href="/user-manual/group-simulations/overview">
+    Join simulations
+  </Card>
+</CardGroup>

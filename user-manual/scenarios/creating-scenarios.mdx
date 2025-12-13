@@ -1,0 +1,407 @@
+---
+title: "Creating Scenarios"
+description: "Build custom crisis simulation scenarios for training"
+---
+
+# Creating Scenarios
+
+Content Creators can design custom crisis scenarios tailored to their organization's training needs.
+
+## What is a Scenario?
+
+A scenario is a complete crisis simulation that includes:
+
+- **Narrative**: The crisis situation and background
+- **Timeline**: Sequence of events that unfold
+- **Decision Points**: Choices participants must make
+- **Resources**: Documents, images, videos for context
+- **Assessment**: Scoring criteria and feedback
+
+## Scenario Types
+
+<CardGroup cols={2}>
+  <Card title="Group Scenarios" icon="users">
+    Multi-participant simulations with team collaboration
+  </Card>
+  <Card title="Solo Scenarios" icon="user">
+    Individual training exercises with AI mentor
+  </Card>
+  <Card title="Branching Scenarios" icon="code-branch">
+    Different paths based on decisions
+  </Card>
+  <Card title="Linear Scenarios" icon="arrow-right">
+    Fixed sequence of events
+  </Card>
+</CardGroup>
+
+## Creating Your First Scenario
+
+### Using the Scenario Wizard
+
+<Steps>
+  <Step title="Navigate to Scenarios">
+    Click **Scenarios** in the sidebar menu
+  </Step>
+
+  <Step title="Click 'Create Scenario'">
+    Button located in top-right corner
+  </Step>
+
+  <Step title="Choose Scenario Type">
+    - **Group Simulation**: For teams
+    - **Solo Training**: For individuals
+    - **Blank Template**: Start from scratch
+    - **Duplicate Existing**: Copy and modify
+  </Step>
+
+  <Step title="Complete Basic Information">
+    - Scenario title
+    - Description
+    - Category (e.g., Natural Disaster, Cyberattack, Health Crisis)
+    - Difficulty level (Beginner, Intermediate, Advanced)
+    - Estimated duration
+  </Step>
+
+  <Step title="Add Cover Image">
+    Upload an image representing the scenario
+  </Step>
+
+  <Step title="Create">
+    Click **Create Scenario** to proceed to the editor
+  </Step>
+</Steps>
+
+## Scenario Editor
+
+Once created, you'll enter the Scenario Editor with these tabs:
+
+### Overview Tab
+
+Configure basic scenario settings:
+
+<AccordionGroup>
+  <Accordion title="Basic Information">
+    - **Title**: Scenario name
+    - **Description**: Brief summary (shown to participants)
+    - **Full Briefing**: Detailed background information
+    - **Category**: Classification for library organization
+    - **Tags**: Keywords for searchability
+  </Accordion>
+
+  <Accordion title="Learning Objectives">
+    Define what participants should learn:
+    - **Objectives**: List of learning goals
+    - **Skills Developed**: Crisis management skills addressed
+    - **Competencies**: Competencies being trained
+  </Accordion>
+
+  <Accordion title="Configuration">
+    - **Difficulty**: Beginner, Intermediate, Advanced
+    - **Duration**: Estimated completion time
+    - **Language**: Primary language (DE/EN)
+    - **Visibility**: Private, Organization, Public
+  </Accordion>
+
+  <Accordion title="Roles (Group Scenarios)">
+    Define participant roles:
+    - **Role Name**: e.g., "Crisis Manager", "Communications Lead"
+    - **Description**: Role responsibilities
+    - **Required**: Minimum and maximum participants per role
+  </Accordion>
+</AccordionGroup>
+
+### Timeline Tab
+
+Build the sequence of events (see [Timeline Builder](/user-manual/scenarios/timeline-builder) for details).
+
+### Decisions Tab
+
+Create decision points where participants must choose actions:
+
+<Steps>
+  <Step title="Add Decision Point">
+    Click **+ Add Decision**
+  </Step>
+
+  <Step title="Configure Decision">
+    - **Title**: Decision name
+    - **Description**: Context and information
+    - **Trigger Time**: When it appears (minutes from start, or after event)
+    - **Time Limit**: How long to decide (optional)
+  </Step>
+
+  <Step title="Add Options">
+    Create 2-5 possible choices:
+    - **Option Text**: What participants see
+    - **Impact Score**: Points awarded (positive or negative)
+    - **Feedback**: Explanation of consequences
+    - **Branching**: Triggers different events (optional)
+  </Step>
+
+  <Step title="Set Scoring">
+    - **Best Option**: Mark optimal choice
+    - **Weight**: Importance of this decision
+    - **Pass Threshold**: Minimum score to pass
+  </Step>
+</Steps>
+
+### Resources Tab
+
+Upload supporting materials:
+
+<Tabs>
+  <Tab title="Documents">
+    - **PDFs**: Emergency plans, procedures, reports
+    - **Word/Text**: Memos, briefings, instructions
+    - **Spreadsheets**: Data, statistics, budgets
+  </Tab>
+
+  <Tab title="Media">
+    - **Images**: Photos, diagrams, maps
+    - **Videos**: News clips, training videos, briefings
+    - **Audio**: Recordings, announcements
+  </Tab>
+
+  <Tab title="External Links">
+    - **Websites**: Reference materials
+    - **Tools**: External crisis management tools
+  </Tab>
+</Tabs>
+
+**Upload Process:**
+1. Click **Upload Resource**
+2. Select file or drag-and-drop
+3. Add title and description
+4. Tag for searchability
+5. Set visibility (available to all participants or specific roles)
+
+<Note>
+Maximum file size: 50MB per file. Supported formats: PDF, JPG, PNG, MP4, MP3, DOCX, XLSX
+</Note>
+
+## Scenario Settings
+
+### Assessment & Scoring
+
+Configure how participants are evaluated:
+
+<CardGroup cols={2}>
+  <Card title="Scoring Method" icon="calculator">
+    - Point-based (sum of decision scores)
+    - Weighted average
+    - Pass/Fail only
+    - Custom rubric
+  </Card>
+  <Card title="Passing Criteria" icon="check">
+    - Minimum score required
+    - Required decisions (must answer certain decisions correctly)
+    - Time penalties
+  </Card>
+  <Card title="Feedback" icon="comment">
+    - Immediate (after each decision)
+    - End of simulation
+    - AI-generated insights
+  </Card>
+  <Card title="Certificate" icon="certificate">
+    - Auto-generate upon passing
+    - Require manual approval
+    - Custom certificate template
+  </Card>
+</CardGroup>
+
+### Simulation Behavior
+
+Control how the simulation runs:
+
+- **Auto-Advance**: Automatically move through phases
+- **Pause Allowed**: Can participants pause?
+- **Restart Allowed**: Can they restart if failed?
+- **Show Timer**: Display countdown for decisions
+- **AI Mentor**: Enable AI assistance during simulation
+
+### Participant Features
+
+Enable/disable features:
+
+<Check>**Communication**: Allow participant chat</Check>
+<Check>**Timeline View**: Show event timeline</Check>
+<Check>**Resource Access**: Can view documents during simulation</Check>
+<Check>**Notes**: Allow taking notes</Check>
+<Check>**Collaboration**: Team decision-making (group scenarios)</Check>
+
+## Content Best Practices
+
+<AccordionGroup>
+  <Accordion title="Realistic Scenarios">
+    Base scenarios on real-world crises or plausible situations. Use authentic language, terminology, and constraints.
+  </Accordion>
+
+  <Accordion title="Clear Objectives">
+    Define specific, measurable learning objectives. What should participants be able to do after completing this scenario?
+  </Accordion>
+
+  <Accordion title="Progressive Difficulty">
+    Start with simpler decisions, increase complexity. Don't overwhelm participants early.
+  </Accordion>
+
+  <Accordion title="Meaningful Choices">
+    Each decision option should be plausible. Avoid obviously wrong "trap" answers unless pedagogically justified.
+  </Accordion>
+
+  <Accordion title="Rich Context">
+    Provide enough information for informed decisions, but not so much it's overwhelming. Use documents and media effectively.
+  </Accordion>
+
+  <Accordion title="Timely Feedback">
+    Explain why decisions were good or poor. Help participants learn from mistakes.
+  </Accordion>
+
+  <Accordion title="Appropriate Duration">
+    - **Solo scenarios**: 15-45 minutes
+    - **Group scenarios**: 30-90 minutes
+    - Match duration to complexity
+  </Accordion>
+</AccordionGroup>
+
+## Previewing Your Scenario
+
+Test your scenario before publishing:
+
+<Steps>
+  <Step title="Click 'Preview'">
+    Button in top-right of scenario editor
+  </Step>
+
+  <Step title="Experience as Participant">
+    Run through the simulation as participants will see it
+  </Step>
+
+  <Step title="Test All Paths">
+    Try different decision combinations to ensure branching works
+  </Step>
+
+  <Step title="Check Timing">
+    Verify events trigger at correct times
+  </Step>
+
+  <Step title="Review Scoring">
+    Confirm scores calculate correctly
+  </Step>
+
+  <Step title="Exit Preview">
+    Return to editor to make adjustments
+  </Step>
+</Steps>
+
+<Tip>
+Invite a colleague to preview and provide feedback before rolling out to participants.
+</Tip>
+
+## Publishing Your Scenario
+
+When ready to use your scenario:
+
+<Steps>
+  <Step title="Final Review">
+    Check all content for accuracy, typos, broken links
+  </Step>
+
+  <Step title="Set Status to 'Published'">
+    In Overview tab, change status from Draft to Published
+  </Step>
+
+  <Step title="Set Visibility">
+    - **Private**: Only you can see it
+    - **Organization**: All company users can access
+    - **Public**: Available to all crisisIQ users (if enabled)
+  </Step>
+
+  <Step title="Save">
+    Click **Save & Publish**
+  </Step>
+
+  <Step title="Share or Assign">
+    Scenario now appears in library and can be assigned to participants
+  </Step>
+</Steps>
+
+## Managing Scenarios
+
+### Scenario Library
+
+View all your scenarios:
+
+1. Navigate to **Scenarios**
+2. See list of all scenarios you created or have access to
+3. Filter by:
+   - **Status**: Draft, Published, Archived
+   - **Type**: Group or Solo
+   - **Category**: Crisis type
+   - **Author**: Creator name
+
+### Editing Published Scenarios
+
+To modify a published scenario:
+
+<Warning>
+Editing a published scenario may affect ongoing simulations. Consider creating a new version instead.
+</Warning>
+
+1. Open scenario
+2. Click **Edit**
+3. Make changes
+4. **Save as New Version** or **Update Current**
+
+### Duplicating Scenarios
+
+Create a copy to modify:
+
+1. Find scenario in library
+2. Click **⋮** (more options)
+3. Select **Duplicate**
+4. New scenario created with " (Copy)" appended to name
+5. Edit as needed
+
+### Archiving Scenarios
+
+Remove from active library without deleting:
+
+1. Open scenario
+2. Click **⋮** > **Archive**
+3. Scenario moves to Archived section
+4. Can be restored anytime
+
+## Collaboration
+
+### Sharing with Other Creators
+
+Allow others to edit your scenario:
+
+1. Open scenario
+2. Go to **Settings** > **Collaborators**
+3. Click **+ Add Collaborator**
+4. Search for user
+5. Set permission: **Can View** or **Can Edit**
+
+### Version History
+
+Track changes over time:
+
+- **Versions Tab**: See all saved versions
+- **Compare**: View differences between versions
+- **Restore**: Revert to earlier version
+- **Comments**: Notes on what changed
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Timeline Builder" icon="timeline" href="/user-manual/scenarios/timeline-builder">
+    Create event sequences
+  </Card>
+  <Card title="Editing Scenarios" icon="pen" href="/user-manual/scenarios/editing-scenarios">
+    Modify existing scenarios
+  </Card>
+  <Card title="Assign Simulations" icon="clipboard-list" href="/user-manual/group-simulations/overview">
+    Deploy scenarios to participants
+  </Card>
+</CardGroup>

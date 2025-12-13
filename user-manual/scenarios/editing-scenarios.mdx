@@ -1,0 +1,458 @@
+---
+title: "Editing Scenarios"
+description: "Modify and improve existing crisis scenarios"
+---
+
+# Editing Scenarios
+
+Learn how to update, refine, and improve your crisis simulation scenarios.
+
+## Opening a Scenario for Editing
+
+<Steps>
+  <Step title="Navigate to Scenarios">
+    Click **Scenarios** in the sidebar
+  </Step>
+
+  <Step title="Find Your Scenario">
+    Use search or filters to locate the scenario
+  </Step>
+
+  <Step title="Open Scenario">
+    Click on the scenario title or row
+  </Step>
+
+  <Step title="Click 'Edit'">
+    Button in top-right corner (if you have permission)
+  </Step>
+
+  <Step title="Make Changes">
+    Modify content in the editor
+  </Step>
+
+  <Step title="Save">
+    Click **Save** or **Save & Publish**
+  </Step>
+</Steps>
+
+## Who Can Edit
+
+You can edit a scenario if:
+
+<Check>You created it</Check>
+<Check>You're added as a collaborator with edit permissions</Check>
+<Check>You're a Company Admin</Check>
+<Check>The scenario is unpublished/draft (organization settings dependent)</Check>
+
+<Note>
+If you see "View Only" mode, you don't have edit permissions. Contact the scenario creator or your admin.
+</Note>
+
+## Editing Published Scenarios
+
+### Impact on Active Simulations
+
+<Warning>
+**Important**: Editing a published scenario affects new simulations but NOT currently running ones. Running simulations use a snapshot from when they were started.
+</Warning>
+
+When you edit a published scenario:
+
+- **New Simulations**: Use the updated version
+- **Active Simulations**: Continue with original version
+- **Scheduled Simulations**: Use updated version when they start
+
+### Best Practices
+
+<Tabs>
+  <Tab title="Minor Edits">
+    **Safe to Update Directly:**
+
+    - Fixing typos
+    - Updating resource links
+    - Clarifying instructions
+    - Improving feedback text
+    - Adjusting formatting
+  </Tab>
+
+  <Tab title="Major Changes">
+    **Create New Version:**
+
+    - Adding/removing decisions
+    - Changing scoring logic
+    - Restructuring timeline
+    - Modifying roles
+    - Altering learning objectives
+
+    Consider: **Duplicate** → **Edit** → **Publish as v2**
+  </Tab>
+</Tabs>
+
+## Editing Different Elements
+
+### Updating Basic Information
+
+1. Open scenario in edit mode
+2. Go to **Overview** tab
+3. Modify:
+   - Title
+   - Description
+   - Category/Tags
+   - Difficulty
+   - Duration estimate
+4. Save changes
+
+### Modifying Timeline Events
+
+See [Timeline Builder](/user-manual/scenarios/timeline-builder) for detailed instructions.
+
+Quick edits:
+1. Go to **Timeline** tab
+2. Click event to edit
+3. Update content, timing, or media
+4. Save
+
+### Changing Decisions
+
+To edit existing decision points:
+
+<Steps>
+  <Step title="Go to Decisions Tab">
+    View all decision points
+  </Step>
+
+  <Step title="Select Decision">
+    Click the decision to edit
+  </Step>
+
+  <Step title="Modify as Needed">
+    - Change question text
+    - Add/remove/edit options
+    - Update scoring
+    - Adjust timing
+  </Step>
+
+  <Step title="Save Decision">
+    Click **Update**
+  </Step>
+</Steps>
+
+<Warning>
+Changing scoring on published scenarios may affect consistency in reports. Document the change in version notes.
+</Warning>
+
+### Adding/Removing Resources
+
+**To Add:**
+1. **Resources** tab
+2. Click **Upload**
+3. Select files
+4. Add metadata
+5. Save
+
+**To Remove:**
+1. Find resource in list
+2. Click **⋮** > **Delete**
+3. Confirm removal
+
+**To Replace:**
+1. Delete old resource
+2. Upload new one with same name
+3. Or: **⋮** > **Replace File**
+
+### Updating Roles (Group Scenarios)
+
+Modify participant roles:
+
+1. **Overview** tab > **Roles** section
+2. Edit existing roles:
+   - Change name
+   - Update description
+   - Adjust min/max participants
+3. Add new roles: **+ Add Role**
+4. Delete roles: **⋮** > **Remove Role** (if unused)
+
+<Note>
+Removing roles used in active simulations may cause issues. Check dependencies first.
+</Note>
+
+## Version Management
+
+### Creating Versions
+
+crisisIQ tracks changes through versions:
+
+**Auto-Save Drafts:**
+- Every 30 seconds while editing
+- Draft versions kept for 30 days
+- Can restore from drafts
+
+**Manual Versions:**
+1. Click **Save as Version**
+2. Add version note/description
+3. Version saved with timestamp
+
+### Version History
+
+View and manage versions:
+
+<Steps>
+  <Step title="Open Scenario">
+    In view or edit mode
+  </Step>
+
+  <Step title="Click 'Version History'">
+    Usually in top menu or sidebar
+  </Step>
+
+  <Step title="Browse Versions">
+    See list of all saved versions with:
+    - Date/time
+    - Author
+    - Version notes
+    - Major/minor version number
+  </Step>
+
+  <Step title="Compare Versions">
+    Select two versions to see differences highlighted
+  </Step>
+
+  <Step title="Restore (if needed)">
+    Click **Restore This Version** to revert
+  </Step>
+</Steps>
+
+### Version Naming Convention
+
+Suggested naming:
+- **v1.0**: Initial published version
+- **v1.1**: Minor update (typos, clarifications)
+- **v2.0**: Major revision (new content, structure changes)
+- **v2.1-beta**: Testing version
+
+## Collaborative Editing
+
+### Adding Collaborators
+
+Share editing access:
+
+1. Open scenario
+2. **Settings** > **Collaborators**
+3. **+ Add Collaborator**
+4. Search user by name/email
+5. Set permission level:
+   - **View Only**: Can preview but not edit
+   - **Can Edit**: Full editing access
+   - **Owner**: Transfer ownership (removes you as owner)
+6. Save
+
+### Working with Co-Editors
+
+<AccordionGroup>
+  <Accordion title="Real-Time Collaboration">
+    If multiple editors are in the scenario:
+    - You'll see indicators of who else is editing
+    - Changes sync in real-time (or on save, depending on configuration)
+    - Avoid editing the same section simultaneously
+  </Accordion>
+
+  <Accordion title="Edit Conflicts">
+    If two editors save conflicting changes:
+    - System alerts to conflict
+    - Review both versions
+    - Merge manually or choose one
+  </Accordion>
+
+  <Accordion title="Comments & Feedback">
+    Use comments to communicate:
+    - Highlight content
+    - Click **Add Comment**
+    - Other editors can reply
+    - Mark as resolved when addressed
+  </Accordion>
+</AccordionGroup>
+
+## Testing Edited Scenarios
+
+After making changes:
+
+<Steps>
+  <Step title="Save Changes">
+    Ensure all edits are saved
+  </Step>
+
+  <Step title="Preview Scenario">
+    Click **Preview** to run through as participant
+  </Step>
+
+  <Step title="Test Changed Elements">
+    Focus on:
+    - Modified decisions
+    - New timeline events
+    - Updated resources
+    - Altered scoring
+  </Step>
+
+  <Step title="Check All Paths">
+    If branching scenario, test each path
+  </Step>
+
+  <Step title="Verify Scoring">
+    Ensure points calculate correctly
+  </Step>
+
+  <Step title="Mobile Preview">
+    Test on mobile if participants will use phones/tablets
+  </Step>
+</Steps>
+
+<Tip>
+Ask a colleague to run through the edited scenario without telling them what you changed. Fresh eyes catch issues.
+</Tip>
+
+## Common Edits
+
+### Improving Decision Quality
+
+Make decisions more effective:
+
+<AccordionGroup>
+  <Accordion title="Add Context">
+    Provide more background information so participants can make informed choices.
+  </Accordion>
+
+  <Accordion title="Balance Options">
+    Ensure all options are plausible. Avoid one "obviously correct" answer unless intentional.
+  </Accordion>
+
+  <Accordion title="Clarify Consequences">
+    Improve feedback text to explain why choices were good/poor and what might happen as a result.
+  </Accordion>
+
+  <Accordion title="Adjust Timing">
+    Give appropriate time limits. Too short creates stress; too long allows over-analysis.
+  </Accordion>
+</AccordionGroup>
+
+### Enhancing Realism
+
+Make scenarios more authentic:
+
+- **Update Statistics**: Use current data and figures
+- **Recent Events**: Reference recent crisis examples
+- **Authentic Documents**: Use realistic-looking forms, reports, emails
+- **Appropriate Language**: Match terminology to industry/organization
+
+### Adjusting Difficulty
+
+Make scenarios easier or harder:
+
+**To Make Easier:**
+- Provide more resources
+- Clearer decision options
+- More time for decisions
+- Helpful AI mentor hints
+- Lower passing threshold
+
+**To Make Harder:**
+- Limited information
+- More ambiguous choices
+- Shorter time limits
+- Complex branching
+- Higher passing threshold
+
+## Bulk Editing
+
+### Updating Multiple Scenarios
+
+If you need to make similar changes across scenarios:
+
+1. Identify commonalities (e.g., all use same outdated resource)
+2. Edit each scenario individually, OR
+3. Use **Bulk Update** feature (if available):
+   - Select multiple scenarios
+   - Choose **Bulk Edit**
+   - Make common changes (tags, category, settings)
+   - Apply to all
+
+### Templates
+
+Create reusable elements:
+
+- **Decision Templates**: Save common decision types
+- **Event Templates**: Reuse event structures
+- **Resource Packs**: Bundle related documents/media
+
+Use templates when editing to maintain consistency.
+
+## Tracking Changes
+
+### Change Log
+
+Document what you changed:
+
+1. After editing, add **Version Note**
+2. Describe changes:
+   - "Fixed typo in Event 3 description"
+   - "Added new decision point at 20 minutes"
+   - "Updated scoring weights based on feedback"
+3. Tag change type: **Bug Fix**, **Enhancement**, **Content Update**
+
+### Audit Trail
+
+For compliance or review:
+
+- All edits logged automatically
+- Who changed what and when
+- Accessible via **Audit Log** (Admin view)
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Can't save changes">
+    - Check your internet connection
+    - Ensure you're still logged in
+    - Verify you have edit permissions
+    - Try refreshing the page (you may lose unsaved work)
+  </Accordion>
+
+  <Accordion title="Changes not appearing">
+    - Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
+    - Clear cache
+    - Check if you're viewing an old version
+    - Confirm changes were saved
+  </Accordion>
+
+  <Accordion title="Lost unsaved work">
+    - Check **Drafts** section for auto-saved version
+    - Look in **Version History** for recovery
+    - Contact support if critical data loss
+  </Accordion>
+
+  <Accordion title="Edit conflicts with collaborator">
+    - Communicate with other editor
+    - Save your version locally
+    - Refresh to see their changes
+    - Merge manually if needed
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<Check>**Test after editing**: Always preview before republishing</Check>
+<Check>**Document changes**: Use version notes</Check>
+<Check>**Incremental updates**: Make small changes, test, then continue</Check>
+<Check>**Backup important scenarios**: Duplicate before major edits</Check>
+<Check>**Get feedback**: Have others review changed scenarios</Check>
+<Check>**Schedule updates**: Don't edit scenarios with scheduled simulations</Check>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Timeline Builder" icon="timeline" href="/user-manual/scenarios/timeline-builder">
+    Edit event sequences
+  </Card>
+  <Card title="Creating Scenarios" icon="plus" href="/user-manual/scenarios/creating-scenarios">
+    Build new scenarios from scratch
+  </Card>
+</CardGroup>

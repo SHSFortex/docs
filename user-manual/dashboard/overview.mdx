@@ -1,0 +1,433 @@
+---
+title: "Dashboard Overview"
+description: "Navigate and understand your crisisIQ dashboard"
+---
+
+# Dashboard Overview
+
+The crisisIQ dashboard is your central hub for accessing simulations, managing content, and tracking your progress.
+
+## Dashboard Types
+
+crisisIQ features different dashboards based on your role and activity:
+
+<CardGroup cols={2}>
+  <Card title="Main Dashboard" icon="gauge">
+    Primary hub for administrators, content creators, and team members
+  </Card>
+  <Card title="Solo Dashboard" icon="user">
+    Dedicated interface for individual training exercises
+  </Card>
+  <Card title="Participant View" icon="users">
+    Simplified interface when joining group simulations
+  </Card>
+  <Card title="Admin Panel" icon="shield">
+    Extended features for company and system administrators
+  </Card>
+</CardGroup>
+
+## Main Dashboard Layout
+
+When you log in, you'll see the main dashboard with these key areas:
+
+### Header Navigation
+
+<Tabs>
+  <Tab title="Left Side">
+    **Branding & Navigation**
+
+    - **crisisIQ Logo**: Click to return to dashboard home
+    - **Menu Toggle**: Show/hide the sidebar navigation (mobile)
+    - **Breadcrumbs**: Current location within the app
+  </Tab>
+
+  <Tab title="Center">
+    **Context & Search**
+
+    - **Company Switcher**: Change active organization (if you belong to multiple)
+    - **Search Bar**: Quick search for scenarios, users, or content (admin only)
+  </Tab>
+
+  <Tab title="Right Side">
+    **User Controls**
+
+    - **Language Selector**: Switch between German (DE) and English (EN)
+    - **Notifications**: Bell icon with unread count
+    - **Profile Menu**: Access settings, logout, help
+  </Tab>
+</Tabs>
+
+### Sidebar Navigation
+
+The left sidebar provides access to main features:
+
+<AccordionGroup>
+  <Accordion title="Dashboard (Home)">
+    Overview of your activity, assignments, and quick actions
+  </Accordion>
+
+  <Accordion title="Simulations">
+    - Active simulations
+    - Scheduled exercises
+    - Completed trainings
+    - Create new simulation (if permitted)
+  </Accordion>
+
+  <Accordion title="Scenarios">
+    - Browse scenario library
+    - Create scenarios (Content Creator+)
+    - Edit existing scenarios
+    - Timeline builder
+  </Accordion>
+
+  <Accordion title="My Training">
+    - Solo training dashboard
+    - Personal progress
+    - Certificates & achievements
+  </Accordion>
+
+  <Accordion title="Reports & Analytics">
+    - Performance reports
+    - Team analytics (Admin)
+    - Individual progress
+  </Accordion>
+
+  <Accordion title="Administration">
+    **For Administrators Only:**
+    - Company management
+    - User management
+    - Role assignments
+    - System settings
+  </Accordion>
+</AccordionGroup>
+
+### Main Content Area
+
+The central area displays page-specific content:
+
+- **Widgets**: Quick stats, upcoming simulations, recent activity
+- **Data Tables**: Simulations list, participants, scenarios
+- **Forms**: Create/edit content
+- **Reports**: Charts, graphs, performance metrics
+
+### Footer (Optional)
+
+Some pages show a footer with:
+- Version information
+- Privacy policy link
+- Terms of service link
+- Support contact
+
+## Dashboard Widgets
+
+### For All Users
+
+<CardGroup cols={2}>
+  <Card title="Active Simulations" icon="play">
+    Currently running or scheduled simulations you're involved in
+  </Card>
+  <Card title="Recent Activity" icon="clock">
+    Timeline of your recent actions and updates
+  </Card>
+  <Card title="Assignments" icon="clipboard-check">
+    Simulations assigned to you with deadlines
+  </Card>
+  <Card title="Progress" icon="chart-line">
+    Your completion rate and performance trends
+  </Card>
+</CardGroup>
+
+### For Administrators
+
+<CardGroup cols={2}>
+  <Card title="User Stats" icon="users">
+    Total users, active participants, recent registrations
+  </Card>
+  <Card title="Simulation Stats" icon="chart-bar">
+    Total simulations, completion rates, average scores
+  </Card>
+  <Card title="Pending Tasks" icon="list-check">
+    Invitations to send, reports to review, approvals needed
+  </Card>
+  <Card title="System Health" icon="heart-pulse">
+    Platform status, storage usage, API health (System Admin)
+  </Card>
+</CardGroup>
+
+## Solo Training Dashboard
+
+Access via **"My Training"** in the sidebar or directly at `/solo`:
+
+<Steps>
+  <Step title="Solo Homepage">
+    Dedicated landing page for individual training
+  </Step>
+
+  <Step title="Available Scenarios">
+    Browse solo-enabled scenarios by category, difficulty, topic
+  </Step>
+
+  <Step title="My History">
+    Past solo simulations with scores and feedback
+  </Step>
+
+  <Step title="Start Training">
+    Launch a new solo simulation with one click
+  </Step>
+</Steps>
+
+### Solo Dashboard Features
+
+- **Full-Screen Mode**: Minimal distractions for focused training
+- **Scenario Library**: Filter by topic, difficulty, duration
+- **Progress Tracking**: Completion percentage, average scores
+- **Personal Records**: Best scores, improvement trends
+- **Training Guide**: Tips and best practices for crisis management
+
+<Card title="Solo Training Guide" icon="book" href="/user-manual/solo-training/overview">
+  Learn more about solo training features
+</Card>
+
+## Dashboard Customization
+
+### Layout Options
+
+<Tabs>
+  <Tab title="Sidebar">
+    **Collapsible Sidebar**
+
+    - Click the menu toggle to collapse/expand
+    - Collapsed shows icons only (hover for labels)
+    - Preference saved per user
+  </Tab>
+
+  <Tab title="Widgets">
+    **Widget Arrangement**
+
+    - Drag and drop widgets to reorder (if enabled)
+    - Hide/show specific widgets in settings
+    - Reset to default layout anytime
+  </Tab>
+
+  <Tab title="Theme">
+    **Visual Theme**
+
+    - Light mode (default)
+    - Dark mode (coming soon)
+    - Follows system preference (coming soon)
+  </Tab>
+</Tabs>
+
+### Personalization
+
+In **Profile > Preferences**, customize:
+
+- **Default Landing Page**: Dashboard, Solo Training, or Last Visited
+- **Language**: German or English
+- **Date Format**: DD/MM/YYYY or MM/DD/YYYY
+- **Time Zone**: Auto-detected or manual selection
+- **Notifications**: Which events trigger alerts
+
+## Responsive Design
+
+crisisIQ adapts to your screen size:
+
+### Desktop (1280px+)
+
+- Full sidebar navigation
+- Multi-column layouts
+- All widgets visible
+- Data tables with all columns
+
+### Tablet (768px - 1279px)
+
+- Collapsible sidebar
+- Two-column layouts
+- Essential widgets shown
+- Scrollable tables
+
+### Mobile (< 768px)
+
+- Hamburger menu
+- Single-column layouts
+- Priority widgets only
+- Simplified tables
+- Touch-optimized controls
+
+<Tip>
+Install crisisIQ as a Progressive Web App (PWA) on mobile for the best experience. See our [Mobile Installation Guide](/user-manual/mobile/ios-installation).
+</Tip>
+
+## Quick Actions
+
+Common actions accessible from the dashboard:
+
+<CardGroup cols={2}>
+  <Card title="Start Solo Training" icon="play">
+    Jump directly into a solo scenario
+  </Card>
+  <Card title="Create Scenario" icon="plus">
+    Begin building a new training scenario (Content Creator+)
+  </Card>
+  <Card title="Invite Users" icon="user-plus">
+    Send invitations to join your organization (Admin)
+  </Card>
+  <Card title="View Reports" icon="chart-simple">
+    Access performance analytics
+  </Card>
+</CardGroup>
+
+## Notifications
+
+The notification center (bell icon) shows:
+
+<Tabs>
+  <Tab title="Simulation Updates">
+    - Simulation starting soon
+    - Phase transitions
+    - New messages/events
+    - Simulation completed
+  </Tab>
+
+  <Tab title="Assignments">
+    - New simulation assigned
+    - Deadline approaching
+    - Assignment completed
+  </Tab>
+
+  <Tab title="Administrative">
+    - User joined organization
+    - Role changed
+    - System announcements
+  </Tab>
+
+  <Tab title="Social">
+    - Team member completed simulation
+    - Certificate earned
+    - New comments/feedback
+  </Tab>
+</Tabs>
+
+### Notification Actions
+
+- **Mark as Read**: Clear individual notification
+- **Mark All as Read**: Clear entire notification list
+- **View Details**: Navigate to related page
+- **Settings**: Configure notification preferences
+
+## Dashboard Performance
+
+### Loading States
+
+While data loads, you'll see:
+
+- **Skeleton Screens**: Placeholder shapes for content
+- **Progress Bars**: For large data sets
+- **Loading Spinners**: For quick operations
+
+### Data Refresh
+
+- **Auto-Refresh**: Dashboard updates every 30 seconds (configurable)
+- **Manual Refresh**: Pull-to-refresh on mobile or refresh button
+- **Real-Time Updates**: WebSocket connection for live simulations
+
+### Offline Mode
+
+When installed as PWA:
+
+- **Cached Dashboard**: View previously loaded data
+- **Offline Indicator**: Banner showing connection status
+- **Sync on Reconnect**: Updates applied when back online
+
+<Card title="PWA Installation" icon="download" href="/user-manual/mobile/ios-installation">
+  Install crisisIQ for offline access
+</Card>
+
+## Dashboard Navigation Tips
+
+<AccordionGroup>
+  <Accordion title="Keyboard Shortcuts">
+    Speed up navigation with keyboard shortcuts:
+
+    - `Ctrl/Cmd + K`: Open search
+    - `Ctrl/Cmd + B`: Toggle sidebar
+    - `Ctrl/Cmd + H`: Go to dashboard home
+    - `Ctrl/Cmd + S`: Save current form (where applicable)
+    - `Esc`: Close modals/dialogs
+  </Accordion>
+
+  <Accordion title="Breadcrumb Navigation">
+    Use breadcrumbs at the top to navigate back:
+
+    - Click any breadcrumb to jump to that level
+    - Useful when deep in nested pages
+    - Shows your current location
+  </Accordion>
+
+  <Accordion title="Company Switching">
+    Quickly switch between organizations:
+
+    1. Click Company Switcher dropdown
+    2. Select different company
+    3. Dashboard reloads with that company's data
+    4. Your role may differ per company
+  </Accordion>
+
+  <Accordion title="Search Functionality">
+    Find what you need fast:
+
+    - Search scenarios by name, description, tags
+    - Find users by name or email (Admin)
+    - Locate simulations by title or ID
+    - Filter results by type or date
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Dashboard not loading">
+    1. Check your internet connection
+    2. Refresh the page (Ctrl/Cmd + R)
+    3. Clear browser cache
+    4. Try a different browser
+    5. Contact support if issue persists
+  </Accordion>
+
+  <Accordion title="Widgets showing old data">
+    - Click the refresh icon if available
+    - Log out and back in
+    - Check if real-time connection is active (look for connection indicator)
+  </Accordion>
+
+  <Accordion title="Can't see expected features">
+    - Verify your role and permissions
+    - Switch to the correct company context
+    - Check if email is verified
+    - Contact your administrator
+  </Accordion>
+
+  <Accordion title="Sidebar disappeared">
+    - Click the menu toggle (hamburger icon) to show it
+    - On mobile, sidebar is hidden by default - tap menu to open
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+Explore specific dashboard features:
+
+<CardGroup cols={2}>
+  <Card title="Navigation Guide" icon="map" href="/user-manual/dashboard/navigation">
+    Detailed navigation instructions
+  </Card>
+  <Card title="Roles & Permissions" icon="user-shield" href="/user-manual/dashboard/roles">
+    Understand what you can do
+  </Card>
+  <Card title="Group Simulations" icon="users" href="/user-manual/group-simulations/overview">
+    Join team training
+  </Card>
+  <Card title="Solo Training" icon="graduation-cap" href="/user-manual/solo-training/overview">
+    Practice individually
+  </Card>
+</CardGroup>

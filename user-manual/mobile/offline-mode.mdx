@@ -1,0 +1,380 @@
+---
+title: "Offline Mode"
+description: "Use crisisIQ features without an internet connection"
+---
+
+# Offline Mode
+
+crisisIQ's offline capabilities allow you to continue learning even when internet connectivity is limited or unavailable.
+
+## How Offline Mode Works
+
+crisisIQ uses Progressive Web App (PWA) technology to cache content locally on your device.
+
+<CardGroup cols={2}>
+  <Card title="Automatic Caching" icon="download">
+    Content saved as you use the app
+  </Card>
+  <Card title="Smart Storage" icon="database">
+    Priority given to recent and important content
+  </Card>
+  <Card title="Background Sync" icon="sync">
+    Updates sync when connection returns
+  </Card>
+  <Card title="Seamless Transition" icon="shuffle">
+    Automatic switch between online/offline
+  </Card>
+</CardGroup>
+
+## What Works Offline
+
+### Available Features
+
+<Tabs>
+  <Tab title="View Content">
+    **Access Cached Data:**
+
+    - Dashboard (last loaded state)
+    - Training history
+    - Completed scenario reports
+    - Downloaded certificates
+    - Cached resources/documents
+    - Your profile information
+  </Tab>
+
+  <Tab title="Continue Scenarios">
+    **Limited Functionality:**
+
+    - Resume saved solo scenarios
+    - View scenario content already loaded
+    - Take notes
+    - Review decisions made
+    - Cannot submit new decisions
+  </Tab>
+
+  <Tab title="Review Materials">
+    **Study & Reflect:**
+
+    - Read past feedback
+    - Review performance reports
+    - Access downloaded documents
+    - Study cached learning materials
+  </Tab>
+</Tabs>
+
+### Limited or Unavailable Offline
+
+<Warning>
+**Requires Internet Connection:**
+
+- **Login/Logout**: Authentication needs server
+- **Start New Simulations**: Loading scenarios requires connection
+- **Submit Decisions**: Scoring and branching need server
+- **Real-Time Features**: Chat, live events, team collaboration
+- **Synchronization**: Upload progress, download new content
+- **Administration**: User management, scenario creation
+</Warning>
+
+## Enabling Offline Mode
+
+### Automatic Setup
+
+When you install crisisIQ as a PWA:
+
+<Steps>
+  <Step title="Install PWA">
+    Follow installation guide for your device
+  </Step>
+
+  <Step title="Use Online First">
+    Navigate through the app while connected
+  </Step>
+
+  <Step title="Content Caches Automatically">
+    Pages and resources save as you use them
+  </Step>
+
+  <Step title="Offline Access Enabled">
+    Cached content available offline
+  </Step>
+</Steps>
+
+### Manual Cache Management
+
+Ensure important content is cached:
+
+**Before Going Offline:**
+1. **Open Key Pages**: Visit dashboard, training history, scenarios
+2. **Load Documents**: Open resources you might need
+3. **Download Certificates**: Save any certificates
+4. **Review Scenarios**: Open scenarios you're working on
+
+This ensures they're cached for offline access.
+
+## Offline Indicators
+
+### Connection Status
+
+crisisIQ shows your connection state:
+
+<Tabs>
+  <Tab title="Online">
+    **Connected**
+
+    - Green indicator or checkmark
+    - All features available
+    - Auto-sync active
+  </Tab>
+
+  <Tab title="Offline">
+    **Disconnected**
+
+    - Orange/red indicator
+    - "Offline Mode" banner
+    - Limited features
+    - Changes queued for sync
+  </Tab>
+
+  <Tab title="Syncing">
+    **Reconnecting**
+
+    - Blue indicator or spinner
+    - "Syncing..." message
+    - Uploading pending changes
+  </Tab>
+</Tabs>
+
+### Feature Availability
+
+When offline, disabled features show:
+
+- Grayed out buttons
+- "Requires connection" tooltips
+- Explanatory messages
+- Alternative offline actions suggested
+
+## Syncing After Reconnection
+
+### Automatic Sync
+
+When you reconnect:
+
+<Steps>
+  <Step title="Connection Detected">
+    App recognizes internet is back
+  </Step>
+
+  <Step title="Queued Actions Upload">
+    Offline changes send to server
+  </Step>
+
+  <Step title="New Content Downloads">
+    Updates and new data fetch
+  </Step>
+
+  <Step title="Status Updates">
+    Progress syncs, scores update
+  </Step>
+
+  <Step title="Sync Complete">
+    Indicator shows online status
+  </Step>
+</Steps>
+
+### Manual Sync
+
+Force synchronization:
+
+1. Pull down to refresh on dashboard
+2. Or: Settings > Sync Now
+3. Wait for completion
+4. Verify data is current
+
+## Storage Management
+
+### How Much Storage Used?
+
+Check storage usage:
+
+- **Android**: Settings > Apps > crisisIQ > Storage
+- **iOS**: Settings > General > iPhone Storage > crisisIQ
+- **In-App**: Profile > Settings > Storage
+
+**Typical Usage:**
+- Base app: 10-20MB
+- Cached content: 30-80MB
+- Offline scenarios: 5-10MB each
+- Media/documents: Varies by content
+
+### Clearing Cache
+
+Free up space if needed:
+
+<Warning>
+Clearing cache removes offline content. You'll need to re-cache it by using the app online.
+</Warning>
+
+**Steps:**
+1. Profile > Settings > Storage
+2. Tap "Clear Cache"
+3. Confirm action
+4. Next online use will re-cache
+
+## Offline Scenario Behavior
+
+### Solo Scenarios
+
+**Starting Offline:**
+- Can't start new scenarios
+- Can resume if already loaded
+
+**During Offline:**
+- View events and information
+- Read resources
+- Cannot submit decisions
+- Progress not saved until online
+
+**Reconnecting:**
+- Resume where you left off
+- Submit queued decisions
+- Sync progress
+
+### Group Simulations
+
+<Note>
+Group simulations require active connection for real-time collaboration. Offline use is very limited.
+</Note>
+
+**Offline Limitations:**
+- Cannot join or participate actively
+- Can view briefing if cached
+- Chat unavailable
+- Events don't update
+- Decisions cannot be submitted
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Prepare Before Going Offline">
+    - Open and cache pages you'll need
+    - Download important documents
+    - Start scenarios while online
+    - Check certificate downloads complete
+  </Accordion>
+
+  <Accordion title="Understand Limitations">
+    - Plan activities that don't require connection
+    - Review materials, study past reports
+    - Don't rely on offline for real-time features
+    - Schedule decision-heavy work for online time
+  </Accordion>
+
+  <Accordion title="Monitor Storage">
+    - Keep device storage above 10% free
+    - Periodically clear unused cache
+    - Remove downloaded content you no longer need
+    - Manage media downloads
+  </Accordion>
+
+  <Accordion title="Sync Regularly">
+    - Connect to WiFi daily if possible
+    - Open app to trigger sync
+    - Verify changes uploaded successfully
+    - Check for app updates
+  </Accordion>
+</AccordionGroup>
+
+## Use Cases for Offline Mode
+
+### When Offline Mode Helps
+
+<CardGroup cols={2}>
+  <Card title="Travel" icon="plane">
+    Review training during flights or commutes
+  </Card>
+  <Card title="Remote Locations" icon="mountain">
+    Access content in areas with poor connectivity
+  </Card>
+  <Card title="Data Limits" icon="signal">
+    Conserve mobile data by using cached content
+  </Card>
+  <Card title="Network Outages" icon="wifi-slash">
+    Continue studying if internet goes down
+  </Card>
+</CardGroup>
+
+## Troubleshooting Offline Mode
+
+<AccordionGroup>
+  <Accordion title="Content not available offline">
+    **Cause:** Not cached before going offline
+
+    **Solution:**
+    - Reconnect and open the content
+    - It will cache for next offline use
+    - Ensure sufficient storage available
+  </Accordion>
+
+  <Accordion title="Changes not syncing">
+    **Causes:**
+    - Still offline
+    - Connection too slow
+    - Storage full
+
+    **Solutions:**
+    - Verify you're online (check indicator)
+    - Wait for stable connection
+    - Free up storage space
+    - Force sync via refresh
+  </Accordion>
+
+  <Accordion title="Offline mode not activating">
+    **Causes:**
+    - Not installed as PWA
+    - Browser not supported
+    - Feature disabled
+
+    **Solutions:**
+    - Install as PWA (see installation guides)
+    - Use Chrome, Edge, or Safari
+    - Check settings for offline mode toggle
+  </Accordion>
+
+  <Accordion title="App doesn't recognize I'm back online">
+    **Solutions:**
+    - Close and reopen app
+    - Pull down to refresh
+    - Toggle airplane mode off/on
+    - Restart device
+  </Accordion>
+</AccordionGroup>
+
+## Data Safety
+
+### Offline Data Security
+
+- **Local Storage**: Encrypted on device
+- **No Unsaved Changes Lost**: Queued for sync
+- **Authentication Timeout**: May need to re-login after extended offline period
+- **Automatic Logout**: After configured timeout (e.g., 7 days offline)
+
+### Privacy Considerations
+
+- Offline data stored only on your device
+- Clearing app data removes all cached content
+- Uninstalling app deletes local cache
+- Server data remains intact
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="iOS Installation" icon="apple" href="/user-manual/mobile/ios-installation">
+    Install PWA on iPhone/iPad
+  </Card>
+  <Card title="Android Installation" icon="android" href="/user-manual/mobile/android-installation">
+    Install PWA on Android
+  </Card>
+  <Card title="Getting Started" icon="rocket" href="/user-manual/getting-started/introduction">
+    Begin using crisisIQ
+  </Card>
+</CardGroup>

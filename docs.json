@@ -1,87 +1,116 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "crisisIQ User Manual",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#2563EB",
+    "light": "#3B82F6",
+    "dark": "#1E40AF"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "User Manual",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "user-manual/getting-started/introduction",
+              "user-manual/getting-started/system-requirements",
+              "user-manual/getting-started/account-setup"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Authentication",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "user-manual/authentication/login",
+              "user-manual/authentication/password-reset",
+              "user-manual/authentication/email-verification",
+              "user-manual/authentication/invitations"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Dashboard",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "user-manual/dashboard/overview",
+              "user-manual/dashboard/navigation",
+              "user-manual/dashboard/roles"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Administration",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+              "user-manual/administration/company-management",
+              "user-manual/administration/user-management",
+              "user-manual/administration/role-assignments"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Scenario Management",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "user-manual/scenarios/creating-scenarios",
+              "user-manual/scenarios/editing-scenarios",
+              "user-manual/scenarios/timeline-builder"
+            ]
+          },
+          {
+            "group": "Group Simulations",
+            "pages": [
+              "user-manual/group-simulations/overview",
+              "user-manual/group-simulations/preparation",
+              "user-manual/group-simulations/briefing",
+              "user-manual/group-simulations/execution",
+              "user-manual/group-simulations/debriefing",
+              "user-manual/group-simulations/reports"
+            ]
+          },
+          {
+            "group": "Solo Training",
+            "pages": [
+              "user-manual/solo-training/overview",
+              "user-manual/solo-training/getting-started",
+              "user-manual/solo-training/during-simulation",
+              "user-manual/solo-training/results"
+            ]
+          },
+          {
+            "group": "Simulation Features",
+            "pages": [
+              "user-manual/simulation-features/making-decisions",
+              "user-manual/simulation-features/communication",
+              "user-manual/simulation-features/ai-mentor",
+              "user-manual/simulation-features/timeline-events",
+              "user-manual/simulation-features/documents"
+            ]
+          },
+          {
+            "group": "Reports & Analytics",
+            "pages": [
+              "user-manual/reports/understanding-reports",
+              "user-manual/reports/performance-metrics",
+              "user-manual/reports/certificates"
+            ]
+          },
+          {
+            "group": "Settings",
+            "pages": [
+              "user-manual/settings/profile",
+              "user-manual/settings/preferences",
+              "user-manual/settings/language"
+            ]
+          },
+          {
+            "group": "Mobile & PWA",
+            "pages": [
+              "user-manual/mobile/ios-installation",
+              "user-manual/mobile/android-installation",
+              "user-manual/mobile/offline-mode"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -91,32 +120,17 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@crisisiq.com"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
      "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
+     "view"
    ]
   },
   "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
+    "socials": {}
   }
 }

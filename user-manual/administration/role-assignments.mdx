@@ -1,0 +1,326 @@
+---
+title: "Role Assignments"
+description: "Configure and manage user roles and permissions"
+---
+
+# Role Assignments
+
+Manage who has access to what features through role-based access control.
+
+## Understanding Roles
+
+crisisIQ uses roles to control feature access:
+
+<CardGroup cols={4}>
+  <Card title="Participant" icon="user">
+    Basic training access
+  </Card>
+  <Card title="Content Creator" icon="pen-fancy">
+    Scenario building
+  </Card>
+  <Card title="Company Admin" icon="user-tie">
+    Organization management
+  </Card>
+  <Card title="System Admin" icon="shield">
+    Platform administration
+  </Card>
+</CardGroup>
+
+<Card title="Detailed Permissions" icon="list-check" href="/user-manual/dashboard/roles">
+  See full permission matrix
+</Card>
+
+## Assigning Roles
+
+### During Invitation
+
+When inviting new users:
+
+1. Enter email address
+2. **Select Role** from dropdown
+3. Send invitation
+4. User receives role upon accepting
+
+### For Existing Users
+
+To change a user's role:
+
+<Steps>
+  <Step title="Go to User Management">
+    Navigate to **Administration** > **User Management**
+  </Step>
+
+  <Step title="Find User">
+    Locate user in the list or search
+  </Step>
+
+  <Step title="Edit User">
+    Click edit icon or user row
+  </Step>
+
+  <Step title="Change Role">
+    Select new role from **Role** dropdown
+  </Step>
+
+  <Step title="Save">
+    Click **Update User**
+  </Step>
+
+  <Step title="User Notified">
+    User may receive email about role change (if enabled)
+  </Step>
+</Steps>
+
+<Note>
+Role changes take effect immediately. Users should refresh their browser to see updated permissions.
+</Note>
+
+## Bulk Role Assignment
+
+Change roles for multiple users at once:
+
+<Steps>
+  <Step title="Select Users">
+    Check boxes next to users in the list
+  </Step>
+
+  <Step title="Bulk Actions">
+    Click **Bulk Actions** dropdown
+  </Step>
+
+  <Step title="Change Role">
+    Select **Assign Role**
+  </Step>
+
+  <Step title="Choose New Role">
+    Pick the role to assign to all selected users
+  </Step>
+
+  <Step title="Confirm">
+    Review and confirm the change
+  </Step>
+</Steps>
+
+## Role-Based Features
+
+### What Each Role Can Access
+
+<Tabs>
+  <Tab title="Participant">
+    **Participant Access:**
+
+    ✓ Join assigned simulations
+    ✓ Complete solo training
+    ✓ View personal reports
+    ✓ Download certificates
+    ✓ Update own profile
+
+    ✗ Create scenarios
+    ✗ Manage users
+    ✗ View others' reports
+  </Tab>
+
+  <Tab title="Content Creator">
+    **Content Creator Access:**
+
+    ✓ All Participant features
+    ✓ Create and edit scenarios
+    ✓ Build timelines
+    ✓ Upload media resources
+    ✓ Preview simulations
+
+    ✗ Assign simulations
+    ✗ Manage users
+    ✗ Company settings
+  </Tab>
+
+  <Tab title="Company Admin">
+    **Company Admin Access:**
+
+    ✓ All Creator features
+    ✓ Invite and manage users
+    ✓ Assign simulations
+    ✓ View all reports
+    ✓ Company settings
+    ✓ Team management
+
+    ✗ Other organizations
+    ✗ System settings
+  </Tab>
+
+  <Tab title="System Admin">
+    **System Admin Access:**
+
+    ✓ All Admin features
+    ✓ Manage all companies
+    ✓ System configuration
+    ✓ Platform monitoring
+    ✓ Audit logs
+  </Tab>
+</Tabs>
+
+## Custom Permissions
+
+Some organizations may have custom roles configured:
+
+- **Trainer**: Between Participant and Creator
+- **Facilitator**: Can run but not create simulations
+- **Observer**: Read-only access to reports
+- **Custom Roles**: Configured by System Admin
+
+<Note>
+Custom roles require system-level configuration. Contact your System Admin if you need specialized permissions.
+</Note>
+
+## Role Promotion Workflow
+
+### Requesting a Role Change
+
+If a user needs elevated permissions:
+
+1. **User Requests**: User contacts Company Admin
+2. **Admin Reviews**: Evaluates business need
+3. **Approval**: Determines if role change is appropriate
+4. **Assignment**: Admin updates user's role
+5. **Notification**: User informed of change
+
+### Approving Role Requests
+
+Best practices for admins:
+
+<Check>Verify business need for elevated role</Check>
+<Check>Ensure user has necessary training</Check>
+<Check>Document reason for role change</Check>
+<Check>Set review date for temporary elevations</Check>
+<Check>Notify user of new responsibilities</Check>
+
+## Role Constraints
+
+### Subscription Limits
+
+Some plans limit roles:
+
+- **Starter Plan**: Limited admin seats
+- **Professional**: More Creator licenses
+- **Enterprise**: Unlimited roles
+
+Check your subscription details to see role limits.
+
+### Organization Rules
+
+Admins may set policies:
+
+- Minimum number of Admins (e.g., at least 2)
+- Maximum Creators (budget constraints)
+- Approval required for Admin promotion
+- Automatic role expiry (temporary elevations)
+
+## Monitoring Role Usage
+
+### Role Distribution Report
+
+View how roles are distributed:
+
+1. **Administration** > **Reports** > **Role Distribution**
+2. See breakdown by role type
+3. Compare to subscription limits
+4. Identify unused licenses
+
+### Role Activity Tracking
+
+Monitor what users do with their roles:
+
+- **Admin Actions Log**: Who made what changes
+- **Creator Activity**: Scenarios created/edited
+- **Participant Engagement**: Simulation completion rates
+
+<Card title="User Analytics" icon="chart-line">
+  Access detailed usage reports in the Analytics section
+</Card>
+
+## Security Best Practices
+
+<AccordionGroup>
+  <Accordion title="Principle of Least Privilege">
+    Grant users the minimum role necessary to perform their job. Most users should be Participants.
+  </Accordion>
+
+  <Accordion title="Regular Role Audits">
+    Review all user roles quarterly:
+    - Are elevated roles still needed?
+    - Have users changed positions?
+    - Are there any inactive accounts with admin access?
+  </Accordion>
+
+  <Accordion title="Admin Role Limits">
+    Limit Company Admin roles to 2-5 trusted individuals. More admins increase security risk.
+  </Accordion>
+
+  <Accordion title="Document Role Changes">
+    Keep a log of when and why roles were changed for compliance and auditing.
+  </Accordion>
+
+  <Accordion title="Revoke Access Promptly">
+    When employees leave or change roles, update their crisisIQ access immediately.
+  </Accordion>
+
+  <Accordion title="Temporary Elevations">
+    For one-time tasks, consider temporarily elevating a role then downgrading after completion.
+  </Accordion>
+</AccordionGroup>
+
+## Role Change Notifications
+
+### Automatic Notifications
+
+Configure whether users are notified when their role changes:
+
+1. **Company Settings** > **Notifications**
+2. Toggle **"Notify on Role Change"**
+3. Customize email template (optional)
+
+### What Users Receive
+
+When role changes, user gets email with:
+
+- **Old Role** → **New Role**
+- **Changed By**: Admin who made the change
+- **Date**: When change occurred
+- **Next Steps**: Link to documentation for new role
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Cannot assign Admin role">
+    - Check subscription limits for Admin seats
+    - Verify you have permission to grant Admin (System Admin may be required)
+    - Ensure user's email is verified
+  </Accordion>
+
+  <Accordion title="Role change not reflecting">
+    - User needs to log out and back in
+    - Clear browser cache and cookies
+    - Check if change was actually saved
+  </Accordion>
+
+  <Accordion title="User sees features they shouldn't">
+    - Verify the user's current role
+    - Check if they belong to multiple organizations with different roles
+    - Ensure they're viewing the correct company context
+  </Accordion>
+
+  <Accordion title="Cannot remove last Admin">
+    Organizations must have at least one Company Admin. Promote another user to Admin before downgrading the last one.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="User Management" icon="users" href="/user-manual/administration/user-management">
+    Invite and manage users
+  </Card>
+  <Card title="Roles Reference" icon="book" href="/user-manual/dashboard/roles">
+    Detailed permission information
+  </Card>
+</CardGroup>

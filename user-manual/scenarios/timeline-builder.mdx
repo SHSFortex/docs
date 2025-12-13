@@ -1,0 +1,490 @@
+---
+title: "Timeline Builder"
+description: "Create dynamic event sequences for crisis simulations"
+---
+
+# Timeline Builder
+
+The Timeline Builder allows you to create sequences of events that unfold during a simulation, making scenarios dynamic and realistic.
+
+## What is a Timeline?
+
+A timeline is the sequence of events that occur during a simulation:
+
+- **News Updates**: Breaking news, reports, announcements
+- **Incoming Messages**: Emails, calls, texts from stakeholders
+- **Status Changes**: Situation escalations or improvements
+- **Media Releases**: Press coverage, social media activity
+- **Resource Updates**: New information becomes available
+
+## Accessing Timeline Builder
+
+<Steps>
+  <Step title="Open Scenario">
+    Navigate to **Scenarios** and select your scenario
+  </Step>
+
+  <Step title="Click 'Edit'">
+    Enter edit mode
+  </Step>
+
+  <Step title="Go to Timeline Tab">
+    Select the **Timeline** tab in the editor
+  </Step>
+
+  <Step title="View Timeline Canvas">
+    See visual representation of event sequence
+  </Step>
+</Steps>
+
+## Timeline Interface
+
+### Visual Layout
+
+<Tabs>
+  <Tab title="Timeline View">
+    **Horizontal Timeline**
+
+    - Time runs left to right
+    - Events appear as cards on timeline
+    - Duration shown in minutes from simulation start
+    - Drag events to reposition
+    - Zoom in/out for detail
+  </Tab>
+
+  <Tab title="List View">
+    **Event List**
+
+    - All events in chronological order
+    - Shows event type, trigger time, status
+    - Quick edit access
+    - Bulk operations
+  </Tab>
+
+  <Tab title="Graph View">
+    **Flowchart View**
+
+    - Shows branching and dependencies
+    - Conditional events highlighted
+    - Event chains visualized
+  </Tab>
+</Tabs>
+
+### Timeline Controls
+
+- **Zoom**: `+` / `-` buttons or mouse wheel
+- **Pan**: Click and drag timeline
+- **Add Event**: Click on timeline or **+ Add Event** button
+- **Delete**: Select event, press Delete or click trash icon
+- **Duplicate**: Copy event and modify
+
+## Creating Events
+
+### Add a New Event
+
+<Steps>
+  <Step title="Click Add Event">
+    On timeline or use **+ Add Event** button
+  </Step>
+
+  <Step title="Choose Event Type">
+    Select from:
+    - News Update
+    - Message/Email
+    - Phone Call
+    - Status Change
+    - Media Clip
+    - Document Release
+    - Custom Event
+  </Step>
+
+  <Step title="Set Trigger Time">
+    When should this event occur?
+    - **Absolute Time**: X minutes from simulation start
+    - **Relative Time**: Y minutes after another event
+    - **Conditional**: Triggered by participant decision
+  </Step>
+
+  <Step title="Add Content">
+    - Title
+    - Description/body
+    - Attachments (images, videos, documents)
+    - Source (who is sending/reporting this)
+  </Step>
+
+  <Step title="Configure Display">
+    - Notification type (banner, modal, sidebar)
+    - Auto-dismiss or require acknowledgment
+    - Highlight as urgent (optional)
+  </Step>
+
+  <Step title="Save Event">
+    Event appears on timeline
+  </Step>
+</Steps>
+
+## Event Types
+
+### News Update
+
+Breaking news or media reports:
+
+<CardGroup cols={2}>
+  <Card title="Format" icon="newspaper">
+    - Headline
+    - News body
+    - Source (news organization)
+    - Image/video
+  </Card>
+  <Card title="Use Cases" icon="lightbulb">
+    - Situation escalation
+    - Public reaction
+    - External developments
+    - Media coverage
+  </Card>
+</CardGroup>
+
+### Message/Email
+
+Communications from stakeholders:
+
+- **From**: Sender name and role
+- **To**: Recipient (participant or role)
+- **Subject**: Email subject line
+- **Body**: Message content
+- **Attachments**: Documents, images
+- **Urgency**: Normal, Important, Urgent
+
+### Phone Call
+
+Simulated incoming calls:
+
+- **Caller**: Name and organization
+- **Purpose**: Why they're calling
+- **Audio**: Optional audio message
+- **Transcript**: Written version
+- **Action Required**: Must respond? Call back?
+
+### Status Change
+
+Updates to the crisis situation:
+
+- **Element**: What changed (casualties, damage, resources)
+- **New Status**: Updated information
+- **Impact**: How this affects the situation
+- **Visual**: Dashboard widget update, map change
+
+### Media Clip
+
+Video or audio content:
+
+- **Type**: News broadcast, social media video, interview
+- **Duration**: Length of clip
+- **File**: Upload video/audio
+- **Transcript**: For accessibility
+- **Context**: When/where this is from
+
+### Document Release
+
+New information becomes available:
+
+- **Document Name**: Report, plan, data, etc.
+- **File**: PDF, image, spreadsheet
+- **Source**: Who released it
+- **Summary**: Quick overview
+
+## Event Timing
+
+### Absolute Timing
+
+Fixed time from simulation start:
+
+```
+Event triggers at: 5 minutes
+Event triggers at: 15 minutes
+Event triggers at: 30 minutes
+```
+
+Best for:
+- Structured scenarios
+- Predictable progressions
+- Timed phases
+
+### Relative Timing
+
+Based on another event:
+
+```
+5 minutes after "Initial Briefing"
+10 minutes after "First Decision"
+```
+
+Best for:
+- Dependent events
+- Logical sequences
+- Reaction scenarios
+
+### Conditional Timing
+
+Triggered by participant actions:
+
+```
+If Decision A → Option 1: Trigger "Positive Outcome Event"
+If Decision A → Option 2: Trigger "Negative Outcome Event"
+If no decision within 10 min: Trigger "Escalation Event"
+```
+
+Best for:
+- Branching scenarios
+- Consequence-based learning
+- Adaptive difficulty
+
+## Event Dependencies
+
+### Creating Event Chains
+
+Link events together:
+
+<Steps>
+  <Step title="Select Parent Event">
+    Click the event that should trigger others
+  </Step>
+
+  <Step title="Add Dependent Event">
+    Click **Add Dependent Event** or draw connection
+  </Step>
+
+  <Step title="Set Condition">
+    - Always follow parent
+    - Only if decision X
+    - Only if time threshold met
+  </Step>
+
+  <Step title="Configure Timing">
+    How long after parent event should child trigger?
+  </Step>
+</Steps>
+
+### Branching Scenarios
+
+Create different paths:
+
+```
+Decision Point: "Do you evacuate?"
+├─ Yes → Event: "Evacuation underway" → Event: "Traffic issues"
+└─ No → Event: "Staying in place" → Event: "Conditions worsen"
+```
+
+<Note>
+Complex branching increases scenario difficulty and testing needs. Start simple, add complexity gradually.
+</Note>
+
+## Event Content Best Practices
+
+<AccordionGroup>
+  <Accordion title="Realistic Content">
+    Write events as they would actually appear:
+    - Authentic news language
+    - Realistic email formats
+    - Appropriate urgency and tone
+  </Accordion>
+
+  <Accordion title="Gradual Escalation">
+    Build tension over time:
+    - Start with manageable situation
+    - Introduce complications gradually
+    - Peak at crisis midpoint
+    - Resolution opportunities near end
+  </Accordion>
+
+  <Accordion title="Varied Sources">
+    Mix event types and sources:
+    - News media
+    - Internal communications
+    - External stakeholders
+    - Social media
+    - Official channels
+  </Accordion>
+
+  <Accordion title="Information Density">
+    Balance detail with clarity:
+    - Enough info to make decisions
+    - Not so much it's overwhelming
+    - Key details highlighted
+    - Supporting docs available
+  </Accordion>
+
+  <Accordion title="Pacing">
+    Time events appropriately:
+    - Don't flood participants
+    - Allow thinking time between events
+    - Increase pace during climax
+    - Slow down for resolution
+  </Accordion>
+</AccordionGroup>
+
+## Multimedia in Events
+
+### Adding Images
+
+1. Click **Add Image** in event editor
+2. Upload or select from media library
+3. Add caption
+4. Set display: Inline, attachment, or popup
+
+**Good Uses:**
+- Damage photos
+- Maps with highlighted areas
+- Charts and graphs
+- Social media screenshots
+
+### Adding Videos
+
+1. Upload video file (MP4 recommended)
+2. Or embed from YouTube/Vimeo
+3. Add title and description
+4. Transcript for accessibility
+
+**Good Uses:**
+- News broadcasts
+- Eyewitness videos
+- Stakeholder statements
+- Instructional clips
+
+### Audio Files
+
+1. Upload audio (MP3, WAV)
+2. Provide transcript
+3. Set auto-play or manual
+
+**Good Uses:**
+- Emergency radio
+- Phone call recordings
+- Public announcements
+- Ambient sounds
+
+## Testing Your Timeline
+
+### Preview Mode
+
+Test the timeline before publishing:
+
+<Steps>
+  <Step title="Click 'Preview Timeline'">
+    Button in timeline editor
+  </Step>
+
+  <Step title="Set Speed">
+    - Real-time (as participants will experience)
+    - Fast-forward (2x, 5x, 10x speed)
+    - Step-by-step (manually advance)
+  </Step>
+
+  <Step title="Run Through">
+    Watch events trigger in sequence
+  </Step>
+
+  <Step title="Test Decisions">
+    Make different choices to see branching
+  </Step>
+
+  <Step title="Check Timing">
+    Verify pacing feels right
+  </Step>
+
+  <Step title="Note Issues">
+    Document what needs adjustment
+  </Step>
+</Steps>
+
+### Common Issues to Check
+
+<Check>Events in logical order</Check>
+<Check>No timing conflicts (multiple events at once)</Check>
+<Check>All branches reachable</Check>
+<Check>Media files load correctly</Check>
+<Check>Text readable and error-free</Check>
+<Check>Appropriate pacing (not too fast/slow)</Check>
+
+## Advanced Features
+
+### Random Events
+
+Add unpredictability:
+
+1. Create **Random Event Pool**
+2. Add multiple possible events
+3. Set probability for each
+4. System randomly selects which fires
+
+**Example:**
+```
+At 20 minutes, trigger ONE of:
+- 40% chance: Minor complication
+- 30% chance: Moderate complication
+- 20% chance: Major complication
+- 10% chance: Unexpected help
+```
+
+### Participant-Triggered Events
+
+Events that fire based on participant actions:
+
+- **Performance-Based**: Trigger if score above/below threshold
+- **Speed-Based**: If decisions made quickly/slowly
+- **Inactivity**: If no action for X minutes
+- **Collaboration**: If team communicates/doesn't communicate
+
+### Dynamic Content
+
+Content that adapts:
+
+- **Personalization**: Use participant's name, role, company
+- **Variables**: Reference previous decisions
+- **Calculations**: Show updated statistics based on choices
+
+**Example:**
+```
+"Based on your decision to [DECISION], casualties are now [CALCULATED_CASUALTIES]."
+```
+
+## Timeline Templates
+
+### Using Templates
+
+Save time with pre-built timelines:
+
+1. **Browse Templates**: Standard crisis types (fire, cyber, natural disaster)
+2. **Select Template**: Choose closest match
+3. **Apply to Scenario**: Timeline populates
+4. **Customize**: Modify events to fit your needs
+
+### Creating Templates
+
+Save your timeline for reuse:
+
+1. Build timeline
+2. Click **Save as Template**
+3. Name template
+4. Set visibility (personal or organization)
+5. Template available for future scenarios
+
+## Collaborative Timeline Editing
+
+### Working with Co-Creators
+
+- **Real-Time Sync**: See others' changes live
+- **Event Locking**: Event locked while being edited
+- **Comments**: Add notes on events for collaborators
+- **Version Control**: Revert if needed
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Creating Scenarios" icon="wand-magic-sparkles" href="/user-manual/scenarios/creating-scenarios">
+    Build complete scenarios
+  </Card>
+  <Card title="Group Simulations" icon="users" href="/user-manual/group-simulations/overview">
+    Deploy scenarios to teams
+  </Card>
+</CardGroup>

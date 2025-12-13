@@ -1,0 +1,264 @@
+---
+title: "Logging In"
+description: "Access your crisisIQ account securely"
+---
+
+# Logging In to crisis IQ
+
+Learn how to access your crisisIQ account and manage your login sessions.
+
+## Standard Login
+
+Access crisisIQ using your email and password:
+
+<Steps>
+  <Step title="Navigate to Login Page">
+    Visit your organization's crisisIQ URL or the public instance login page
+  </Step>
+
+  <Step title="Enter Credentials">
+    - **Email**: The email address associated with your account
+    - **Password**: Your account password
+  </Step>
+
+  <Step title="Click 'Login'">
+    Submit your credentials to access the platform
+  </Step>
+
+  <Step title="Complete 2FA (if enabled)">
+    If two-factor authentication is enabled, enter the verification code from your authenticator app
+  </Step>
+</Steps>
+
+<Info>
+Your session will remain active for 24 hours of inactivity. After that, you'll need to log in again.
+</Info>
+
+## Remember Me
+
+The "Remember Me" option keeps you logged in across browser sessions:
+
+<Tabs>
+  <Tab title="Enabled">
+    **Remember Me Checked**
+
+    - Stays logged in even after closing the browser
+    - Session persists for up to 30 days
+    - Recommended for personal devices only
+  </Tab>
+
+  <Tab title="Disabled">
+    **Remember Me Unchecked**
+
+    - Session ends when browser is closed
+    - More secure for shared/public computers
+    - Recommended for work or public devices
+  </Tab>
+</Tabs>
+
+<Warning>
+Never use "Remember Me" on shared or public computers for security reasons.
+</Warning>
+
+## Login Security
+
+### Secure Connection
+
+crisisIQ uses industry-standard security measures:
+
+<Check>**HTTPS Encryption** - All data encrypted in transit</Check>
+<Check>**Secure WebSockets (WSS)** - Real-time features protected</Check>
+<Check>**JWT Tokens** - Secure session management</Check>
+<Check>**Token Expiration** - Automatic logout after 24 hours</Check>
+
+### Failed Login Attempts
+
+Security measures for failed login attempts:
+
+- **3 failed attempts**: Warning message displayed
+- **5 failed attempts**: 5-minute lockout
+- **10 failed attempts**: 30-minute lockout
+- **Continued failures**: Account temporarily suspended
+
+<Info>
+If your account is locked due to multiple failed attempts, wait for the lockout period to expire or use the "Forgot Password" option to reset your password.
+</Info>
+
+## Session Management
+
+### Active Sessions
+
+Your account can have multiple active sessions:
+
+- Desktop browser
+- Mobile browser
+- PWA installation
+- Tablet device
+
+All sessions share the same authentication token and will be logged out simultaneously when you explicitly log out.
+
+### Auto-Logout
+
+You'll be automatically logged out if:
+
+- You explicitly click "Logout"
+- Your session expires (24 hours of inactivity)
+- Your authentication token is revoked
+- You change your password
+- An administrator deactivates your account
+
+### Staying Logged In
+
+To prevent auto-logout:
+
+- Interact with the platform regularly
+- Keep the browser tab/window open
+- Install as PWA for persistent sessions
+
+## Multi-Device Login
+
+You can be logged in on multiple devices simultaneously:
+
+<CardGroup cols={2}>
+  <Card title="Desktop" icon="desktop">
+    Access full features on your computer
+  </Card>
+  <Card title="Mobile/Tablet" icon="mobile">
+    Use crisisIQ on the go
+  </Card>
+  <Card title="PWA" icon="window-restore">
+    Install as standalone app
+  </Card>
+  <Card title="Multiple Browsers" icon="browsers">
+    Different browsers on same device
+  </Card>
+</CardGroup>
+
+All sessions sync in real-time, ensuring consistent experience across devices.
+
+## Company Context
+
+If you belong to multiple organizations:
+
+### Company Switcher
+
+1. Look for the **Company Switcher** dropdown in the top navigation
+2. Click to see all companies you belong to
+3. Select the company you want to work with
+4. Your dashboard and permissions update automatically
+
+<Note>
+Your role and available features may differ between companies. Switching companies updates your context without requiring re-login.
+</Note>
+
+### Last Selected Company
+
+The platform remembers your last selected company:
+
+- Automatically loads that company on next login
+- Persists across sessions
+- Can be changed anytime via the Company Switcher
+
+## Language Selection
+
+Change the interface language at login or anytime after:
+
+1. Click the **Language Selector** (flag icon)
+2. Choose **Deutsch (DE)** or **English (EN)**
+3. Interface updates immediately
+
+Your language preference is saved to your account.
+
+## Troubleshooting Login Issues
+
+<AccordionGroup>
+  <Accordion title="I forgot my password">
+    Use the [Forgot Password](/user-manual/authentication/password-reset) feature to reset it. See the Password Reset guide for detailed instructions.
+  </Accordion>
+
+  <Accordion title="My email and password don't work">
+    Verify that:
+    - You're using the correct email address
+    - Caps Lock is not enabled
+    - You're on the correct crisisIQ instance URL
+    - Your account hasn't been deactivated
+
+    If issues persist, contact your administrator or support.
+  </Accordion>
+
+  <Accordion title="I'm getting 'Account locked' message">
+    This occurs after multiple failed login attempts. Wait for the lockout period (5-30 minutes) or reset your password.
+  </Accordion>
+
+  <Accordion title="Email verification required">
+    If you see a message about email verification, check your inbox for the verification email. See [Email Verification](/user-manual/authentication/email-verification) for details.
+  </Accordion>
+
+  <Accordion title="Two-factor code not working">
+    Ensure:
+    - Your device clock is synchronized
+    - You're using the latest code from your authenticator app
+    - The code hasn't expired (codes refresh every 30 seconds)
+
+    If 2FA continues to fail, contact your administrator to reset it.
+  </Accordion>
+
+  <Accordion title="Session expires too quickly">
+    Standard sessions last 24 hours with activity. If you're being logged out prematurely:
+    - Check if "Remember Me" is enabled
+    - Verify your browser allows cookies and local storage
+    - Check for browser extensions that clear cookies
+    - Ensure you're not in private/incognito mode
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+### Security Recommendations
+
+<Check>Use a strong, unique password</Check>
+<Check>Enable two-factor authentication</Check>
+<Check>Never share your credentials</Check>
+<Check>Log out from shared/public computers</Check>
+<Check>Keep your browser updated</Check>
+<Check>Use "Remember Me" only on personal devices</Check>
+
+### Password Management
+
+- Use a password manager (e.g., 1Password, LastPass, Bitwarden)
+- Change your password if you suspect it's been compromised
+- Don't reuse passwords from other services
+- Update your password periodically
+
+### When to Contact Support
+
+Reach out to support@crisisiq.com if:
+
+- You can't access your account after password reset
+- Your account appears compromised
+- You're unable to receive verification emails
+- You experience repeated technical login issues
+
+## After Logging In
+
+Once successfully logged in, you'll be directed to:
+
+- **Dashboard**: Your main hub (for most users)
+- **Solo Training Dashboard**: If you're primarily a solo learner
+- **Active Simulation**: If you have an ongoing simulation
+- **Email Verification Page**: If your email isn't verified
+
+<CardGroup cols={2}>
+  <Card title="Dashboard Guide" icon="gauge" href="/user-manual/dashboard/overview">
+    Navigate the main dashboard
+  </Card>
+  <Card title="Forgot Password" icon="key" href="/user-manual/authentication/password-reset">
+    Reset your account password
+  </Card>
+  <Card title="Email Verification" icon="envelope-circle-check" href="/user-manual/authentication/email-verification">
+    Verify your email address
+  </Card>
+  <Card title="User Profile" icon="user" href="/user-manual/settings/profile">
+    Manage your account settings
+  </Card>
+</CardGroup>

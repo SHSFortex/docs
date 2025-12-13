@@ -1,0 +1,355 @@
+---
+title: "Company Management"
+description: "Manage your organization settings and configuration"
+---
+
+# Company Management
+
+Company Admins can configure organization settings, branding, and preferences.
+
+## Accessing Company Settings
+
+<Steps>
+  <Step title="Navigate to Administration">
+    Click **Administration** in the sidebar menu
+  </Step>
+
+  <Step title="Select Company Settings">
+    Choose **Company Management** or **Settings**
+  </Step>
+
+  <Step title="View/Edit Settings">
+    Update configuration as needed
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Save** to apply changes
+  </Step>
+</Steps>
+
+## Company Profile
+
+### Basic Information
+
+<CardGroup cols={2}>
+  <Card title="Company Name" icon="building">
+    Display name shown to all users
+  </Card>
+  <Card title="Description" icon="file-lines">
+    Brief description of your organization
+  </Card>
+  <Card title="Industry" icon="industry">
+    Sector or industry type
+  </Card>
+  <Card title="Size" icon="users">
+    Number of employees
+  </Card>
+</CardGroup>
+
+### Contact Information
+
+- **Admin Email**: Primary contact for organization
+- **Support Email**: Where users can get help
+- **Website**: Organization website URL
+- **Address**: Physical location (optional)
+
+## Branding & Customization
+
+### Logo Upload
+
+Upload your organization's logo:
+
+1. Go to **Branding** section
+2. Click **Upload Logo**
+3. Select image file (PNG, JPG, SVG)
+4. Recommended size: 200x200px minimum
+5. Preview and save
+
+<Note>
+Logos appear in the navigation header and participant views.
+</Note>
+
+### Color Scheme
+
+Customize the platform's appearance:
+
+- **Primary Color**: Main brand color
+- **Secondary Color**: Accent color
+- **Background**: Custom background (optional)
+
+### Welcome Message
+
+Set a custom welcome message for users:
+
+- Shown on login page
+- Displayed on dashboard
+- Supports markdown formatting
+- Multilingual (DE/EN)
+
+## User Settings
+
+### Default User Role
+
+Choose the default role for new users:
+
+- **Participant** (most common)
+- **Content Creator** (for training organizations)
+- Custom role (if configured)
+
+<Warning>
+Default roles apply to users joining via join codes. Email invitations can specify individual roles.
+</Warning>
+
+### Email Verification
+
+Configure email verification requirements:
+
+- **Required for All**: All users must verify email
+- **Required for Participants**: Only participants need verification
+- **Optional**: Verification not enforced (not recommended)
+
+### User Invitation Settings
+
+- **Who Can Invite**: Admins only or all users
+- **Invitation Expiry**: Days until invitation expires (default: 7)
+- **Join Code Duration**: Validity period for join codes
+
+## Simulation Settings
+
+### Default Simulation Configuration
+
+Set organization-wide defaults:
+
+<Tabs>
+  <Tab title="Timing">
+    - Default simulation duration
+    - Briefing time allocation
+    - Debriefing duration
+    - Auto-advance phases (yes/no)
+  </Tab>
+
+  <Tab title="Features">
+    - Enable AI Mentor by default
+    - Allow participant chat
+    - Enable timeline events
+    - Auto-save decisions
+  </Tab>
+
+  <Tab title="Scoring">
+    - Default scoring method
+    - Pass/fail threshold
+    - Certificate generation criteria
+  </Tab>
+</Tabs>
+
+### Scenario Library
+
+Manage organization scenario access:
+
+- **Public Scenarios**: Available to all organizations
+- **Private Scenarios**: Only your organization
+- **Shared Scenarios**: Shared with partner organizations
+
+## Team Management
+
+### Creating Teams
+
+Organize users into teams for group simulations:
+
+<Steps>
+  <Step title="Go to Teams">
+    Navigate to **Administration** > **Teams**
+  </Step>
+
+  <Step title="Create New Team">
+    Click **+ Create Team**
+  </Step>
+
+  <Step title="Name and Describe">
+    Provide team name and description
+  </Step>
+
+  <Step title="Add Members">
+    Select users to add to the team
+  </Step>
+
+  <Step title="Assign Team Lead">
+    Optionally designate a team leader
+  </Step>
+
+  <Step title="Save Team">
+    Click **Create** to save
+  </Step>
+</Steps>
+
+### Team Features
+
+- **Team Simulations**: Assign simulations to entire teams
+- **Team Reports**: Aggregate performance analytics
+- **Team Communication**: Dedicated team channels
+- **Team Resources**: Shared documents and materials
+
+## Notifications
+
+Configure organization notification settings:
+
+### Email Notifications
+
+Control which emails are sent:
+
+<Check>Simulation assignments</Check>
+<Check>Upcoming simulation reminders</Check>
+<Check>Completion certificates</Check>
+<Check>Performance reports</Check>
+<Check>Administrative announcements</Check>
+
+### Notification Timing
+
+- **Reminder Schedule**: Days before simulation (e.g., 7, 3, 1 day)
+- **Digest Frequency**: Daily, weekly, or real-time
+- **Quiet Hours**: No notifications during certain hours
+
+## Data & Privacy
+
+### Data Retention
+
+Configure how long data is stored:
+
+- **User Data**: Indefinite or specific duration
+- **Simulation Results**: Retention period
+- **Audit Logs**: How long to keep logs
+- **Archived Content**: Storage policy
+
+### Privacy Settings
+
+<CardGroup cols={2}>
+  <Card title="User Visibility" icon="eye">
+    Who can see other users' profiles
+  </Card>
+  <Card title="Performance Sharing" icon="chart-bar">
+    Can users see others' scores
+  </Card>
+  <Card title="Leaderboards" icon="trophy">
+    Enable/disable competitive features
+  </Card>
+  <Card title="Data Export" icon="download">
+    Allow users to export their data
+  </Card>
+</CardGroup>
+
+### Compliance
+
+- **GDPR Compliance**: EU data protection
+- **Data Processing Agreement**: Link to DPA
+- **Privacy Policy**: Custom or default
+- **Terms of Service**: Organization-specific terms
+
+## Integration Settings
+
+### Single Sign-On (SSO)
+
+Configure SSO for streamlined authentication:
+
+1. **SAML 2.0**: Enterprise SSO integration
+2. **OAuth 2.0**: Social or custom OAuth providers
+3. **LDAP/Active Directory**: Corporate directory integration
+
+<Note>
+SSO configuration may require system administrator assistance.
+</Note>
+
+### API Access
+
+Enable API access for integrations:
+
+- **API Keys**: Generate organization API keys
+- **Webhooks**: Configure event webhooks
+- **Rate Limits**: API usage limits
+- **Documentation**: Link to API docs
+
+## Billing & Subscription
+
+### Subscription Details
+
+View current plan information:
+
+- **Plan Type**: Starter, Professional, Enterprise
+- **User Limit**: Maximum active users
+- **Storage Quota**: Available storage
+- **Renewal Date**: Next billing date
+
+### Usage Monitoring
+
+Track organization usage:
+
+- **Active Users**: Current user count
+- **Simulations Run**: Monthly simulation count
+- **Storage Used**: GB of media/data stored
+- **API Calls**: API usage metrics
+
+<Card title="Upgrade Plan" icon="arrow-up">
+  Contact sales to upgrade your subscription
+</Card>
+
+## Company Archive
+
+### Archiving the Company
+
+If you need to deactivate your organization:
+
+<Warning>
+Archiving a company disables all user access and simulations. This action requires confirmation and may not be reversible without contacting support.
+</Warning>
+
+<Steps>
+  <Step title="Navigate to Settings">
+    Go to **Company Settings** > **Advanced**
+  </Step>
+
+  <Step title="Request Archive">
+    Click **Archive Company**
+  </Step>
+
+  <Step title="Confirm Action">
+    Type company name to confirm
+  </Step>
+
+  <Step title="Archive Applied">
+    Company is deactivated; users cannot log in
+  </Step>
+</Steps>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Regular Settings Review">
+    Review company settings quarterly to ensure they align with current needs and policies.
+  </Accordion>
+
+  <Accordion title="Test Before Enforcing">
+    Test notification and simulation settings with a small group before applying organization-wide.
+  </Accordion>
+
+  <Accordion title="Document Custom Settings">
+    Keep internal documentation of why certain settings were configured a specific way.
+  </Accordion>
+
+  <Accordion title="Monitor Usage">
+    Regularly check usage metrics to optimize subscription plan and resource allocation.
+  </Accordion>
+
+  <Accordion title="Backup Configurations">
+    Export or document important settings before making major changes.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="User Management" icon="users" href="/user-manual/administration/user-management">
+    Manage and invite users
+  </Card>
+  <Card title="Role Assignments" icon="user-tag" href="/user-manual/administration/role-assignments">
+    Configure user permissions
+  </Card>
+</CardGroup>

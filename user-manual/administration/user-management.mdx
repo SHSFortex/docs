@@ -1,0 +1,374 @@
+---
+title: "User Management"
+description: "Invite, manage, and organize users in your organization"
+---
+
+# User Management
+
+Company Admins can invite new users, manage existing accounts, and configure user access.
+
+## User List
+
+### Viewing Users
+
+Access the user list:
+
+1. Navigate to **Administration** > **User Management**
+2. View all users in your organization
+3. Filter by role, status, or team
+4. Search by name or email
+
+### User Information Displayed
+
+- **Name & Email**: User identification
+- **Role**: Current permission level
+- **Status**: Active, Pending, Inactive
+- **Last Login**: Most recent access
+- **Simulations**: Count of assigned/completed
+- **Actions**: Edit, deactivate, delete options
+
+## Inviting Users
+
+### Email Invitation
+
+<Steps>
+  <Step title="Click 'Invite User'">
+    Button located at top of user list
+  </Step>
+
+  <Step title="Enter Email Address">
+    Provide the email address (or multiple, comma-separated)
+  </Step>
+
+  <Step title="Assign Role">
+    Select: Participant, Content Creator, or Company Admin
+  </Step>
+
+  <Step title="Add to Team (Optional)">
+    Assign to an existing team
+  </Step>
+
+  <Step title="Personalize Message (Optional)">
+    Add a welcome message to the invitation email
+  </Step>
+
+  <Step title="Send Invitation">
+    Click **Send Invite** to dispatch email
+  </Step>
+</Steps>
+
+<Info>
+Users receive an email with a unique invitation link valid for 7 days.
+</Info>
+
+### Bulk Invitation
+
+Invite multiple users at once:
+
+1. Click **Bulk Invite** button
+2. Upload CSV file with columns: Email, Name, Role
+3. Review import preview
+4. Confirm to send all invitations
+
+**CSV Format:**
+```csv
+email,name,role
+john@example.com,John Doe,participant
+jane@example.com,Jane Smith,content_creator
+```
+
+## Join Codes
+
+### Creating a Join Code
+
+For workshops or bulk onboarding:
+
+<Steps>
+  <Step title="Navigate to Join Codes">
+    **Administration** > **Join Codes**
+  </Step>
+
+  <Step title="Create New Code">
+    Click **+ Generate Join Code**
+  </Step>
+
+  <Step title="Configure Code">
+    - **Code Name**: Internal reference
+    - **Default Role**: Role for users joining with this code
+    - **Expiration**: Optional expiry date
+    - **Usage Limit**: Max number of uses (optional)
+  </Step>
+
+  <Step title="Generate">
+    System creates unique alphanumeric code
+  </Step>
+
+  <Step title="Share Code">
+    Distribute code via email, presentation, or document
+  </Step>
+</Steps>
+
+### Managing Join Codes
+
+- **Active Codes**: Currently valid codes
+- **Expired Codes**: Past expiration date
+- **Deactivate**: Manually disable a code
+- **Usage Stats**: See how many joined with each code
+
+## Managing Existing Users
+
+### Editing User Details
+
+<Steps>
+  <Step title="Locate User">
+    Find user in the list or use search
+  </Step>
+
+  <Step title="Click Edit">
+    Select edit icon or click on user row
+  </Step>
+
+  <Step title="Update Information">
+    - Change name
+    - Update email (requires re-verification)
+    - Modify role
+    - Adjust team assignments
+  </Step>
+
+  <Step title="Save Changes">
+    Click **Update User**
+  </Step>
+</Steps>
+
+<Note>
+Role changes take effect immediately. Users may need to refresh their session.
+</Note>
+
+### Changing User Roles
+
+To promote or demote a user:
+
+1. Edit the user
+2. Select new role from dropdown
+3. Save changes
+4. User's permissions update automatically
+
+<Warning>
+Be cautious when granting Company Admin roles. Admins have full access to manage all users and settings.
+</Warning>
+
+### Deactivating Users
+
+Temporarily disable a user's access:
+
+1. Select user from list
+2. Click **Deactivate** button
+3. Confirm action
+4. User cannot log in but data is preserved
+
+**When to Deactivate:**
+- Employee on leave
+- Temporary suspension
+- Account under review
+
+### Deleting Users
+
+Permanently remove a user (use with caution):
+
+1. Select user
+2. Click **Delete** action
+3. Type user's email to confirm
+4. User and their data removed
+
+<Warning>
+Deleting a user is permanent and cannot be undone. Their simulation results and content may be affected. Consider deactivating instead.
+</Warning>
+
+## User Status
+
+<Tabs>
+  <Tab title="Active">
+    **Active Users**
+
+    - Account is enabled
+    - Can log in and use platform
+    - Receiving notifications
+    - Counted toward subscription limit
+  </Tab>
+
+  <Tab title="Pending">
+    **Pending Users**
+
+    - Invitation sent but not accepted
+    - Account not yet created
+    - Not counted toward user limit
+    - Can resend invitation
+  </Tab>
+
+  <Tab title="Inactive">
+    **Inactive Users**
+
+    - Account deactivated by admin
+    - Cannot log in
+    - Data preserved
+    - Can be reactivated
+  </Tab>
+
+  <Tab title="Unverified">
+    **Unverified Email**
+
+    - Account created but email not verified
+    - Limited access to features
+    - Can resend verification email
+  </Tab>
+</Tabs>
+
+## Team Assignments
+
+### Adding Users to Teams
+
+1. Edit user
+2. In **Teams** section, select team(s)
+3. Save changes
+4. User now appears in team roster
+
+### Removing from Teams
+
+1. Edit user
+2. Uncheck team(s) to remove
+3. Save
+4. User loses access to team-specific simulations
+
+### Bulk Team Assignment
+
+Assign multiple users to a team at once:
+
+1. Select multiple users (checkboxes)
+2. Click **Bulk Actions** > **Assign to Team**
+3. Choose team
+4. Confirm action
+
+## User Filters & Search
+
+### Filtering Users
+
+Narrow the user list:
+
+- **By Role**: Show only Admins, Creators, or Participants
+- **By Status**: Active, Pending, Inactive
+- **By Team**: Members of specific team
+- **By Activity**: Last login date range
+
+### Search
+
+Find users quickly:
+
+- Search by **name**
+- Search by **email**
+- Search by **user ID**
+
+### Sorting
+
+Click column headers to sort:
+
+- Name (A-Z or Z-A)
+- Last login (newest or oldest)
+- Date added (newest or oldest)
+- Role
+
+## User Export
+
+### Exporting User Data
+
+Download user list for reporting:
+
+1. Click **Export** button
+2. Choose format: CSV or Excel
+3. Select fields to include
+4. Download file
+
+**Exported Fields:**
+- Name, Email, Role, Status, Last Login, Teams, Simulations Completed
+
+## Pending Invitations
+
+### Managing Pending Invites
+
+View and manage sent invitations:
+
+1. Go to **Pending Invitations** tab
+2. See all invitations awaiting acceptance
+3. Actions available:
+   - **Resend**: Send invitation email again
+   - **Revoke**: Cancel invitation
+   - **Change Role**: Update assigned role before acceptance
+
+### Expired Invitations
+
+Invitations expire after 7 days:
+
+- Appear in **Expired** tab
+- Can resend to generate new link
+- Original link becomes invalid
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Use Teams for Organization">
+    Group users into teams by department, location, or function for easier management and targeted training.
+  </Accordion>
+
+  <Accordion title="Assign Appropriate Roles">
+    Grant the minimum necessary permissions. Most users should be Participants; reserve Admin for trusted personnel.
+  </Accordion>
+
+  <Accordion title="Regular Audits">
+    Periodically review user list to deactivate departed employees and verify roles are still appropriate.
+  </Accordion>
+
+  <Accordion title="Bulk Operations">
+    Use bulk invite and bulk team assignment for onboarding large groups efficiently.
+  </Accordion>
+
+  <Accordion title="Track Pending Invitations">
+    Follow up on pending invitations after a few days to ensure users received and can access the email.
+  </Accordion>
+
+  <Accordion title="Document Deactivations">
+    Keep a record of why users were deactivated for compliance and audit purposes.
+  </Accordion>
+</AccordionGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="User didn't receive invitation">
+    1. Check if email address is correct
+    2. Ask user to check spam/junk folder
+    3. Resend invitation
+    4. Verify your company's email sending settings
+  </Accordion>
+
+  <Accordion title="Cannot delete user">
+    Users who created scenarios or completed simulations may have constraints. Try deactivating instead, or contact support.
+  </Accordion>
+
+  <Accordion title="Role change not reflecting">
+    User may need to log out and back in. Clear browser cache if issue persists.
+  </Accordion>
+
+  <Accordion title="User count exceeds limit">
+    Your subscription has a user limit. Deactivate inactive users or upgrade your plan.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Role Assignments" icon="user-tag" href="/user-manual/administration/role-assignments">
+    Configure detailed permissions
+  </Card>
+  <Card title="Company Settings" icon="building" href="/user-manual/administration/company-management">
+    Manage organization configuration
+  </Card>
+</CardGroup>
