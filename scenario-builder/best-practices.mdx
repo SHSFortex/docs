@@ -1,0 +1,929 @@
+---
+title: 'Best Practices'
+description: 'Tipps und Tricks für qualitativ hochwertige Krisentrainings-Szenarien'
+---
+
+## Überblick
+
+Dieser Guide sammelt bewährte Praktiken aus der Erstellung von über 100 Szenarien mit dem crisisIQ Scenario Builder. Folgen Sie diesen Empfehlungen für professionelle, effektive und immersive Trainings.
+
+---
+
+## Formular-Ausfüllung
+
+### Sektion 1: Kontext & Setting
+
+<Tip>
+**Spezifisch statt generisch**: Statt "Krankenhaus" schreiben Sie "350-Betten-Akutklinik mit Notaufnahme, Intensivstation und angeschlossener Pflegeeinrichtung"
+</Tip>
+
+**✅ Gut**:
+```
+Rolle: IT-Sicherheitsbeauftragter einer Stadtwerke-Gesellschaft
+mit 450 Mitarbeitern, verantwortlich für kritische Infrastruktur
+(Wasser, Strom, Gas) in einer 80.000-Einwohner-Stadt
+```
+
+**❌ Schlecht**:
+```
+Rolle: IT-Sicherheitsbeauftragter
+```
+
+### Sektion 2: Der Vorfall
+
+**Timing ist wichtig**:
+- **Minor Incident**: Stunden (4-8h)
+- **Moderate Incident**: 1-2 Tage
+- **Major Incident**: 2-4 Tage
+- **Catastrophic**: 1-2 Wochen
+
+<Warning>
+**Häufiger Fehler**: Zu kurze Dauer für Schweregrad. Ein "Major" Ransomware-Angriff in 6 Stunden zu lösen ist unrealistisch → reduziert Immersion.
+</Warning>
+
+### Sektion 3: Szenario-Dynamik
+
+**Verzweigungen planen**:
+
+| Szenario-Länge | Empfohlene Verzweigungen |
+|----------------|--------------------------|
+| Kurz (10-15 Events) | 1-2 |
+| Mittel (20-35 Events) | 3-5 |
+| Lang (40-60 Events) | 5-8 |
+| Sehr lang (80+ Events) | 8-12 |
+
+**Platzierung von Verzweigungen**:
+- **Opening**: Maximal 1 Verzweigung (Grundrichtung festlegen)
+- **Escalation**: 40-50% der Verzweigungen (Krisenbewältigung)
+- **Peak**: 30-40% der Verzweigungen (Kritische Entscheidungen)
+- **Resolution**: 10-20% (Nachbereitung)
+
+<Tip>
+**Qualität über Quantität**: 3-4 **bedeutsame** Verzweigungen sind besser als 8 kosmetische Varianten.
+</Tip>
+
+### Sektion 4: Lernziele
+
+**Regel**: 1 Lernziel pro 8-12 Events
+
+**Beispiele**:
+
+**✅ Gut - spezifisch & messbar**:
+- "Entscheidungen unter Zeitdruck mit unvollständigen Informationen treffen"
+- "Priorisierung von Maßnahmen bei begrenzten Ressourcen"
+- "Effektive Krisenkommunikation mit verschiedenen Stakeholder-Gruppen"
+
+**❌ Schlecht - zu vage**:
+- "Gutes Krisenmanagement"
+- "Richtig entscheiden"
+- "Kommunikation verbessern"
+
+### Sektion 5: Anpassung & Kontext
+
+**NPCs definieren**:
+
+**✅ Detailliert**:
+```
+Dr. Sarah Müller - Chefärztin Innere Medizin, 15 Jahre
+Berufserfahrung, pragmatisch aber risikoavers, respektiert
+aber manchmal ungeduldig mit IT-Abteilung
+
+Thomas Schmidt - IT-Leiter, 8 Jahre im Haus, technisch
+sehr kompetent, neigt zu technischem Jargon, arbeitet
+gut unter Druck
+```
+
+**❌ Zu knapp**:
+```
+Dr. Müller - Chefärztin
+Thomas - IT-Leiter
+```
+
+**Tone & Style**:
+- **Professionell**: Für C-Level Trainings
+- **Realistisch**: Standard für operative Ebene
+- **Dramatisch**: Nur für sehr schwere Szenarien (Catastrophic)
+
+<Note>
+**Default "Realistisch"** funktioniert für 90% der Szenarien. Übertreiben Sie nicht mit Dramatik.
+</Note>
+
+---
+
+## TOC-Generierung & Freigabe
+
+### Event-Anzahl kalkulieren
+
+**Formel**: `Basis-Events + (Verzweigungen × 2-3)`
+
+**Beispiele**:
+```
+Mittel-Szenario, 4 Verzweigungen:
+→ 20 Basis-Events + (4 × 2.5) = ~30 Events
+
+Lang-Szenario, 7 Verzweigungen:
+→ 40 Basis-Events + (7 × 3) = ~61 Events
+```
+
+### TOC-Qualitätsprüfung
+
+Prüfen Sie **vor Akzeptanz**:
+
+<Checklist>
+  - [ ] **Event-Verteilung**: Nicht 90% Opening, 10% Rest
+  - [ ] **Zeitliche Progression**: Zeit fließt vorwärts auf allen Pfaden
+  - [ ] **Verzweigungslogik**: Entscheidungen ergeben narrativen Sinn
+  - [ ] **NPC-Verwendung**: Charaktere erscheinen wiederholt, nicht nur einmal
+  - [ ] **Assessment-Platzierung**: Nach Events wo Lernziel angewendet wurde
+  - [ ] **Phasen-Balance**: Opening 20%, Escalation 35%, Peak 25%, Resolution 20%
+</Checklist>
+
+### TOC-Feedback bei Regenerierung
+
+**✅ Gutes Feedback - spezifisch**:
+```
+"Zu wenig Spannung in Escalation-Phase. Events e8-e15
+sollten mehr Druck aufbauen: Stakeholder werden ungeduldig,
+Medien greifen Thema auf, Zeitdruck steigt. Bitte 2-3
+zusätzliche Events in dieser Phase für Spannungsaufbau."
+```
+
+**❌ Schlechtes Feedback - vage**:
+```
+"Besser machen"
+"Mehr Events"
+```
+
+---
+
+## Event-Review
+
+### Narrative Qualität beurteilen
+
+Ein **guter narrativer Event-Text** hat:
+
+#### 1. Immersion (2. Person Singular)
+
+**✅ Gut**:
+```
+Du betrittst den Serverraum. Die LED-Anzeigen blinken unregelmäßig,
+ein leises Summen erfüllt den klimatisierten Raum. Thomas steht vor
+einem Terminal, Schweiß perlt von seiner Stirn. "Es wird schlimmer",
+sagt er, ohne aufzublicken. "Drei weitere Server sind offline gegangen."
+```
+
+**❌ Schlecht** (3. Person):
+```
+Der IT-Sicherheitsbeauftragte betritt den Serverraum. Thomas sagt,
+dass drei weitere Server offline gegangen sind.
+```
+
+#### 2. Sensorische Details
+
+Mindestens **2-3 Sinne** pro Event:
+
+- **Visuell**: LED-Anzeigen blinken, Monitore zeigen Fehler
+- **Auditiv**: Summen, Alarme, Gespräche
+- **Taktil**: Schweiß, Kälte der Klimaanlage, zitternde Hände
+- **Optional**: Geruch (brennende Elektronik), Geschmack (trockener Mund)
+
+#### 3. Charakterentwicklung
+
+NPCs sollten **persönlich** wirken:
+
+**✅ Gut**:
+```
+Dr. Müller verschränkt die Arme. "Das kann ich meinen Patienten
+nicht erklären." Ihr Ton ist scharf, aber du erkennst die Sorge
+in ihren Augen.
+```
+
+**❌ Schlecht**:
+```
+Dr. Müller sagt, dass sie besorgt ist.
+```
+
+#### 4. Spannungsaufbau
+
+**Zeigen statt sagen**:
+
+**✅ Gut**:
+```
+Dein Telefon vibriert zum dritten Mal in zwei Minuten. Die
+Geschäftsleitung. Du ignorierst den Anruf - jetzt zählt jede
+Sekunde für die Wiederherstellung.
+```
+
+**❌ Schlecht**:
+```
+Die Situation ist angespannt.
+```
+
+### Event-Längen optimieren
+
+| Event-Typ | Ideale Länge | Funktion |
+|-----------|--------------|----------|
+| **Opening** | 800-1.200 | Szene setzen, Charaktere einführen |
+| **Transition** | 500-700 | Verbindung, Zeitsprung erklären |
+| **Decision** | 1.200-1.800 | Kontext für Entscheidung aufbauen |
+| **Peak** | 1.500-2.000 | Höhepunkt, maximale Immersion |
+| **Resolution** | 1.000-1.500 | Abschluss, Reflexion |
+| **Assessment Intro** | 600-900 | Setup für Quiz-Frage |
+
+<Warning>
+**Zu lange Events** (>2.200 Zeichen): Spieler verlieren Fokus
+**Zu kurze Events** (<400 Zeichen): Fühlt sich abgehackt an
+</Warning>
+
+### Branching-Optionen gestalten
+
+**Jede Option sollte**:
+1. **Klar unterscheidbar** sein
+2. **Plausibel** klingen (keine offensichtlich "falsche" Option)
+3. **Konsequenzen** haben (unterschiedliche Pfade)
+
+**Beispiel - gut**:
+
+**Option A** (Proaktiv):
+```
+"Informiere sofort die Geschäftsleitung und aktiviere den
+Krisenstab. Transparenz ist jetzt wichtig, auch wenn wir
+noch keine vollständige Lageeinschätzung haben."
+```
+
+**Option B** (Vorsichtig):
+```
+"Sammle erst alle Fakten und erstelle eine fundierte Analyse.
+Die Geschäftsleitung sollte erst informiert werden, wenn wir
+klare Handlungsempfehlungen haben."
+```
+
+**Option C** (Technisch):
+```
+"Konzentriere dich auf technische Schadensbegrenzung. Isoliere
+betroffene Systeme und starte Wiederherstellung, bevor du
+eskalierst."
+```
+
+**Vermeiden**:
+- Offensichtlich "richtige" vs. "falsche" Optionen
+- Zu ähnliche Formulierungen
+- Unrealistische Optionen
+
+### Assessment-Qualität sichern
+
+**Gute Quiz-Fragen sind**:
+
+<Tabs>
+  <Tab title="Anwendungsbezogen">
+    **✅ Gut** (testet Verständnis):
+    ```
+    Frage: In dieser Situation sollte die erste Priorität sein:
+
+    A) Externe Kommunikation vorbereiten (korrekt)
+    B) Forensische Analyse starten
+    C) Systeme sofort neu starten
+    D) Backup-Wiederherstellung beginnen
+
+    Erklärung: Bei einem laufenden Angriff ist schnelle externe
+    Kommunikation essentiell, um Reputation zu schützen und
+    Stakeholder zu informieren (NIS-2 Meldepflicht). Forensik
+    und technische Maßnahmen laufen parallel, aber Kommunikation
+    muss sofort erfolgen.
+    ```
+
+    **❌ Schlecht** (reines Faktenwissen):
+    ```
+    Frage: Wie lange hat man für NIS-2 Meldung Zeit?
+
+    A) 24 Stunden (korrekt)
+    B) 48 Stunden
+    C) 72 Stunden
+    D) 1 Woche
+
+    Erklärung: Laut NIS-2 sind es 24 Stunden.
+    ```
+  </Tab>
+
+  <Tab title="Kontextbezogen">
+    **✅ Gut** (bezieht sich auf Event):
+    ```
+    Frage: Basierend auf Dr. Müllers Bedenken und der aktuellen
+    Patientensituation, welche Maßnahme ist jetzt am wichtigsten?
+
+    [Optionen beziehen sich auf vorherigen Event-Kontext]
+    ```
+
+    **❌ Schlecht** (generisch):
+    ```
+    Frage: Was ist generell wichtig im Krisenmanagement?
+    ```
+  </Tab>
+
+  <Tab title="Diskussionsfördernd">
+    **✅ Gut** (mehrere Perspektiven):
+    ```
+    Erklärung: Option A (korrekt) priorisiert Patientensicherheit,
+    was in dieser Situation ethisch und rechtlich geboten ist.
+    Option B wäre kosteneffizienter, ignoriert aber Compliance-
+    Risiken. Option C bietet einen Mittelweg, benötigt aber mehr
+    Zeit als verfügbar.
+    ```
+
+    **❌ Schlecht** (einsilbig):
+    ```
+    Erklärung: A ist richtig.
+    ```
+  </Tab>
+</Tabs>
+
+---
+
+## Validierung & Problembehebung
+
+### Proaktive Validation (während Review)
+
+**Nicht warten bis alle Events reviewed sind!**
+
+Validieren Sie alle 10-15 Events:
+1. Erkennt Probleme früh
+2. Spart Zeit (keine 45 Events nochmal durchgehen)
+3. Verhindert kaskadenartige Fehler
+
+### Timeline-Probleme vermeiden
+
+**Best Practice**:
+
+1. **Bei linearen Abschnitten**: Zeit in ~1-2 Stunden-Schritten
+2. **Bei Verzweigungen**: Alle Pfade sollten ähnlich viel Zeit brauchen
+3. **Bei Konvergenz**: Zeit des "langsamsten" Pfads verwenden
+
+**Beispiel**:
+```
+e10 [gemeinsam]: 10:00 Uhr
+├─ e11a [Pfad A]: 10:30 Uhr → e12a: 11:15 Uhr → e13 [Konvergenz]
+└─ e11b [Pfad B]: 10:45 Uhr → e12b: 11:20 Uhr → e13 [Konvergenz]
+
+e13 Zeit: 11:20 Uhr (oder später)
+→ Beide Pfade sind bis 11:20 angekommen
+```
+
+### NPC-Konsistenz wahren
+
+**Tipps**:
+
+1. **Namesliste führen** (im Formular Sektion 5):
+   ```
+   Dr. Sarah Müller (IMMER "Dr. Müller", nie "Frau Müller" oder "Chefärztin")
+   Thomas Schmidt (IMMER "Thomas", nie "Herr Schmidt" oder "IT-Leiter")
+   ```
+
+2. **Bei Regenerierung**: Immer feedback geben
+   ```
+   "Bitte exakte Namen verwenden: Dr. Müller (nicht Frau Müller)"
+   ```
+
+3. **Rollen konsistent halten**:
+   - Nicht: Event 5 "IT-Leiter Thomas" → Event 12 "Sicherheitsbeauftragter Thomas"
+
+---
+
+## Kosten-Optimierung
+
+### Token-Sparende Praktiken
+
+<Accordion>
+  <AccordionItem title="Präzise Formular-Eingaben">
+    **Spart**: TOC-Regenerierungen
+
+    Je genauer Ihre Formular-Eingaben, desto weniger Iterationen:
+    - **Gutes Formular**: 1 TOC-Generation → ~$0.15
+    - **Ungenaues Formular**: 3 TOC-Regenerierungen → ~$0.45
+
+    **Kosten-Differenz**: 200% mehr
+  </AccordionItem>
+
+  <AccordionItem title="Micro-Edits statt Full Regeneration">
+    **Spart**: 50-70% pro Fix
+
+    - **Vollständige Regenerierung**: ~800 Tokens, ~$0.015
+    - **Micro-Edit**: ~200 Tokens, ~$0.004
+    - **Lokaler Fix** (Zeit): 0 Tokens, $0
+
+    **Nutzen Sie**:
+    - "Beheben"-Button bei Validierungsproblemen
+    - Inline-Bearbeitung für kleine Textänderungen
+    - Regenerierung nur für substantielle Umschreibungen
+  </AccordionItem>
+
+  <AccordionItem title="Bulk-Validierung am Ende">
+    **Spart**: Mehrfache Validierung
+
+    **Empfohlen**:
+    1. Review alle Events
+    2. **Eine** Validierung durchführen
+    3. Auto-Fix nutzen
+    4. Export
+
+    **Zu vermeiden**:
+    - Nach jedem Event validieren (sehr teuer!)
+    - Mehrfach validieren ohne Änderungen
+
+    **Kosten-Differenz**: Bis zu 500% mehr bei übermäßigem Validieren
+  </AccordionItem>
+
+  <AccordionItem title="Modell-Auswahl">
+    **Spart**: 80-90% für einfache Szenarien
+
+    | Modell | Kosten-Faktor | Nutzen für |
+    |--------|---------------|------------|
+    | **Haiku** | 1x (~$0.03) | Sehr einfache Szenarien, Testing |
+    | **Sonnet** | 10x (~$0.30) | Standard - empfohlen für 90% |
+    | **Opus** | 27x (~$0.80) | Nur für sehr komplexe, hochwertige Szenarien |
+
+    **Empfehlung**: Nutzen Sie Sonnet als Standard. Opus nur wenn:
+    - C-Level Training
+    - Sehr komplexe Branching-Logik
+    - Höchste Qualitätsanforderungen
+  </AccordionItem>
+</Accordion>
+
+### Typische Gesamt-Kosten
+
+| Szenario-Typ | Events | Verzweigungen | Typische Kosten (Sonnet) |
+|--------------|--------|---------------|--------------------------|
+| **Quick Training** | 10-15 | 1-2 | $0.25 - $0.40 |
+| **Standard Scenario** | 20-35 | 3-5 | $0.60 - $1.20 |
+| **Umfangreiches Training** | 40-60 | 5-8 | $1.50 - $2.50 |
+| **Enterprise Scenario** | 80-120 | 8-12 | $3.00 - $5.00 |
+
+**Inkludiert**: TOC-Generation, Event-Generation, 2-3 Micro-Edit-Regenerationen, Validation
+
+**Nicht inkludiert**: Mehrfache vollständige TOC-Regenerierungen, exzessives Regenerieren von Events
+
+---
+
+## Workflow-Optimierung
+
+### Zeitplan für Szenario-Erstellung
+
+**Realistischer Zeitaufwand**:
+
+| Szenario-Größe | Formular | Review | Total |
+|----------------|----------|--------|-------|
+| **Klein** (10-15) | 15 min | 30 min | ~45 min |
+| **Mittel** (20-35) | 20 min | 1-1.5h | ~2h |
+| **Groß** (40-60) | 30 min | 2-3h | ~3-4h |
+| **Sehr groß** (80-120) | 45 min | 4-6h | ~6-8h |
+
+<Note>
+**KI-Generierung** (nicht inkludiert oben): 5-15 Minuten läuft im Hintergrund während Sie andere Dinge tun.
+</Note>
+
+### Effiziente Review-Strategien
+
+**Für große Szenarien** (40+ Events):
+
+<Steps>
+  <Step title="Tag 1: Formular & TOC (30-45 Min)">
+    - Formular sorgfältig ausfüllen
+    - TOC generieren & prüfen
+    - Ggf. TOC regenerieren mit Feedback
+    - TOC akzeptieren
+  </Step>
+
+  <Step title="Tag 1: Event-Generierung starten (5 Min Arbeit, 15-30 Min Laufzeit)">
+    - Event-Generierung anstoßen
+    - **Pause machen** oder andere Arbeit
+    - System generiert im Hintergrund
+  </Step>
+
+  <Step title="Tag 2: Event-Review Session 1 (1-1.5h)">
+    - Reviewen Sie Opening + Escalation (erste 50% der Events)
+    - Kleine Inline-Edits machen
+    - Freigeben
+    - **Zwischen-Validierung** durchführen
+  </Step>
+
+  <Step title="Tag 2: Event-Review Session 2 (1-1.5h)">
+    - Reviewen Sie Peak + Resolution (letzte 50%)
+    - Freigeben
+    - **Finale Validierung**
+  </Step>
+
+  <Step title="Tag 2: Probleme beheben & Export (15-30 Min)">
+    - Auto-Fix für alle Probleme
+    - Re-validieren
+    - Export
+  </Step>
+</Steps>
+
+**Vorteil dieses Ansatzes**:
+- Vermeidet "Review-Müdigkeit" (nicht 80 Events am Stück)
+- Frühe Validierung erkennt Muster-Fehler
+- Besser planbar
+
+### Team-Workflows
+
+**Für größere Teams**:
+
+**Option 1: Arbeitsteilung nach Phase**
+- Person A: Formular & TOC
+- Person B: Event-Review Opening + Escalation
+- Person C: Event-Review Peak + Resolution
+- Person A: Validierung & Export
+
+**Option 2: Qualitätssicherung**
+- Person A: Erstellt Szenario (Formular → Review)
+- Person B: Qualitätskontrolle (Re-Review, Validierung)
+- Person A: Behebung basierend auf Feedback
+- Person B: Finale Freigabe
+
+---
+
+## Qualitätskontrolle
+
+### Checkliste für professionelle Szenarien
+
+Vor dem finalen Export:
+
+#### Story & Immersion
+
+<Checklist>
+  - [ ] Jeder Event nutzt 2. Person Singular ("Du...")
+  - [ ] Sensorische Details in 80% der Events
+  - [ ] NPCs wirken persönlich, nicht wie Roboter
+  - [ ] Spannungsbogen folgt Phasen (niedrig → hoch → Resolution)
+  - [ ] Keine plötzlichen Ton-Wechsel (formell → umgangssprachlich)
+</Checklist>
+
+#### Logik & Konsistenz
+
+<Checklist>
+  - [ ] Zeit fließt vorwärts (keine Zeitreisen)
+  - [ ] NPC-Namen sind überall identisch
+  - [ ] Charaktere bleiben "in character"
+  - [ ] Verzweigungen haben echte Konsequenzen
+  - [ ] Konvergenzpunkte ergeben narrativ Sinn
+  - [ ] Keine "orphaned" Storylines
+</Checklist>
+
+#### Lernziele & Pädagogik
+
+<Checklist>
+  - [ ] Jedes Lernziel wird praktisch angewendet (nicht nur erwähnt)
+  - [ ] Assessments testen Verständnis, nicht Faktenwissen
+  - [ ] Assessment-Erklärungen sind lehrreich
+  - [ ] Alle 4 Assessment-Optionen sind plausibel
+  - [ ] Verzweigungen zeigen verschiedene Lösungsansätze
+</Checklist>
+
+#### Technische Qualität
+
+<Checklist>
+  - [ ] Alle Events sind 500-2.000 Zeichen
+  - [ ] Keine Validierungsfehler
+  - [ ] Warnungen sind bewertet und ggf. behoben
+  - [ ] Export-Datei hat korrektes Format
+  - [ ] Metadata vollständig ausgefüllt
+</Checklist>
+
+---
+
+## Häufige Fehler & wie man sie vermeidet
+
+<Accordion>
+  <AccordionItem title="Fehler 1: Zu generische Formulare">
+    **Problem**: Vage Eingaben im Formular führen zu generischen Szenarien
+
+    **Symptom**: TOC fühlt sich an wie "Standard-Vorlage", keine Spezifität
+
+    **Lösung**:
+    - Formular Sektion 5 nutzen für Details
+    - Konkrete NPCs mit Persönlichkeit definieren
+    - Spezifische Stakeholder-Gruppen benennen
+    - Besondere Herausforderungen Ihrer Organisation erwähnen
+
+    **Beispiel**:
+    ```
+    ❌ "Krankenhaus-Setting"
+    ✅ "Universitätsklinikum mit 450 Betten, Trauma-Zentrum Level 1,
+        24/7 Notaufnahme, angeschlossenes Forschungsinstitut.
+        Herausforderung: Veraltete IT-Infrastruktur nach
+        Budgetkürzungen, hohe Fluktuation im IT-Team"
+    ```
+  </AccordionItem>
+
+  <AccordionItem title="Fehler 2: Zu viele Verzweigungen">
+    **Problem**: 10+ Verzweigungen in einem 30-Event-Szenario
+
+    **Symptom**: Pfade werden extrem kurz (3-4 Events), Story fragmentiert
+
+    **Lösung**:
+    - Reduzieren Sie auf 4-6 **bedeutsame** Verzweigungen
+    - Jede Verzweigung sollte mindestens 4-5 Events Pfadlänge haben
+    - Fokus auf Qualität der Entscheidungen, nicht Quantität
+
+    **Faustregel**: `Max. Verzweigungen = (Total Events / 6)`
+  </AccordionItem>
+
+  <AccordionItem title="Fehler 3: Ignorieren von Warnungen">
+    **Problem**: "Nur Warnungen" → Export ohne Behebung
+
+    **Symptom**: Spieler-Feedback später: "Zeitsprünge verwirrend", "NPC kam aus dem Nichts"
+
+    **Lösung**:
+    - **Mindestens** Character- und Timeline-Warnungen beheben
+    - Content-Warnungen (zu kurz/lang) evaluieren
+    - Style-Warnungen können oft ignoriert werden
+
+    **Entscheidungsmatrix**:
+    ```
+    Timeline-Warnungen: BEHEBEN (betrifft Logik)
+    Character-Warnungen: BEHEBEN (betrifft Kohärenz)
+    Content-Warnungen: EVALUIEREN (betrifft Qualität)
+    Style-Warnungen: OPTIONAL (betrifft Präferenz)
+    ```
+  </AccordionItem>
+
+  <AccordionItem title="Fehler 4: Exzessives Regenerieren">
+    **Problem**: Jeder Event wird 3-4x regeneriert
+
+    **Symptom**: Hohe Kosten ($5+ für mittelgroßes Szenario), Zeitverlust
+
+    **Lösung**:
+    - **Akzeptieren Sie "gut genug"**: KI-Text muss nicht perfekt sein
+    - Nutzen Sie Inline-Editing für kleine Änderungen
+    - Regenerieren Sie nur bei fundamentalen Problemen
+    - Präzises Feedback = weniger Iterationen
+
+    **Wann regenerieren?**
+    ```
+    ✅ JA:
+    - NPC-Charakterisierung völlig falsch
+    - Event verfehlt den Punkt komplett
+    - Ton/Style komplett unpassend
+    - Branching-Optionen unbrauchbar
+
+    ❌ NEIN (stattdessen inline editieren):
+    - Ein Satz ist holprig
+    - Event ist 50 Zeichen zu lang
+    - Kleiner Tippfehler
+    - Wortwiederholung
+    ```
+  </AccordionItem>
+
+  <AccordionItem title="Fehler 5: Zu komplexe Branching-Strukturen">
+    **Problem**: Verzweigungen verzweigen sich erneut, Pfade kreuzen sich mehrfach
+
+    **Symptom**: TOC-Graph ist ein Chaos, Validation findet Probleme mit Erreichbarkeit
+
+    **Lösung - Empfohlene Strukturen**:
+
+    **Simple Branching**:
+    ```
+    e1 → e2 → [Decision] → e3a / e3b / e3c → [Convergence] e4 → e5
+    ```
+
+    **Multiple Independent Branches**:
+    ```
+    e1 → [D1] → path A / B
+         path A: → [D2] → A1 / A2 → [Conv] e10
+         path B: → [D3] → B1 / B2 → [Conv] e10
+    ```
+
+    **❌ ZU VERMEIDEN - Cross-Path Branching**:
+    ```
+    e1 → [D1] → A / B
+         A → [D2] → A1 / B1  ← A1 kreuzt zu B-Pfad
+         B → [D3] → A2 / B2  ← B2 kreuzt zu A-Pfad
+    ```
+  </AccordionItem>
+
+  <AccordionItem title="Fehler 6: Assessments als Afterthought">
+    **Problem**: Quizfragen passen nicht zum Event-Kontext
+
+    **Symptom**: Assessment fragt etwas, das im Event gar nicht vorkam
+
+    **Lösung**:
+    - **Während TOC-Review**: Prüfen Sie Assessment-Platzierung
+    - **Während Event-Review**: Lesen Sie Event UND Assessment zusammen
+    - Assessment sollte den Event **abschließen und vertiefen**
+
+    **Beispiel guter Integration**:
+    ```
+    Event e12: Spieler muss entscheiden zwischen sofortiger
+    Meldung an Behörde vs. erst interne Analyse
+
+    Assessment nach e12:
+    "Basierend auf der Situation in Event 12, welche Faktoren
+    sollten bei der Entscheidung über den Meldezeitpunkt
+    berücksichtigt werden?"
+
+    → Assessment bezieht sich direkt auf Event-Kontext
+    ```
+  </AccordionItem>
+</Accordion>
+
+---
+
+## Qualitäts-Benchmarks
+
+### Was macht ein "exzellentes" Szenario aus?
+
+<Tabs>
+  <Tab title="Immersion (10/10)">
+    - **Alle Events** in 2. Person Singular
+    - Durchschnittlich 3+ sensorische Details pro Event
+    - NPCs mit konsistenten Persönlichkeiten
+    - Dialoge klingen natürlich
+    - Spieler "vergisst", dass es ein Training ist
+  </Tab>
+
+  <Tab title="Lerneffekt (10/10)">
+    - Jedes Lernziel wird 2-3x praktisch angewendet
+    - Assessments testen echtes Verständnis
+    - Verzweigungen zeigen Konsequenzen verschiedener Ansätze
+    - Reflexionsmomente eingebaut
+    - Kein "Auswendiglernen" möglich
+  </Tab>
+
+  <Tab title="Technische Exzellenz (10/10)">
+    - Null Validierungsfehler
+    - Null Warnungen (oder alle evaluiert & begründet ignoriert)
+    - Timeline mathematisch korrekt
+    - NPC-Namen exakt identisch überall
+    - Alle Pfade erreichbar und getestet
+  </Tab>
+
+  <Tab title="Engagement (10/10)">
+    - Spannungsbogen folgt perfekter Kurve
+    - Entscheidungen sind schwierig (kein "offensichtlich richtig")
+    - Unerwartete Wendungen in Peak-Phase
+    - Emotional resonant (Spieler "fühlt" den Druck)
+    - Wiederholungswert durch verschiedene Pfade
+  </Tab>
+</Tabs>
+
+### Benchmarking Ihrer Szenarien
+
+**Nach dem Export, evaluieren Sie**:
+
+| Kriterium | Target | Messmethode |
+|-----------|--------|-------------|
+| **Validation Pass Rate** | 100% Errors, <5 Warnings | Validierungs-Report |
+| **Event Length Consistency** | ±300 Zeichen vom Durchschnitt | Export-JSON analysieren |
+| **NPC Name Consistency** | 0 Varianten | Suche nach NPC-Namen |
+| **Timeline Logic** | 0 Rückwärtssprünge | Zeitstempel-Liste durchgehen |
+| **Branching Balance** | Alle Pfade 8-15 Events lang | TOC-Graph-Analyse |
+| **Assessment Relevance** | Subjektiv, aber >8/10 | Selbsteinschätzung |
+
+---
+
+## Spezial-Themen
+
+### Sehr große Szenarien (100+ Events)
+
+**Zusätzliche Best Practices**:
+
+1. **Modularer Aufbau**: Denken Sie in "Kapiteln"
+   - Kapitel 1: Initial Response (20 Events)
+   - Kapitel 2: Escalation & Management (30 Events)
+   - Kapitel 3: Crisis Peak (25 Events)
+   - Kapitel 4: Resolution & Lessons (25 Events)
+
+2. **Mehr Konvergenzpunkte**: Alle 15-20 Events
+   - Verhindert exponentielles Wachstum
+   - Erleichtert Testing
+
+3. **Zwischenvalidierungen**: Nach jedem Kapitel
+   - Früherkennung von Mustern-Fehlern
+
+4. **Team-basierter Review**: Eine Person kann nicht 100+ Events in einem Durchgang reviewen
+
+### Multi-Language Szenarien
+
+**Wenn Sie gleiche Szenarien auf Deutsch UND Englisch erstellen**:
+
+1. **Erstellen Sie zuerst die Hauptsprache** (z.B. Deutsch)
+2. **Exportieren** Sie das fertige Szenario
+3. **Für zweite Sprache**:
+   - Nutzen Sie identisches Formular
+   - Ändern Sie NUR die Sprache auf Englisch
+   - TOC wird ähnlich strukturiert sein
+   - Event-Review kann schneller gehen (Sie kennen die Story)
+
+<Warning>
+**Nicht einfach übersetzen**: Lassen Sie die KI neu generieren in der Zielsprache. Direkte Übersetzungen verlieren kulturelle Nuancen und idiomatische Sprache.
+</Warning>
+
+### Compliance-fokussierte Szenarien (NIS-2, KRITIS)
+
+**Zusätzlich beachten**:
+
+1. **Compliance-Checkpoints** als eigene Events
+   - z.B. Event 8: "Meldepflicht-Check"
+   - Assessment danach testet Meldefristen-Wissen
+
+2. **Dokumentations-Fokus**:
+   - NPCs erwähnen: "Das muss dokumentiert werden"
+   - Spieler "erstellt" Berichte (narrativ)
+
+3. **Rechtliche Konsequenzen** in Branching:
+   - Pfad A (compliant): Keine Konsequenzen
+   - Pfad B (non-compliant): Bußgeld, Audit-Szenario
+
+---
+
+## Ressourcen & Weiterführendes
+
+### Empfohlene Lernreihenfolge
+
+Für neue Scenario Builder Nutzer:
+
+<Steps>
+  <Step title="Start: Quick Scenario (1-2h)">
+    Erstellen Sie ein **kleines** Szenario (10-15 Events, 1-2 Verzweigungen)
+    → Lernen Sie die Tools ohne Komplexität
+  </Step>
+
+  <Step title="Mittel: Standard Scenario (3-4h)">
+    Erstellen Sie ein **mittelgroßes** Szenario (25-35 Events, 4-5 Verzweigungen)
+    → Üben Sie Branching & Validation
+  </Step>
+
+  <Step title="Fortgeschritten: Complex Scenario (6-8h)">
+    Erstellen Sie ein **großes** Szenario (50-60 Events, 6-8 Verzweigungen)
+    → Meistern Sie komplexe Strukturen
+  </Step>
+
+  <Step title="Experte: Custom Workflows">
+    Experimentieren Sie mit:
+    - Sehr großen Szenarien (80-120 Events)
+    - Komplexen Branching-Mustern
+    - Multi-Assessment-Szenarien
+    - Team-basierten Workflows
+  </Step>
+</Steps>
+
+### Community Best Practices
+
+**Aus Erfahrungen von 100+ erstellten Szenarien**:
+
+1. **"Iteratives Prototyping"** (von @user_max):
+   - Erstelle Minimal-Version (15 Events, linear)
+   - Teste mit 2-3 Probanden
+   - Erweitere basierend auf Feedback
+   → Verhindert große Umarbeitungen
+
+2. **"NPC-Bibel"** (von @trainer_sarah):
+   - Führe ein separates Dokument mit allen NPCs
+   - Notiere Name, Rolle, Persönlichkeit, Sprechstil
+   - Kopiere relevante Teile in Formular Sektion 5
+   → Garantiert Konsistenz
+
+3. **"Pfad-Matrix"** (von @scenario_pro):
+   - Erstelle Excel-Sheet: Zeilen = Events, Spalten = Pfade
+   - Markiere welcher Event auf welchem Pfad erscheint
+   - Visualisiert Pfadlängen und Balance
+   → Verhindert kurze/lange Pfad-Asymmetrien
+
+---
+
+## Zusammenfassung: Die 10 goldenen Regeln
+
+<Card>
+  <CardContent>
+    1. **Präzise Formular-Eingaben** retten Kosten und Zeit
+    2. **Qualität über Quantität** bei Verzweigungen
+    3. **NPCs als Persönlichkeiten**, nicht Funktionen
+    4. **Zeit fließt vorwärts** - immer
+    5. **Inline-Editing bevorzugen** vor Regenerierung
+    6. **Validierung früh & oft** durchführen
+    7. **Auto-Fix nutzen** für effizienten Workflow
+    8. **Warnungen ernst nehmen**, besonders Timeline & Character
+    9. **Assessments in Event-Kontext einbetten**, nicht generisch
+    10. **"Gut genug" ist gut genug** - vermeiden Sie Perfektionismus
+  </CardContent>
+</Card>
+
+---
+
+## Nächste Schritte
+
+<CardGroup cols={2}>
+  <Card
+    title="Starten Sie Ihr erstes Szenario"
+    icon="play"
+    href="/scenario-builder/form-guide"
+  >
+    Bereit anzufangen? Folgen Sie dem Formular-Guide
+  </Card>
+  <Card
+    title="Zurück zur Übersicht"
+    icon="home"
+    href="/scenario-builder/overview"
+  >
+    Scenario Builder Übersicht
+  </Card>
+</CardGroup>

@@ -111,6 +111,17 @@
       ]
     },
     {
+      "group": "Scenario Builder",
+      "pages": [
+        "scenario-builder/overview",
+        "scenario-builder/form-guide",
+        "scenario-builder/toc-generation",
+        "scenario-builder/event-review",
+        "scenario-builder/validation-export",
+        "scenario-builder/best-practices"
+      ]
+    },
+    {
       "group": "Internal (Engineers)",
       "pages": [
         "internal/overview",

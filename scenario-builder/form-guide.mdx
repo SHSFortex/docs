@@ -1,0 +1,517 @@
+---
+title: 'Formular-Ausfüllung'
+description: 'Schritt-für-Schritt Anleitung zum Ausfüllen des Szenario-Formulars'
+---
+
+## Übersicht
+
+Das Szenario-Formular besteht aus **6 Sektionen** mit insgesamt über 26 Feldern. Das Ausfüllen dauert typischerweise 5-10 Minuten. Alle Eingaben werden automatisch alle 2 Sekunden gespeichert, sodass Sie jederzeit pausieren und später fortfahren können.
+
+<Note>
+**Auto-Save aktiviert**: Ihre Eingaben werden automatisch im Browser gespeichert. Sie können jederzeit pausieren und später fortfahren.
+</Note>
+
+## Sektion 1: Kontext & Setting
+
+Diese Sektion definiert den grundlegenden Kontext Ihres Szenarios.
+
+### Branche/Sektor
+**Erforderlich** | Single-Select
+
+Wählen Sie den KRITIS- oder NIS-2-Sektor aus (62 Optionen verfügbar):
+
+**Energie & Versorgung**:
+- Elektrizität, Gas, Fernwärme
+- Mineralölversorgung
+- Wassers
+
+orgung & Abwasser
+
+**Transport & Verkehr**:
+- Luftfahrt, Schifffahrt, Eisenbahn
+- Straßenverkehr & Logistik
+
+**Gesundheitswesen**:
+- Krankenhäuser, Rettungsdienste
+- Pharmazie, Medizinprodukte
+
+**IT & Kommunikation**:
+- Rechenzentren, Cloud-Provider
+- Telekommunikation
+
+**Finanzwesen**:
+- Banking, Versicherungen
+- Börsen & Clearingstellen
+
+**Und viele mehr...**
+
+<Tip>
+**Tipp**: Wählen Sie den Sektor, in dem Ihre Trainees tatsächlich arbeiten. Dies erhöht die Relevanz und das Engagement.
+</Tip>
+
+### Unternehmensgröße
+**Erforderlich** | Single-Select
+
+- **Klein** (< 50 Mitarbeiter)
+- **Mittel** (50-250 Mitarbeiter)
+- **Groß** (> 250 Mitarbeiter)
+
+**Impact**: Beeinflusst die Komplexität der Organisation, Anzahl der Stakeholder und verfügbare Ressourcen im Szenario.
+
+### Rolle des Trainierenden
+**Erforderlich** | Text (max. 100 Zeichen)
+
+Beschreiben Sie die Position des Trainees, z.B.:
+- "IT-Sicherheitsbeauftragter"
+- "Technischer Leiter Produktion"
+- "Krisenstabsleiter"
+- "Facility Manager"
+
+<Warning>
+**Wichtig**: Diese Rolle bestimmt die Perspektive des gesamten Szenarios. Der Trainee wird in 2. Person Singular in dieser Rolle angesprochen.
+</Warning>
+
+### Art der Einrichtung
+**Optional** | Text (max. 150 Zeichen)
+
+Spezifizieren Sie den genauen Typ der Einrichtung, z.B.:
+- "Regionales Krankenhaus mit 400 Betten"
+- "Produktionsstandort für Automobilteile"
+- "Kommunales Wasserwerk"
+- "Rechenzentrum für Finanzdienstleister"
+
+---
+
+## Sektion 2: Der Vorfall
+
+Definieren Sie den Krisenvorfall, der das Szenario auslöst.
+
+### Vorfallskategorie
+**Erforderlich** | Single-Select
+
+<Tabs>
+  <Tab title="Physische Sicherheit">
+    **Beispiele:**
+    - Einbruch oder Sabotage
+    - Gewalttätiger Vorfall (Amoklauf, Überfall)
+    - Bombendrohung
+    - Terroranschlag
+    - Diebstahl kritischer Komponenten
+  </Tab>
+
+  <Tab title="Cyberangriff">
+    **Beispiele:**
+    - Ransomware-Attacke
+    - DDoS-Angriff
+    - Phishing & Social Engineering
+    - Zero-Day Exploit
+    - Insider-Bedrohung
+    - APT (Advanced Persistent Threat)
+  </Tab>
+
+  <Tab title="Operative Störung">
+    **Beispiele:**
+    - Kritischer Systemausfall
+    - Lieferkettenunterbrechung
+    - Personalmangel/Streik
+    - Softwarefehler
+    - Hardwaredefekt
+    - Prozessversagen
+  </Tab>
+
+  <Tab title="Umweltereignis">
+    **Beispiele:**
+    - Hochwasser, Sturm, Erdbeben
+    - Extremwetter (Hitze, Kälte)
+    - Waldbrand
+    - Chemischer Unfall
+    - Umweltverschmutzung
+  </Tab>
+
+  <Tab title="Lieferkettenproblem">
+    **Beispiele:**
+    - Zuliefererausfall
+    - Logistikprobleme
+    - Qualitätsproblem bei Komponenten
+    - Geopolitische Störungen
+    - Rohstoffknappheit
+  </Tab>
+
+  <Tab title="Gesundheitskrise">
+    **Beispiele:**
+    - Pandemie/Epidemie
+    - Krankheitsausbruch im Betrieb
+    - Kontamination
+    - Massenerkrankung
+    - Lebensmittelvergiftung
+  </Tab>
+</Tabs>
+
+<Note>
+**Multi-Hazard Ansatz**: crisisIQ verwendet standardmäßig 70% nicht-cyber und 30% cyber Vorfälle, um realistische Trainingsszenarien zu gewährleisten.
+</Note>
+
+### Spezifischer Vorfallstyp
+**Erforderlich** | Single-Select (kontextabhängig)
+
+Die verfügbaren Optionen ändern sich basierend auf Ihrer gewählten Kategorie. Beispiel für **Cyberangriff**:
+- Malware-Infektion
+- Ransomware-Verschlüsselung
+- DDoS gegen kritische Dienste
+- Datenexfiltration
+- Credential Theft
+- Supply Chain Angriff
+
+### Wie wird der Vorfall entdeckt?
+**Erforderlich** | Text (max. 200 Zeichen)
+
+Beschreiben Sie den initialen Auslöser, z.B.:
+- "Monitoring-System schlägt Alarm"
+- "Mitarbeiter bemerkt verschlüsselte Dateien"
+- "Kunde meldet Nichterreichbarkeit des Dienstes"
+- "Sicherheitsdienst entdeckt Einbrecher"
+
+### Initiale Tragweite
+**Erforderlich** | Single-Select
+
+- **Lokal begrenzt** - Einzelne Abteilung oder System betroffen
+- **Mehrere Bereiche** - Verschiedene Abteilungen/Systeme betroffen
+- **Organisation-weit** - Gesamte Organisation betroffen
+- **Externe Auswirkungen** - Auch Partner/Kunden betroffen
+
+---
+
+## Sektion 3: Szenario-Dynamik
+
+Steuern Sie die Komplexität und Intensität Ihres Szenarios.
+
+### Schweregrad
+**Erforderlich** | Slider (1-5)
+
+- **1 - Minor**: Geringe Auswirkungen, schnell behebbar
+- **2 - Moderate**: Merkbare Störung, mittlere Ressourcen nötig
+- **3 - Significant**: Erhebliche Störung, Krisenstab aktiviert
+- **4 - Severe**: Kritische Auswirkungen, externe Hilfe nötig
+- **5 - Catastrophic**: Existenzbedrohend, maximale Eskalation
+
+<Tip>
+**Empfehlung**: Für erste Trainings beginnen Sie mit Schweregrad 2-3. Steigern Sie die Komplexität mit erfahreneren Trainees.
+</Tip>
+
+### Zeitdruck
+**Erforderlich** | Slider (Niedrig → Extrem Hoch)
+
+Definiert, wie schnell Entscheidungen getroffen werden müssen:
+- **Niedrig**: Tage zur Reaktion
+- **Moderat**: Stunden zur Reaktion
+- **Hoch**: Minuten zählen
+- **Extrem Hoch**: Sekunden entscheiden
+
+### Komplexität
+**Erforderlich** | Slider (Einfach → Sehr Komplex)
+
+- **Einfach**: Klare Ursache, direkte Lösung
+- **Moderat**: Mehrere Faktoren, Standard-Prozeduren anwendbar
+- **Komplex**: Unklare Ursache, konkurrierende Prioritäten
+- **Sehr Komplex**: Kaskadier ende Effekte, Dilemma-Situationen
+
+### Herausforderungen
+**Optional** | Multi-Select (max. 10)
+
+Wählen Sie spezifische Erschwernis-Faktoren:
+
+**Kommunikation**:
+- Kommunikationssysteme ausgefallen
+- Fehlinformationen kursieren
+- Sprachbarrieren
+
+**Ressourcen**:
+- Personalmangel (Urlaub, Krankheit)
+- Fehlende Ersatzteile
+- Budget-Beschränkungen
+
+**Information**:
+- Unvollständige Informationen
+- Widersprüchliche Berichte
+- Fehlende Dokumentation
+
+**Koordination**:
+- Externe Stakeholder (Behörden, Medien)
+- Geografische Verteilung
+- Parallele Krisen
+
+### Gewünschte Anzahl Verzweigungspunkte
+**Erforderlich** | Number Input (1-10)
+
+Wie viele Entscheidungspunkte soll das Szenario haben?
+
+- **1-2**: Lineares Szenario mit wenigen Weggabelungen
+- **3-5**: Moderates Branching (empfohlen für die meisten Fälle)
+- **6-10**: Stark verzweigtes Szenario mit vielen alternativen Pfaden
+
+<Warning>
+**Achtung**: Mehr Verzweigungen = Exponentiell mehr Events. Ein Szenario mit 5 Verzweigungspunkten kann 40+ Events haben.
+</Warning>
+
+---
+
+## Sektion 4: Lernziele
+
+Wählen Sie aus 30 prä-definierten Lernzielen über 6 Kategorien.
+
+### Incident Management (8 Ziele)
+- Ereigniserkennung
+- Erstes Assessment
+- Containment-Strategien
+- Eradikation
+- Recovery-Planung
+- Kommunikation während Incident
+- Post-Incident-Review
+- Dokumentation
+
+### Decision Making (6 Ziele)
+- Entscheidungsfindung unter Druck
+- Priorisierung
+- Risikoabwägung
+- Szenarienanalyse
+- Eskalationsentscheidungen
+- Balance Geschäftskontinuität vs. Sicherheit
+
+### Communication & Coordination (5 Ziele)
+- Interne Kommunikation
+- Externe Stakeholder
+- Krisenstabs-Koordination
+- Situationsreports
+- Medienkommunikation
+
+### Technical Skills (5 Ziele)
+- Forensik & Log-Analyse
+- Systemhärtung
+- Backup & Recovery
+- Netzwerk-Segmentierung
+- Patch Management
+
+### Compliance & Regulations (3 Ziele)
+- Meldepflichten (NIS-2, KRITIS-DachG)
+- Datenschutz-Compliance (DSGVO)
+- Regulatorische Anforderungen
+
+### Human Factors (3 Ziele)
+- Stressmanagement
+- Team-Zusammenarbeit
+- Psychologische Erste Hilfe
+
+<Tip>
+**Best Practice**: Wählen Sie 3-5 Lernziele für ein fokussiertes Training. Mehr Ziele verwässern den Fokus.
+</Tip>
+
+---
+
+## Sektion 5: Anpassung & Kontext
+
+Feintuning für maximale Relevanz.
+
+### Regulatorischer Fokus
+**Optional** | Multi-Select
+
+- KRITIS-DachG (Deutschland)
+- NIS-2-Richtlinie (EU)
+- ISO 27001
+- BSI IT-Grundschutz
+- DSGVO-Compliance
+- Branchenspezifische Standards
+
+### Stakeholder & Beteiligte
+**Optional** | Multi-Select
+
+Wer soll im Szenario vorkommen?
+
+**Intern**:
+- Krisenstab
+- IT/OT-Team
+- Geschäftsführung
+- Rechtsabteilung
+- PR/Marketing
+- Betriebsrat
+
+**Extern**:
+- Behörden (BSI, BKA, LKA)
+- Medien
+- Kunden
+- Zulieferer/Partner
+- Versicherung
+- Dienstleister (Forensik, Anwälte)
+
+### Ton & Atmosphäre
+**Optional** | Text (max. 200 Zeichen)
+
+Beschreiben Sie den gewünschten Stil, z.B.:
+- "Realistisch und ernst, aber nicht alarmistisch"
+- "Hohe Spannung mit Zeitdruck"
+- "Ruhig-professionell mit Fokus auf Prozesse"
+- "Dramatisch mit unerwarteten Wendungen"
+
+### Spezifische Elemente Einschließen
+**Optional** | Textarea (max. 500 Zeichen)
+
+Details, die auf jeden Fall vorkommen sollen:
+- Bestimmte Systeme oder Technologien
+- Reale Prozesse aus Ihrer Organisation
+- Spezifische Räumlichkeiten oder Standorte
+- Besondere regulatorische Anforderungen
+
+**Beispiel**:
+```
+"Das Szenario soll unser konkretes SIEM-System (Splunk) erwähnen
+und unsere 3-Stufen-Eskalationsprozedur abbilden. Wichtig ist die
+Einbindung unseres externen SOC-Dienstleisters bei Schweregrad 3+."
+```
+
+### Elemente Vermeiden
+**Optional** | Textarea (max. 500 Zeichen)
+
+Was soll NICHT vorkommen:
+- Unrealistische Szenarien
+- Übertriebene Dramatik
+- Bestimmte Vorfall sarten
+- Sensible Themen
+
+---
+
+## Sektion 6: Output-Einstellungen
+
+Finale Konfiguration des generierten Szenarios.
+
+### Ausgabesprache
+**Erforderlich** | Single-Select
+
+- **Deutsch** (Standard) - Immersive deutsche Texte
+- **Englisch** - English narrative texts
+
+<Note>
+Die UI-Sprache kann separat in den Einstellungen geändert werden, unabhängig von der Szenario-Sprache.
+</Note>
+
+### Technisches Detaillevel
+**Erforderlich** | Single-Select
+
+- **Allgemein** - Verständlich für alle, wenig Fachbegriffe
+- **Moderat** - Grundlegende Fachkenntnisse vorausgesetzt
+- **Technisch** - Detaillierte technische Beschreibungen
+- **Experte** - Tiefgehende technische Details, Fachsprache
+
+<Tip>
+**Empfehlung**:
+- **Allgemein**: Für Management-Training
+- **Moderat**: Für gemischte Teams
+- **Technisch/Experte**: Für IT/OT-Spezialisten
+</Tip>
+
+### Szenario-Titel
+**Erforderlich** | Text (max. 100 Zeichen)
+
+Ein prägnanter, beschreibender Titel, z.B.:
+- "Ransomware-Angriff auf Produktionsnetzwerk"
+- "Stromausfall im Rechenzentrum während Black Friday"
+- "Cyberangriff auf KRITIS-Wasserversorger"
+
+### Referenz-ID
+**Optional** | Text (max. 50 Zeichen)
+
+Ihre interne Kennzeichnung, z.B.:
+- "TRAIN-2024-001"
+- "CYBER-SIM-Q4"
+- "NIS2-EXERCISE-ALPHA"
+
+---
+
+## Formular-Aktionen
+
+### Vorschau
+Klicken Sie auf "Vorschau", um die JSON-Ausgabe zu sehen, die an die KI gesendet wird. Dies ist hilfreich für:
+- Überprüfung aller Eingaben
+- Debugging
+- Verständnis der Datenstruktur
+
+### Abschicken
+Wenn alle erforderlichen Felder ausgefüllt sind, wird der Button "Szenario-Generierung starten" aktiv. Dies:
+1. Validiert alle Eingaben
+2. Speichert das Formular
+3. Wechselt zur TOC-Generierungsansicht
+4. Startet den KI-Generierungsprozess
+
+---
+
+## Validierung & Fehlermeldungen
+
+### Erforderliche Felder
+Felder mit einem roten Stern (*) sind Pflichtfelder. Das Formular kann nicht abgeschickt werden, wenn diese leer sind.
+
+### Kontextuelle Warnungen
+Das Formular zeigt intelligente Warnungen basierend auf Ihren Eingaben:
+
+<Warning>
+**Beispiel-Warnung**: "Achtung: Sie haben 8 Verzweigungspunkte und Schweregrad 5 gewählt. Dies wird ein sehr komplexes und langes Szenario ergeben (60+ Events). Erwägen Sie, die Verzweigungen zu reduzieren."
+</Warning>
+
+### Zeichenzähler
+Textfelder mit Längenbeschränkung zeigen einen Zeichenzähler:
+- ✅ Grün: Unter Limit
+- ⚠️ Orange: Nahe am Limit
+- ❌ Rot: Limit erreicht/überschritten
+
+---
+
+## Tipps für effektives Ausfüllen
+
+<Accordion>
+  <AccordionItem title="Seien Sie spezifisch">
+    Je präziser Ihre Angaben, desto relevanter wird das Szenario. Statt "IT-Manager" schreiben Sie "IT-Sicherheitsbeauftragter (ISB) gemäß §6 KRITIS-DachG".
+  </AccordionItem>
+
+  <AccordionItem title="Denken Sie an Ihre Zielgruppe">
+    Wählen Sie Komplexität und technisches Level basierend auf den tatsächlichen Trainees, nicht auf Wunschvorstellungen.
+  </AccordionItem>
+
+  <AccordionItem title="Weniger ist mehr bei Lernzielen">
+    3-5 fokussierte Lernziele sind effektiver als 15 oberflächliche. Qualität über Quantität.
+  </AccordionItem>
+
+  <AccordionItem title="Nutzen Sie optionale Felder">
+    Die optionalen Felder in Sektion 5 erhöhen die Relevanz erheblich. Investieren Sie hier 2-3 Minuten extra.
+  </AccordionItem>
+
+  <AccordionItem title="Realistische Szenarien">
+    Orientieren Sie sich an realen Vorfällen aus Ihrer Branche. Die KI kann dann realistischere Details generieren.
+  </AccordionItem>
+</Accordion>
+
+---
+
+## Fehlerbehebung
+
+### Formular lässt sich nicht abschicken
+- **Check**: Sind alle Pflichtfelder (*) ausgefüllt?
+- **Check**: Sind alle Zeichenlimits eingehalten?
+- **Check**: Ist die Internetverbindung aktiv?
+
+### Auto-Save funktioniert nicht
+- **Check**: Cookies und LocalStorage aktiviert im Browser?
+- **Check**: Private/Inkognito-Modus deaktiviert?
+- **Lösung**: Nutzen Sie normalen Browser-Modus
+
+### Formular wurde zurückgesetzt
+- **Ursache**: LocalStorage wurde gelöscht oder Browser-Cache geleert
+- **Prävention**: Exportieren Sie komplexe Formulare regelmäßig (Vorschau → JSON kopieren)
+
+---
+
+## Nächster Schritt
+
+<Card
+  title="TOC Generierung"
+  icon="sitemap"
+  href="/scenario-builder/toc-generation"
+>
+  Nach dem Absenden: Verstehen Sie, wie die KI Ihre Szenario-Struktur erstellt
+</Card>
