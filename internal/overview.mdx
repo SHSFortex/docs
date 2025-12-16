@@ -13,8 +13,20 @@ Das Backend ist verantwortlich für:
 
 - **Prompt-Formulierung**: Effektive Prompts für die AI erstellen
 - **API-Bereitstellung**: Saubere API für das Frontend bereitstellen
-- **Logik ohne AI**: Validierung und Kompilierung ohne AI-Anfragen
+- **Logik ohne AI**: Kompilierung und Formatierung ohne AI-Anfragen
 - **Kosten-/Qualitäts-Management**: Trade-offs via Modell-Auswahl
+
+## Ziel-Parameter
+
+Das System wurde für folgende Parameter konzipiert:
+
+| Parameter | Wert | Hinweise |
+|-----------|------|----------|
+| **Max. Szenario-Größe** | 150 Events | Muss auf große Szenarien skalieren |
+| **Event-Inhaltslänge** | 500-2.000 Zeichen | Flexibel, nicht starr |
+| **Zeitformat** | `Tag X, HH:MM Uhr` | Streng durchgesetzt |
+| **Zielgruppe** | Trainingsprofis | Domain-Wissen vorausgesetzt |
+| **Primäres Modell** | Sonnet | Bestes Qualität/Kosten-Verhältnis |
 
 ## Systemkomponenten
 
@@ -31,7 +43,7 @@ Das Prompt-System besteht aus 10 Dateien, die Prompts für verschiedene Aufgaben
 - **System Prompt** (`event/systemPrompt.js`): ~397 Zeilen
   - Literarischer Stil-Guide
   - "Show don't tell" Beispiele
-  - Zeichenanzahl-Vorgaben (1.800-2.000 Zeichen)
+  - Zeichenanzahl-Vorgaben (500-2.000 Zeichen, flexibel)
 
 - **Generate Prompt** (`event/generatePrompt.js`): ~310 Zeilen
   - Kontext-Injektion (NPC-Registry, Zeitbeschränkungen)
@@ -92,40 +104,49 @@ graph TD
 
 ## Context Window Management
 
-### Aktuelle Strategie
+### Strategie: Vollständiger Kontext
 
-**Isolation**: Jeder API-Call erstellt ein frisches Context Window. Kein State bleibt zwischen Calls erhalten.
+**Entscheidung**: Jeder API-Call erhält den vollständigen Kontext (formData, TOC, Previous Events).
 
-**Konsequenzen**:
-- Gleiche Informationen (formData, TOC-Struktur) werden bei jedem Call erneut gesendet
-- Kein Lernen aus vorherigen Antworten
-- ~30-40% jedes Prompts sind wiederholter Kontext
+**Rationale**:
+- Event-Generierung braucht ALLE formData-Details für Konsistenz
+- Keine verlustbehaftete Komprimierung von Szenario-Anforderungen
+- Konsistenz über alle generierten Events hinweg
 
-**Typische Token-Nutzung**:
+**Verworfene Alternativen**:
+- ❌ **Fingerprinting**: Verliert Details, die für Konsistenz benötigt werden
+- ❌ **Context Sharing**: Verliert custom System Prompts
 
-| Call-Typ | System Prompt | User Prompt | Output | Total Input |
-|----------|---------------|-------------|--------|-------------|
-| TOC Generation | ~8.000 | ~500 | ~2.000 | ~8.500 |
-| Event Generation (3 Events) | ~9.000 | ~3.000 | ~3.000 | ~12.000 |
+**Token-Nutzung für große Szenarien (150 Events)**:
 
-**Beobachtung**: Weit innerhalb von Claudes 200K Context-Limit. Raum für mehr Kontext bei Bedarf.
+| Phase | System Prompt | User Prompt | Output | Total |
+|-------|---------------|-------------|--------|-------|
+| TOC Generation | ~8K Tokens | ~1K Tokens | ~15K Tokens | ~24K |
+| Event Gen (Batch 5) | ~9K Tokens | ~8K Tokens | ~5K Tokens | ~22K |
+| Validation | ~4K Tokens | ~30K Tokens | ~2K Tokens | ~36K |
+
+**Beobachtung**: Weit innerhalb von Claudes 200K Context-Limit. Keine Optimierung nötig.
 
 ## Modell-Auswahl
 
 ### Aktuelle Strategie
 
-Der Model Selector Prompt versucht, das optimale Modell zu wählen:
-- **Haiku**: Einfache, strukturierte Aufgaben
-- **Sonnet**: Standard-Generierung (TOC, Events, Validation)
-- **Opus**: Sehr komplexe Szenarien
+Der Model Selector Prompt versucht, das optimale Modell zu wählen.
 
-### Empfohlene Vereinfachung
+**Problem**: Model Selector selbst verursacht einen zusätzlichen API-Call.
+
+### Empfohlene Vereinfachung (P2)
 
 Hardcodierte Modell-Auswahl basierend auf Task-Typ:
-- **TOC**: Sonnet (Struktur + Kreativität benötigt)
-- **Event**: Sonnet (Narrative Qualität kritisch)
-- **Validation**: Sonnet (Reasoning benötigt)
-- **Micro-Edit**: Haiku (Einfache Substitution)
+
+| Task | Modell | Rationale |
+|------|--------|-----------|
+| **TOC** | Sonnet | Struktur + Kreativität benötigt |
+| **Event** | Sonnet | Narrative Qualität kritisch |
+| **Validation** | Sonnet | Reasoning benötigt |
+| **Micro-Edit** | Sonnet | Kontext-Verständnis benötigt |
+
+**Vorteil**: Spart 1 API-Call pro Generierung, konsistentere Auswahl
 
 ## Nächste Schritte
 

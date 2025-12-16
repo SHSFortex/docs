@@ -115,7 +115,7 @@
       "pages": [
         "internal/overview",
         "internal/prompt-architecture",
-        "internal/known-issues"
+        "internal/best-practices"
       ]
     }
   ],

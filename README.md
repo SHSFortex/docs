@@ -1,16 +1,14 @@
-# Mintlify Starter Kit
+# crisisIQ Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Official documentation for the crisisIQ crisis management training platform.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+This documentation includes:
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
-
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+- User Manual - Complete guide for all user types
+- Internal Engineering Docs - Architecture and best practices
+- Getting Started Guides
+- Feature Documentation
+- Mobile & PWA Installation Guides
 
 ## Development
 
