@@ -1,0 +1,305 @@
+---
+title: 'Prompt-Architektur'
+description: 'Detaillierte Analyse des Prompt-Systems im Scenario Creator Backend'
+---
+
+## Übersicht
+
+Das Prompt-System ist das Herzstück des Scenario Creator Backends. Es besteht aus 10 Dateien mit insgesamt ~2.185 Zeilen Code, die verschiedene Aspekte der Szenario-Generierung steuern.
+
+## Prompt-Dateien Inventar
+
+| Datei | Zeilen | Zweck | Status |
+|-------|--------|-------|--------|
+| `tocPrompt.js` | 465 | TOC-Generierung | Aktiv |
+| `validatePrompt.js` | 231 | Validierung | Aktiv |
+| `modelSelectorPrompt.js` | 86 | Modell-Auswahl | Aktiv |
+| `event/systemPrompt.js` | 397 | Event System Prompt | Aktiv |
+| `event/generatePrompt.js` | 310 | Event User Prompt | Aktiv |
+| `event/regeneratePrompt.js` | 44 | Regenerierung | Aktiv |
+| `event/microEditPrompt.js` | 118 | Mikro-Bearbeitung | Aktiv |
+| `event/validationPrompt.js` | 191 | Validierungs-Fix | Aktiv |
+| `event/helpers.js` | 331 | Hilfsfunktionen | Aktiv |
+| `event/index.js` | 12 | Barrel Export | Aktiv |
+
+## Detaillierte Prompt-Analyse
+
+### 1. TOC Prompt (`tocPrompt.js`)
+
+**Zweck**: Generiert die komplette Story-Struktur als Graph-Modell.
+
+#### Stärken
+
+- Umfassende Regeln für Graphen-Modell
+- Klare Beispiele für Event-Struktur
+- Explizite Zeitkonsistenz-Regeln
+
+#### Herausforderungen
+
+Das TOC-Prompt hat ~370 Zeilen mit 12+ Regel-Sektionen:
+
+1. **JSON-Struktur-Anforderungen**
+2. **Zeitregeln** (6 verschiedene zeitsynchrone Sektionen)
+3. **Verzweigungslogik**
+4. **Assessment-Platzierung**
+5. **NPC-Verwaltung**
+6. **Konvergenz-Handling**
+
+#### Kritische Zeitregeln
+
+```
+ZEITREGEL (Aktuell):
+- Jedes Event muss zeitlich nach seinen Vorgängern liegen
+- Parallele Pfade müssen synchronisiert werden
+- Konvergenzpunkte müssen alle Vorgänger berücksichtigen
+- Tag/Uhrzeit Format: "Tag X, HH:MM Uhr"
+- Zeitsprünge müssen narrativ begründet sein
+- Keine Zeitschleifen
+```
+
+**Problem**: Diese Regeln sind über 6 Sektionen verteilt, was zu kognitiver Überlastung führt.
+
+### 2. Event System Prompt (`event/systemPrompt.js`)
+
+**Zweck**: Definiert den literarischen Stil und die Qualitätsanforderungen für Event-Texte.
+
+#### Struktur
+
+- **~400 Zeilen** mit 15+ Sektionen
+- Literarischer Stil-Guide
+- "Show don't tell" Prinzipien
+- Zeichenanzahl-Vorgaben
+
+#### Kern-Anforderungen
+
+| Anforderung | Spezifikation | Typ |
+|-------------|---------------|-----|
+| Zeichenanzahl | 1.800-2.000 Zeichen | Hart |
+| Sinneseindrücke | 2-3 pro Event | Weich |
+| Dramaturgie | Spannungsbogen | Weich |
+| Perspektive | 2. Person Singular | Hart |
+| Sprache | Deutsch (DE) | Hart |
+
+#### Stil-Richtlinien
+
+```
+SHOW DON'T TELL Beispiele:
+
+❌ Schlecht: "Sie sind nervös."
+✅ Gut: "Ihre Finger trommeln auf dem Tisch."
+
+❌ Schlecht: "Der Raum ist chaotisch."
+✅ Gut: "Akten stapeln sich auf dem Boden, leere Kaffeetassen säumen den Schreibtisch."
+```
+
+### 3. Event Generate Prompt (`event/generatePrompt.js`)
+
+**Zweck**: Baut den konkreten User-Prompt für jedes Event auf.
+
+#### Kontext-Injektion
+
+Der Prompt injiziert folgende Kontexte:
+
+1. **Formular-Daten**
+   - Industrie
+   - Szenario-Typ
+   - Schwierigkeitsgrad
+   - Titel & Beschreibung
+
+2. **TOC-Struktur**
+   - Vollständiger Graph
+   - Alle Event-IDs
+   - Verzweigungslogik
+
+3. **NPC-Registry**
+   - Bereits verwendete NPCs
+   - Charakter-Beschreibungen
+
+4. **Vorgänger-Inhalte**
+   - Vollständiger Text aller direkten Vorgänger
+   - Zeit-Constraints
+
+5. **Konvergenz-Information**
+   - Ob dieses Event ein Konvergenzpunkt ist
+   - Welche Pfade zusammenlaufen
+
+#### Typischer Prompt-Aufbau
+
+```
+Industrie: [X]
+Szenario-Typ: [Y]
+Schwierigkeitsgrad: [Z]
+
+TOC-Struktur:
+[Gesamter Graph als JSON]
+
+Bereits verwendete NPCs:
+[NPC-Liste]
+
+Vorgänger-Event(s):
+[Vollständiger Text]
+
+Zeitbeschränkungen:
+Muss nach: [Latest Predecessor Time]
+
+GENERIERE JETZT: Event [event_id]
+```
+
+### 4. Validation Prompt (`validatePrompt.js`)
+
+**Zweck**: Post-hoc Validierung des gesamten generierten Szenarios.
+
+#### Validierungs-Kategorien
+
+| Kategorie | Severity | Beispiele |
+|-----------|----------|-----------|
+| **Zeitfehler** | CRITICAL | Zeitsprünge rückwärts, inkonsistente Marker |
+| **Strukturfehler** | CRITICAL | Fehlende Events, gebrochene Verzweigungen |
+| **Inhaltsfehler** | HIGH | NPC-Inkonsistenzen, Plot-Holes |
+| **Stilfehler** | MEDIUM | Zeichenanzahl, Sinneseindrücke |
+| **Kleinigkeiten** | LOW | Tippfehler, Formatierung |
+
+#### Explizite "Was NICHT flaggen"
+
+```
+NICHT flaggen:
+- Kreative Entscheidungen im Stil
+- Dramaturgische Variationen
+- Unterschiedliche NPC-Darstellungen (solange konsistent)
+- Zeitsprünge die narrativ begründet sind
+```
+
+#### Problem
+
+**Post-hoc Only**: Validierung läuft erst NACH Generierung aller Events. Fehler in Event 2 können sich durch Event 3, 4, 5... fortpflanzen, bevor sie erkannt werden.
+
+### 5. Regeneration & Micro-Edit
+
+#### Regenerate Prompt (`event/regeneratePrompt.js`)
+
+- **44 Zeilen**: Kompakt und fokussiert
+- Integriert User-Feedback
+- Behält Kontext bei
+
+#### Micro-Edit Prompt (`event/microEditPrompt.js`)
+
+- **118 Zeilen**: Chirurgische Änderungen
+- Für einzelne Probleme (z.B. Tippfehler, NPC-Namen)
+- Verwendet Haiku-Modell (kostengünstig)
+
+### 6. Model Selector Prompt (`modelSelectorPrompt.js`)
+
+**Zweck**: Wählt das optimale Claude-Modell basierend auf Aufgaben-Komplexität.
+
+#### Entscheidungskriterien (aktuell)
+
+```
+Haiku:
+- Einfache Struktur-Validierung
+- Micro-Edits
+- Standardisierte Aufgaben
+
+Sonnet:
+- Standard-Szenario-Generierung
+- Mittlere Komplexität
+- TOC mit <20 Events
+
+Opus:
+- Sehr komplexe Szenarien
+- >30 Events
+- Multiple Verzweigungen
+- Hohe Qualitätsanforderungen
+```
+
+#### Problem
+
+**Vage Kriterien**: "sehr komplex" ist subjektiv und führt zu inkonsistenter Auswahl.
+
+## Helper-Funktionen
+
+### Zeit-Management (`event/helpers.js`)
+
+#### Aktuelle Implementierung
+
+```javascript
+// String-basierter Vergleich
+pred.time_marker > latestPredecessor.time_marker
+```
+
+**Problem**: Funktioniert NICHT für Edge Cases:
+- "Tag 1, 23:59" vs "Tag 2, 00:01"
+- Verschiedene Formatierungen
+
+#### Vorgänger-Suche
+
+```javascript
+function findAllPredecessorIds(eventId, toc) {
+  // Aktuell: Ein Level tief
+  // Problem: Verpasst transitive Abhängigkeiten
+}
+```
+
+**Konsequenz**: Bei langen Ketten können Zeitfehler auftreten.
+
+## Prompt-Effizienz-Analyse
+
+### Redundanz-Probleme
+
+| Problem | Häufigkeit | Impact |
+|---------|------------|--------|
+| **Kontext-Duplizierung** | Jeder Call | ~30-40% Redundanz |
+| **TOC wird wiederholt** | Jedes Event | ~2-3K Tokens/Call |
+| **FormData wird wiederholt** | Jedes Event | ~500 Tokens/Call |
+
+### Token-Verbrauch pro Aufgabe
+
+```
+TOC Generation:
+Input: ~8.500 Tokens
+Output: ~2.000 Tokens
+Total: ~10.500 Tokens
+
+Event Generation (3 Events):
+Input: ~12.000 Tokens
+Output: ~3.000 Tokens
+Total: ~15.000 Tokens
+
+Validation:
+Input: ~15.000 Tokens (gesamtes Szenario)
+Output: ~1.000 Tokens
+Total: ~16.000 Tokens
+```
+
+### Sprach-Konsistenz
+
+**Aktuelles Problem**: Gemischte EN/DE Labels
+
+```javascript
+// In User Prompts:
+"Title: [titel]"           // English label, German content
+"Industry: [industrie]"    // English label, German content
+
+// Erwartete Ausgabe: Deutsch
+// Kann zu Sprach-Leakage führen
+```
+
+## Best Practices (abgeleitet)
+
+### Was funktioniert gut
+
+1. **Klare Beispiele**: "Show don't tell" Beispiele sind sehr effektiv
+2. **Strukturierte Ausgabe**: JSON-Format mit Schema funktioniert zuverlässig
+3. **Kontext-Injektion**: Vorgänger-Inhalte helfen bei Konsistenz
+4. **Severity Levels**: Klare Priorisierung in Validierung
+
+### Was verbessert werden sollte
+
+1. **Regel-Hierarchie**: MUST vs SHOULD vs MAY
+2. **Zeit-Parsing**: Strukturierter Vergleich statt String
+3. **Inkrementelle Validierung**: Frühe Fehler-Erkennung
+4. **Sprach-Konsistenz**: Alles auf Deutsch
+5. **Prompt-Länge**: Reduktion durch Fokussierung
+
+## Nächste Schritte
+
+Siehe [Bekannte Probleme & Verbesserungen](/internal/known-issues) für detaillierte Verbesserungsvorschläge.

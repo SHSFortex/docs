@@ -109,6 +109,14 @@
         "user-manual/mobile/android-installation",
         "user-manual/mobile/offline-mode"
       ]
+    },
+    {
+      "group": "Internal (Engineers)",
+      "pages": [
+        "internal/overview",
+        "internal/prompt-architecture",
+        "internal/known-issues"
+      ]
     }
   ],
   "logo": {

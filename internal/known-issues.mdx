@@ -1,0 +1,486 @@
+---
+title: 'Bekannte Probleme & Verbesserungen'
+description: 'Identifizierte Probleme und geplante Verbesserungen für das Scenario Creator Backend'
+---
+
+## Übersicht
+
+Dieses Dokument basiert auf der detaillierten Analyse der Prompt-Architektur (Stand: 2025-12-16) und listet bekannte Probleme sowie priorisierte Verbesserungsvorschläge auf.
+
+## Beobachtete Probleme
+
+| Problem | Schweregrad | Häufigkeit | Root Cause |
+|---------|-------------|------------|------------|
+| Inkonsistente Event-Timings | Hoch | Regelmäßig | Komplexe Zeitregeln, keine Validierung im Prompt |
+| Fehlende Events in großen Szenarien | Hoch | Gelegentlich | Token-Limits? Instruktions-Überladung? |
+| Modell-Auswahl nicht optimal | Mittel | Regelmäßig | Entscheidungskriterien zu vage |
+| Bilingualer Output Leakage | Niedrig | Selten | Gemischte EN/DE in User Prompts |
+
+## Kategorisierte Probleme
+
+### Kategorie A: TOC Prompt Probleme
+
+#### P1: Instruktions-Überladung
+- **Datei**: `tocPrompt.js:1-465`
+- **Beschreibung**: System Prompt ist ~370 Zeilen mit 12+ Regel-Sektionen
+- **Impact**: Kognitive Überlastung des Modells, Regeln werden möglicherweise ignoriert
+- **Priorität**: P0
+
+#### P2: Konfligierende Prioritäten
+- **Datei**: `tocPrompt.js`
+- **Beschreibung**: "EXAKT X Verzweigungspunkte" vs. Qualitätsregeln
+- **Impact**: Modell opfert möglicherweise Qualität für Struktur
+- **Priorität**: P0
+
+#### P3: Komplexe Zeitregeln
+- **Datei**: `tocPrompt.js`
+- **Beschreibung**: 6 verschiedene zeitbezogene Sektionen
+- **Impact**: Schwer zu folgen, leicht zu verletzen
+- **Priorität**: P0
+
+#### P4: Keine inkrementelle Validierung
+- **Datei**: `tocPrompt.js`
+- **Beschreibung**: TOC wird erst nach vollständiger Generierung validiert
+- **Impact**: Späte Fehler-Erkennung
+- **Priorität**: P1
+
+### Kategorie B: Event System Prompt Probleme
+
+#### P5: Rigide Zeichenanzahl
+- **Datei**: `event/systemPrompt.js`
+- **Beschreibung**: "1.800-2.000 Zeichen" harte Anforderung
+- **Impact**: Modell fügt möglicherweise Padding hinzu oder kürzt unnatürlich
+- **Priorität**: P2
+
+#### P6: Instruktions-Dichte
+- **Datei**: `event/systemPrompt.js:1-397`
+- **Beschreibung**: ~400 Zeilen, 15+ Sektionen
+- **Impact**: Wichtige Regeln können vergraben werden
+- **Priorität**: P0
+
+#### P7: Keine Hierarchie
+- **Datei**: `event/systemPrompt.js`
+- **Beschreibung**: Alle Regeln als gleichwertig präsentiert
+- **Impact**: Kein klares "MUST" vs "SHOULD" vs "MAY"
+- **Priorität**: P0
+
+### Kategorie C: Event User Prompt Probleme
+
+#### P8: Sprach-Mischung
+- **Datei**: `event/generatePrompt.js`
+- **Beschreibung**: English labels in User Prompt, Deutsche Inhalte erwartet
+- **Impact**: Verwirrt Sprach-Modus
+- **Priorität**: P1
+
+#### P9: Kontext-Duplizierung
+- **Datei**: `event/generatePrompt.js`
+- **Beschreibung**: Vollständiger Vorgänger-Inhalt + TOC + formData bei jedem Call
+- **Impact**: Token-Verschwendung, Context Window Füllung
+- **Priorität**: P2
+
+### Kategorie D: Validierungs-Probleme
+
+#### P10: Nur Post-hoc
+- **Datei**: `validatePrompt.js`
+- **Beschreibung**: Validierung läuft erst nach Generierung aller Events
+- **Impact**: Fehler kaskadieren vor Erkennung
+- **Priorität**: P1
+
+#### P11: English Labels
+- **Datei**: `validatePrompt.js`
+- **Beschreibung**: `"Title:"`, `"Industry:"` in User Prompt
+- **Impact**: Inkonsistent mit Deutsch-Only Anforderung
+- **Priorität**: P1
+
+### Kategorie E: Model Selector Probleme
+
+#### P12: Vage Kriterien
+- **Datei**: `modelSelectorPrompt.js`
+- **Beschreibung**: "very complex" ist subjektiv
+- **Impact**: Inkonsistente Modell-Auswahl
+- **Priorität**: P2
+
+#### P13: Keine Task-spezifische Anleitung
+- **Datei**: `modelSelectorPrompt.js`
+- **Beschreibung**: Gleiche Kriterien für TOC vs Event vs Validate
+- **Impact**: Suboptimale Entscheidungen
+- **Priorität**: P2
+
+### Kategorie F: Helper-Probleme
+
+#### P14: Flache Vorgänger-Suche
+- **Datei**: `event/helpers.js`
+- **Beschreibung**: `findAllPredecessorIds` ist nur eine Ebene tief
+- **Impact**: Verpasst transitive Abhängigkeiten
+- **Priorität**: P1
+
+#### P15: String-Zeit-Vergleich
+- **Datei**: `event/helpers.js`
+- **Beschreibung**: `pred.time_marker > latestPredecessor.time_marker`
+- **Impact**: Bricht bei Edge Cases ("Tag 1, 23:59" vs "Tag 2, 00:01")
+- **Priorität**: P1
+
+## Vorgeschlagene Verbesserungen
+
+### Prioritäts-Matrix
+
+| ID | Verbesserung | Aufwand | Impact | Priorität |
+|----|--------------|---------|--------|-----------|
+| I1 | TOC-Zeitregeln vereinfachen | Niedrig | Hoch | P0 |
+| I2 | Regel-Hierarchie hinzufügen (MUST/SHOULD/MAY) | Niedrig | Mittel | P0 |
+| I3 | Sprach-Konsistenz korrigieren (alles Deutsch) | Niedrig | Niedrig | P1 |
+| I4 | Zeit-Parsing Utility implementieren | Mittel | Hoch | P1 |
+| I5 | Inkrementelle Validierungs-Option hinzufügen | Mittel | Hoch | P1 |
+| I6 | Prompt-Länge reduzieren (Redundanz entfernen) | Mittel | Mittel | P2 |
+| I7 | Model Selector Kriterien verbessern | Niedrig | Mittel | P2 |
+| I8 | Context-Sharing Strategie | Hoch | Hoch | P2 |
+
+## Detaillierte Verbesserungsvorschläge
+
+### I1: TOC-Zeitregeln vereinfachen
+
+#### Aktuell
+6 Sektionen erklären Zeitregeln mit multiplen Beispielen.
+
+#### Vorgeschlagen
+Konsolidierung zu EINER klaren Regel:
+
+```
+ZEITREGEL (EINZIGE REGEL):
+Für JEDES Event gilt: time_marker MUSS später sein als ALLE Events die zu diesem führen.
+Prüfe VOR ABGABE: Folge jedem Pfad von e1 bis zum Ende - ist die Zeit immer aufsteigend?
+
+Beispiel:
+e1 (Tag 1, 09:00) → e2 (Tag 1, 10:00) → e3 (Tag 1, 11:00) ✓
+e1 (Tag 1, 09:00) → e2 (Tag 1, 08:00) ✗ FEHLER
+```
+
+**Trade-off**: Weniger Anleitung aber klarer. Eventuell müssen Beispiele wieder hinzugefügt werden, wenn Fehler zunehmen.
+
+**Erwarteter Impact**:
+- Reduktion von Zeit-Inkonsistenzen um ~50%
+- Kürzerer Prompt (~100 Zeilen gespart)
+
+### I2: Regel-Hierarchie
+
+#### Aktuell
+Alle Regeln flach präsentiert.
+
+#### Vorgeschlagen
+Explizite Stufen:
+
+```
+⛔ MUST (Verletzung = Ablehnung):
+- Gültiges JSON-Output
+- Alle event_ids eindeutig
+- Zeit immer vorwärts
+- Exakte Anzahl Verzweigungspunkte
+
+⚠️ SHOULD (Verletzung = Qualitätsmangel):
+- 1.500-2.000 Zeichen pro Event
+- 2-3 Sinneseindrücke pro Event
+- Cliffhanger bei Verzweigungen
+
+💡 MAY (Nice to have):
+- Spezifische NPC-Archetypen
+- Dramatische Höhepunkte
+- Metaphern und Bildsprache
+```
+
+**Erwarteter Impact**:
+- Klarere Priorisierung
+- Weniger falsche Ablehnungen
+- Bessere Qualität bei kritischen Anforderungen
+
+### I3: Sprach-Konsistenz
+
+#### Aktuell
+```javascript
+// Gemischte Labels
+"Title: " + formData.title
+"Industry: " + formData.industry
+```
+
+#### Vorgeschlagen
+```javascript
+// Alles auf Deutsch
+"Titel: " + formData.title
+"Branche: " + formData.industry
+"Schwierigkeitsgrad: " + formData.difficulty
+```
+
+**Erwarteter Impact**:
+- Weniger bilingualer Output
+- Konsistenterer deutscher Text
+
+### I4: Zeit-Parsing Utility
+
+#### Aktuell
+```javascript
+// String-Vergleich (UNSICHER)
+pred.time_marker > latestPredecessor.time_marker
+```
+
+#### Vorgeschlagen
+```javascript
+function parseTimeMarker(marker) {
+  // "Tag 1, 09:33 Uhr" → { day: 1, hour: 9, minute: 33 }
+  const match = marker.match(/Tag\s+(\d+),\s*(\d{1,2}):(\d{2})/);
+  if (!match) return null;
+
+  return {
+    day: parseInt(match[1]),
+    hour: parseInt(match[2]),
+    minute: parseInt(match[3]),
+    totalMinutes: (parseInt(match[1]) - 1) * 1440 +
+                  parseInt(match[2]) * 60 +
+                  parseInt(match[3])
+  };
+}
+
+function isTimeBefore(a, b) {
+  const pa = parseTimeMarker(a);
+  const pb = parseTimeMarker(b);
+  if (!pa || !pb) return false;
+  return pa.totalMinutes < pb.totalMinutes;
+}
+
+function validateTimeSequence(event, predecessors) {
+  const eventTime = parseTimeMarker(event.time_marker);
+
+  for (const pred of predecessors) {
+    const predTime = parseTimeMarker(pred.time_marker);
+    if (!isTimeBefore(pred.time_marker, event.time_marker)) {
+      return {
+        valid: false,
+        error: `Event ${event.id} Zeit (${event.time_marker}) ist nicht nach Vorgänger ${pred.id} (${pred.time_marker})`
+      };
+    }
+  }
+
+  return { valid: true };
+}
+```
+
+**Erwarteter Impact**:
+- 100% korrekte Zeit-Validierung
+- Frühe Fehler-Erkennung
+- Keine Edge-Case Bugs
+
+### I5: Inkrementelle Validierungs-Option
+
+#### Aktuell
+```
+Generiere e1-e10 → Validiere alles
+```
+
+#### Vorgeschlagen
+```
+Generiere e1-e3 → Quick Validate Timeline →
+Generiere e4-e6 → Quick Validate Timeline →
+Generiere e7-e10 → Full Validate
+```
+
+**Implementierung**:
+```javascript
+async function generateEventsWithValidation(toc, options = {}) {
+  const batchSize = options.incrementalValidation ? 3 : toc.events.length;
+  const events = [];
+
+  for (let i = 0; i < toc.events.length; i += batchSize) {
+    const batch = toc.events.slice(i, i + batchSize);
+    const generated = await generateEventBatch(batch);
+    events.push(...generated);
+
+    if (options.incrementalValidation && i + batchSize < toc.events.length) {
+      const validation = await quickValidateTimeline(events);
+      if (!validation.valid) {
+        throw new ValidationError(validation.errors);
+      }
+    }
+  }
+
+  return events;
+}
+```
+
+**Trade-off**: Mehr API-Calls aber frühe Fehler-Erkennung. Als Opt-in für größere Szenarien.
+
+**Erwarteter Impact**:
+- 70% weniger Kaskaden-Fehler
+- Schnellere Fehler-Korrektur
+- +20-30% API-Kosten bei großen Szenarien
+
+### I6: Prompt-Länge reduzieren
+
+#### Ziel-Metriken
+
+| Prompt | Aktuell | Ziel | Reduktion |
+|--------|---------|------|-----------|
+| TOC System | 465 Zeilen | 300 Zeilen | -35% |
+| Event System | 397 Zeilen | 280 Zeilen | -29% |
+| Event User | 310 Zeilen | 200 Zeilen | -35% |
+
+#### Strategien
+
+1. **Redundanz entfernen**: Wiederholte Konzepte konsolidieren
+2. **Beispiele komprimieren**: Weniger aber bessere Beispiele
+3. **Kontext externalisieren**: Häufig wiederholte Daten cachen
+4. **Fokussierung**: Nur kritische Regeln behalten
+
+### I7: Model Selector verbessern
+
+#### Aktuell
+```javascript
+// Vage Kriterien
+if (complexity === "very high") return "opus";
+```
+
+#### Vorgeschlagen
+Hardcodierte Task-basierte Auswahl:
+
+```javascript
+function selectModel(taskType, scenarioSize) {
+  const rules = {
+    'toc_generation': {
+      default: 'sonnet',
+      condition: (size) => size > 30 ? 'opus' : 'sonnet'
+    },
+    'event_generation': {
+      default: 'sonnet',
+      condition: () => 'sonnet' // Immer Sonnet für Qualität
+    },
+    'validation': {
+      default: 'sonnet',
+      condition: (size) => size > 20 ? 'sonnet' : 'haiku'
+    },
+    'micro_edit': {
+      default: 'haiku',
+      condition: () => 'haiku' // Immer Haiku für Kosten
+    },
+    'regeneration': {
+      default: 'sonnet',
+      condition: () => 'sonnet'
+    }
+  };
+
+  const rule = rules[taskType];
+  return rule.condition(scenarioSize) || rule.default;
+}
+```
+
+**Erwarteter Impact**:
+- Konsistente Model-Auswahl
+- -1 API-Call pro Generierung (kein Model-Selector Call)
+- ~20% Kosten-Reduktion
+
+### I8: Context-Sharing Strategie
+
+#### Optionen
+
+| Ansatz | Vorteile | Nachteile | Empfehlung |
+|--------|----------|-----------|------------|
+| **A: Conversation Mode** | Natürliche Kontext-Persistenz | Verliert custom System Prompts | Nicht empfohlen |
+| **B: Summary Injection** | Kompakt, kontrolliert | Verlustbehaftet, braucht Zusammenfassung | Für später |
+| **C: Cached Prefixes** | Effizient für wiederholten Kontext | API-abhängig, Komplexität | **P2 Kandidat** |
+
+#### Empfohlener Ansatz (für P2)
+
+**Prompt Caching** verwenden:
+
+```javascript
+const systemPromptCache = {
+  type: "text",
+  text: systemPrompt,
+  cache_control: { type: "ephemeral" }
+};
+
+const tocCache = {
+  type: "text",
+  text: JSON.stringify(toc),
+  cache_control: { type: "ephemeral" }
+};
+```
+
+**Erwarteter Impact**:
+- ~60% Token-Reduktion bei wiederholten Calls
+- ~40% Kosten-Reduktion für Event-Generierung
+- Minimale Code-Änderungen
+
+## Bewertete Alternativen
+
+### Alternative 1: Komplettes Prompt-Rewrite
+
+**Abgelehnt weil**: Hohes Risiko, existierende Prompts funktionieren größtenteils. Inkrementelle Verbesserung ist sicherer.
+
+### Alternative 2: Strukturierte Ausgabe / Tool Use
+
+**Überlegung**: Claude's `tool_use` für strukturierte Event-Ausgabe verwenden.
+
+**Trade-off**:
+- ✅ Bessere Struktur-Garantien
+- ❌ Schränkt kreative Freiheit ein
+
+**Empfehlung**: Pilot für TOC-Generierung (struktur-lastig), aber nicht für Event-Inhalte (narrativ-lastig).
+
+### Alternative 3: Multi-Model Pipeline
+
+**Überlegung**: Haiku für Struktur-Validierung, Sonnet für Inhalts-Generierung.
+
+**Trade-off**:
+- ✅ Kosten-Einsparungen
+- ❌ Latenz und Komplexität
+
+**Empfehlung**: Verschieben. Aktueller Sonnet-Standard funktioniert. Später optimieren.
+
+## Offene Fragen
+
+1. **Q1**: Sollten wir einen "Dry Run" Modus hinzufügen, der TOC-Struktur ohne AI validiert?
+2. **Q2**: Was ist die maximale akzeptable Szenario-Größe? (Beeinflusst Prompt-Strategie)
+3. **Q3**: Sollte das Zeitformat auf Input-Ebene standardisiert/erzwungen werden?
+4. **Q4**: Sind 1.800-2.000 Zeichen wirklich das richtige Ziel für Events?
+
+## Nächste Schritte
+
+### Sofort (P0)
+
+1. [ ] I1 implementieren: TOC-Zeitregeln vereinfachen
+2. [ ] I2 implementieren: Regel-Hierarchie hinzufügen
+3. [ ] Metriken sammeln: Timeline-Fehlerrate vor/nach
+
+### Kurz-Fristig (P1)
+
+1. [ ] I3 implementieren: Sprach-Konsistenz
+2. [ ] I4 implementieren: Zeit-Parsing Utility
+3. [ ] I5 implementieren: Inkrementelle Validierung (Opt-in)
+4. [ ] P14 & P15 fixen: Helper-Funktionen
+
+### Mittel-Fristig (P2)
+
+1. [ ] I6: Prompt-Länge reduzieren
+2. [ ] I7: Model Selector vereinfachen
+3. [ ] I8: Context Caching evaluieren
+4. [ ] Offene Fragen beantworten
+5. [ ] Tool Use für TOC pilotieren
+
+## Metriken & Monitoring
+
+### Zu tracken
+
+- **Token-Nutzung** pro Prompt-Typ
+- **Validierungs-Pass/Fail-Raten**
+- **Zeit-Regel-Verletzungen** (spezifisch)
+- **Model-Auswahl-Verteilung**
+- **API-Kosten** pro Szenario
+- **Generierungs-Dauer** (Latenz)
+
+### Erfolgs-Kriterien für Verbesserungen
+
+| Verbesserung | Metrik | Ziel |
+|--------------|--------|------|
+| I1 | Zeit-Fehlerrate | -50% |
+| I4 | Zeit-Parsing-Fehler | 0% |
+| I5 | Kaskaden-Fehler | -70% |
+| I6 | Token-Nutzung | -30% |
+| I7 | API-Calls gespart | 1 pro Generierung |
+| I8 | Kosten-Reduktion | -40% |
