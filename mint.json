@@ -126,6 +126,8 @@
       "pages": [
         "internal/overview",
         "internal/prompt-architecture",
+        "internal/knowledge-augmentation",
+        "internal/scenario-persistence",
         "internal/best-practices"
       ]
     }

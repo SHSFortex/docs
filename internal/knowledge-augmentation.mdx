@@ -1,0 +1,435 @@
+---
+title: 'Knowledge Augmentation'
+description: 'Domain-Expertise-Injektion via Prompt Caching'
+---
+
+## Übersicht
+
+Das Knowledge Augmentation System reichert Claude mit Fachwissen über KRITIS-Regulierungen, NIS-2-Richtlinien, sektor-spezifische Krisenprozesse und professionelle Storytelling-Techniken an. Dies erfolgt durch selektives Laden relevanter Wissensbasen in den System Prompt mit aggressivem Prompt Caching für Kostenoptimierung.
+
+## Problemstellung
+
+Claude besitzt generelles Wissen, aber keine tiefe Domain-Expertise in:
+
+1. **Regulierungs-Details**: KRITIS-Schwellenwerte, BSI-Meldepflichten, NIS-2-Fristen
+2. **Krisenprotokolle**: Sektor-spezifische Response-Abläufe, Eskalationspfade
+3. **Storytelling-Meisterschaft**: Spannungskurven, Charakterarchetypen, Dialog-Muster
+
+**Lösung**: Wissensbasis-Dateien, die basierend auf den Formular-Eingaben des Nutzers selektiv geladen werden.
+
+## Architektur-Entscheidung: Selective Loading
+
+### Warum Selective Loading?
+
+Anstatt die gesamte Wissensbasis (~203K Tokens) in jeden Request zu laden, laden wir nur die relevanten Dateien basierend auf:
+
+- `formData.regulatory_context` → Regulierungs-Dateien
+- `formData.industry_sector` → Sektor-Protokolle
+- `formData.incident_category` → Vorfalls-Leitfäden
+
+**Ergebnis**: ~71K Tokens typisch (vs. ~203K für vollständigen Kontext)
+
+### Vergleich der Ansätze
+
+| Ansatz | Token-Größe | Cache Keys | Kontext-Effizienz |
+|--------|-------------|------------|-------------------|
+| **Full Context** | ~203K | 1 (alle Fälle) | Niedrig (viel irrelevanter Content) |
+| **Selective Loading** | ~31-136K | ~420 Kombinationen | Hoch (nur relevanter Content) |
+| **Typischer Request** | ~71K | ~20-50 häufige Kombinationen | Optimal |
+
+### Token-Budget Breakdown
+
+| Content Category | Tokens | Bedingung |
+|------------------|--------|-----------|
+| Storytelling (Core) | ~10K | Immer geladen |
+| 1× Regulierungs-Datei | ~40K | Basierend auf `regulatory_context` |
+| 1× Sektor-Protokoll | ~3.5K | Basierend auf `industry_sector` |
+| 1× Vorfalls-Leitfaden | ~2.5K | Basierend auf `incident_category` |
+| 5-10× Beispiel-Szenarien | ~15K | Gefiltert nach Sektor + Vorfall |
+| **Typischer Request** | **~71K** | Single regulation + sector + incident |
+
+## Wissensbasen-Struktur
+
+```
+/knowledge/
+├── regulatory/          # Regulierungs-Dokumente
+│   ├── kritis.md       # BSI-KRITIS (Schwellenwerte, Meldepflichten)
+│   ├── nis2.md         # NIS-2 Directive (EU-Anforderungen)
+│   ├── gdpr.md         # DSGVO/GDPR (Datenschutz)
+│   └── sector-thresholds.md
+│
+├── protocols/          # 10 Sektor-spezifische Protokolle
+│   ├── energy.md       # Energie (KRITIS)
+│   ├── health.md       # Gesundheit (KRITIS)
+│   ├── it-telecom.md   # IT/Telekommunikation (KRITIS)
+│   ├── water.md        # Wasser (KRITIS)
+│   ├── finance.md      # Finanzwesen (KRITIS)
+│   ├── transport.md    # Transport (KRITIS)
+│   ├── food.md         # Ernährung (KRITIS)
+│   ├── manufacturing.md # Fertigung (NIS-2)
+│   ├── public.md       # Öffentliche Verwaltung (NIS-2)
+│   └── other.md        # Space, Chemical, Defense
+│
+├── incidents/          # 7 Vorfalls-Kategorien
+│   ├── cyber.md        # Ransomware, Phishing, Data Breach
+│   ├── physical.md     # Physische Sicherheitsvorfälle
+│   ├── operational.md  # Geräte-/Systemausfälle
+│   ├── environmental.md # Naturkatastrophen
+│   ├── supply-chain.md # Lieferanten-/Logistik-Vorfälle
+│   ├── health.md       # Personal-Gesundheitsvorfälle
+│   └── hybrid.md       # Multi-Vektor-Angriffe
+│
+├── storytelling/       # Immer geladen
+│   ├── narrative-techniques.md  # Spannung, Pacing, Struktur
+│   ├── character-archetypes.md  # NPC-Muster
+│   ├── dialogue-patterns.md     # Krisen-Kommunikationsbeispiele
+│   └── sensory-writing.md       # "Show don't tell"
+│
+└── examples/           # 20+ vollständige Beispiel-Szenarien
+    ├── energy-cyber-ransomware.md
+    ├── health-cyber-ransomware.md
+    ├── finance-physical-breach.md
+    └── ... (nach Sektor + incident_type getaggt)
+```
+
+## Selective Loading Logic
+
+### Industry → Sector Mapping
+
+Das Frontend bietet ~40 granulare Industrie-Typen an, die auf KRITIS/NIS-2 Sektoren abgebildet werden:
+
+```javascript
+// Beispiel-Mapping
+const SECTOR_MAPPING = {
+  'energy_electricity': 'energy',
+  'energy_oil_gas': 'energy',
+  'healthcare_hospitals': 'health',
+  'healthcare_pharma': 'health',
+  'digital_cloud': 'it-telecom',
+  'digital_telecom': 'it-telecom',
+  'manufacturing_automotive': 'manufacturing',
+  'public_federal': 'public',
+  // ... etc.
+}
+```
+
+### Lade-Algorithmus
+
+```javascript
+function selectKnowledgeFiles(formData) {
+  const files = []
+
+  // 1. Core: Immer laden
+  files.push('storytelling/*.md')
+
+  // 2. Regulatory: Basierend auf regulatory_context
+  switch (formData.regulatory_context) {
+    case 'kritis':
+      files.push('regulatory/kritis.md')
+      break
+    case 'nis2':
+      files.push('regulatory/nis2.md')
+      break
+    case 'multiple':
+      files.push('regulatory/kritis.md', 'regulatory/nis2.md', 'regulatory/gdpr.md')
+      break
+    // 'none' lädt keine Regulierungs-Dateien
+  }
+
+  // 3. Protocol: Map industry → sector
+  const sector = mapIndustryToSector(formData.industry_sector)
+  files.push(`protocols/${sector}.md`)
+
+  // 4. Incident: Basierend auf incident_category
+  files.push(`incidents/${formData.incident_category}.md`)
+
+  // 5. Examples: Filtere nach Sektor + Incident
+  const matchingExamples = filterExamples(sector, formData.incident_category)
+  files.push(...matchingExamples)
+
+  return files
+}
+```
+
+## Prompt Caching Strategie
+
+### Cache Key Konstruktion
+
+```javascript
+cache_key = hash(regulatory_context + mapped_sector + incident_category)
+
+// Beispiel:
+// formData.regulatory_context = "kritis"
+// formData.industry_sector = "energy_electricity" → "energy"
+// formData.incident_category = "cyber"
+// → cache_key = hash("kritis_energy_cyber")
+```
+
+### Cache Kombinationen
+
+| Komponente | Optionen | Anzahl |
+|------------|----------|--------|
+| `regulatory_context` | 6 (none, kritis, nis2, gdpr, industry_specific, multiple) | 6 |
+| `mapped_sector` | 10 (energy, health, it-telecom, water, finance, ...) | 10 |
+| `incident_category` | 7 (cyber, physical, operational, ...) | 7 |
+| **Total Kombinationen** | | **420** |
+
+**In der Praxis**: ~20-50 häufige Kombinationen decken 80% der Nutzung ab. Jede wird separat gecacht.
+
+### Caching-Ökonomie
+
+| Metrik | Ohne Cache | Mit Cache (Hit) | Einsparung |
+|--------|-------------|------------------|------------|
+| Kosten pro ~71K Input | $0.21 (Sonnet 4.5) | $0.021 | **90%** |
+| Latenz (~71K tokens) | ~5s TTFT | ~1.5s TTFT | **70%** |
+| Cache Write Cost | - | $0.27 (1.25× base) | Pro Kombination |
+| Cache TTL | - | 1h (konfigurierbar) | Auto-Refresh |
+
+**Break-Even**: Nach ~2 Szenarien mit gleicher Kombination.
+
+## System Prompt Integration
+
+### Aufbau mit Knowledge Base
+
+```xml
+<system>
+  <!-- 1. Identity & Mission (~150 tokens) -->
+  <identity>
+    Sie sind ein Experte für Krisen-Szenario-Erstellung für KRITIS/NIS-2 Training.
+  </identity>
+
+  <!-- 2. Knowledge Base (~71K tokens, CACHED) -->
+  <knowledge_base selection="kritis_energy_cyber">
+    <regulatory context="kritis">
+      [Inhalt aus kritis.md]
+      - BSI-Meldepflichten: 24h Initial, 72h Detailliert
+      - Schwellenwerte: Energie &gt; 500.000 Kunden
+      - Bußgelder: Bis 2M€ oder 2% Jahresumsatz
+    </regulatory>
+
+    <protocol sector="energy">
+      [Inhalt aus energy.md]
+      - Notfall-Reaktionsprozeduren für Stromausfälle
+      - BSI-Kontakt und Eskalationsketten
+      - Kundenkommunikation bei kritischen Vorfällen
+    </protocol>
+
+    <incident_guidance type="cyber">
+      [Inhalt aus cyber.md]
+      - Ransomware-Containment-Strategien
+      - Forensik-Beweissicherung
+      - Wiederherstellungs-Priorisierung
+    </incident_guidance>
+
+    <storytelling_mastery>
+      [Storytelling-Techniken, Charakterarchetypen, Dialog-Muster]
+    </storytelling_mastery>
+
+    <exemplary_scenarios filter="energy AND cyber">
+      [5-10 vollständige Beispiel-Szenarien passend zu Energie + Cyber]
+    </exemplary_scenarios>
+  </knowledge_base>
+  <!-- cache_control: { type: "ephemeral", ttl: "1h" } -->
+
+  <!-- 3. Output Format (~500 tokens) -->
+  <output_format>
+    [JSON-Struktur-Spezifikation]
+  </output_format>
+
+  <!-- 4. Rules (~1K tokens, CACHED) -->
+  <rules>
+    <must>
+      - MUST reference regulatory deadlines where relevant (e.g., "24h BSI-Meldepflicht")
+      - MUST use sector-specific terminology and procedures
+    </must>
+  </rules>
+  <!-- cache_control: { type: "ephemeral" } -->
+</system>
+```
+
+### Beispiel-Request-Szenarien
+
+#### Szenario 1: Healthcare + NIS-2 + Ransomware
+
+```
+Geladene Dateien:
+- regulatory/nis2.md (~50K)
+- protocols/health.md (~3.5K)
+- incidents/cyber.md (~2.5K)
+- storytelling/*.md (~10K)
+- examples/health-cyber-*.md (~15K)
+Total: ~81K Tokens
+```
+
+#### Szenario 2: Keine Regulierungs-Fokus
+
+```
+Geladene Dateien:
+- protocols/manufacturing.md (~3.5K)
+- incidents/operational.md (~2.5K)
+- storytelling/*.md (~10K)
+- examples/manufacturing-operational-*.md (~15K)
+Total: ~31K Tokens
+```
+
+#### Szenario 3: Multiple Regulations
+
+```
+Geladene Dateien:
+- regulatory/kritis.md + nis2.md + gdpr.md (~110K)
+- protocols/finance.md (~3.5K)
+- incidents/cyber.md (~2.5K)
+- storytelling/*.md (~10K)
+- examples/finance-cyber-*.md (~10K)
+Total: ~136K Tokens
+```
+
+## Wissensbasis-Inhalt
+
+### Regulierungs-Wissen (KRITIS)
+
+Enthält:
+- BSI-KRITIS Sektor-Definitionen (7 Sektoren)
+- Meldepflichten: 24h Initial, 72h Detailliert
+- Bußgeld-Rahmen: Bis 2M€ oder 2% globaler Umsatz
+- BSI-Kontakt-Prozeduren und Eskalation
+- Sektor-spezifische Schwellenwerte
+
+### Regulierungs-Wissen (NIS-2)
+
+Enthält:
+- Essential vs. Important Entity Klassifikation
+- Meldepflichten: 24h Early Warning, 72h Notification, 1 Monat Final
+- Management-Haftung
+- Supply Chain Security Anforderungen
+- Zertifizierungs-Anforderungen
+
+### Storytelling-Richtlinien
+
+Enthält:
+- **Spannungskurven**: Einführung → Eskalation → Höhepunkt → Auflösung
+- **Show don't tell**: Sensorische Verankerung (2-3 Sinne pro Event)
+- **Charakterarchetypen**: Mentor, Skeptiker, Macher, Betroffener, Entscheider
+- **Dialog-Muster**: Krisen-Kommunikationsbeispiele
+- **Pacing**: In medias res (direkt in Action starten)
+
+### Beispiel-Szenarien (20+)
+
+**Diversitäts-Anforderungen**:
+- Alle 7 KRITIS-Sektoren vertreten
+- Mix aus Komplexitäts-Levels (einfach, mittel, hoch)
+- Verschiedene Angriffstypen (Ransomware, Data Breach, Physical, Insider)
+- Unterschiedliche Szenario-Längen (8-40 Events)
+- Mix aus Verzweigungsmustern
+
+**Jedes Beispiel enthält**:
+- Vollständiges TOC
+- Alle Events mit vollem Inhalt
+- Korrekte regulatorische Referenzen
+- Starke narrative Struktur
+- Realistische Dialoge
+
+## Qualitäts-Verbesserungen
+
+### Vorher (ohne Knowledge Base)
+
+- Generische Krisen-Szenarien ohne KRITIS-Spezifika
+- Fehlende regulatorische Kontexte
+- Inkonsistente Response-Protokolle
+- Variable narrative Qualität
+- Kein Domain-Fachvokabular
+
+### Nachher (mit Knowledge Base)
+
+- KRITIS-spezifischer Realismus (Schwellenwerte, BSI-Meldungen)
+- Events referenzieren tatsächliche Anforderungen (24h/72h Fristen)
+- Sektor-genaue Eskalationspfade
+- Konsistente narrative Qualität durch Beispiele
+- Authentisches Fachvokabular
+
+## Metriken & Erfolg
+
+### Ziel-Metriken
+
+| Kriterium | Ziel | Messung |
+|-----------|------|---------|
+| Regulierungs-Genauigkeit | 90%+ | Manuelle Review von 20 Szenarien |
+| Cache Hit Rate | 95%+ | API Response Metriken |
+| TTFT Verbesserung | 70%+ | Latenz bei erstem Request |
+| Kosten pro Szenario | &lt;$0.10 | API Usage Tracking |
+
+### Beobachtete Ergebnisse
+
+- **90% Kosteneinsparung** bei Cache Hits
+- **65% kleinere Prompts** durch Selective Loading vs. Full Context
+- **Fokussierter Kontext** → Bessere Output-Qualität
+- **Automatische Verfügbarkeit** neuer Dateien bei passenden Kriterien
+
+## Wartung & Updates
+
+### Aktualisierungs-Prozess
+
+1. Markdown-Dateien in `/knowledge/` bearbeiten
+2. Lokal mit Sample-Szenarien testen
+3. Deployen (keine Code-Änderungen nötig)
+4. Cache auto-refresht bei TTL Expiry
+
+### Update-Frequenz
+
+| Content-Typ | Frequenz |
+|-------------|----------|
+| Regulierungs-Dateien | Quartalsweise oder bei Gesetzesänderungen |
+| Sektor-Protokolle | Nach Bedarf basierend auf Feedback |
+| Storytelling-Richtlinien | Selten |
+| Beispiel-Szenarien | Monatlich (neue Szenarien hinzufügen) |
+
+## Verworfene Alternativen
+
+### RAG (Retrieval Augmented Generation)
+
+**Warum verworfen**:
+- Wissensbasis passt in Context Window (&lt;200K Tokens)
+- Full Context bietet 100% Retrieval-Genauigkeit (vs. 70-95% bei RAG)
+- Niedrigerer Implementierungsaufwand
+- Keine zusätzliche Infrastruktur nötig
+
+### MCP (Model Context Protocol)
+
+**Warum verworfen**:
+- Hoher Implementierungsaufwand
+- Zusätzliche Infrastruktur erforderlich
+- Latenz durch Tool Calls
+- Overkill für statisches Wissen
+
+**Zukunfts-Erwägung**: Für dynamische Daten (z.B. aktuelle Threat Intelligence) könnte MCP sinnvoll sein.
+
+### Agent Skills
+
+**Teilweise übernommen**:
+- Wissen ist modular strukturiert
+- Aber: Alles wird auf einmal geladen (kein Skill-Discovery-Overhead)
+- Designed für Claude Code, nicht API-Nutzung
+
+## Integration mit bestehender Architektur
+
+Das Knowledge Augmentation System integriert sich nahtlos mit dem bestehenden Prompt-System:
+
+| Bestehende Komponente | Integration |
+|-----------------------|-------------|
+| System Prompt Struktur | Knowledge Base nach Identity einfügen |
+| XML Tags | Wissen nutzt gleiche XML-Konventionen |
+| MUST/SHOULD/MAY Hierarchie | SHOULD-Regel ergänzt: "Ground in regulatory context" |
+| Sandwich Pattern | Final Reminder enthält Knowledge Application |
+| Positive Framing | Knowledge-Beispiele zeigen was TO do |
+
+## Zusammenfassung
+
+Das Knowledge Augmentation System behebt das Kernproblem fehlender Domain-Expertise durch:
+
+- **Selective Loading**: Nur relevantes Wissen (~71K) statt alles (~203K)
+- **Prompt Caching**: 90% Kosteneinsparung bei wiederholten Kombinationen
+- **Strukturierte Wissensbasis**: Regulierungen, Protokolle, Vorfalls-Leitfäden, Storytelling, Beispiele
+- **Fokussierter Kontext**: Bessere Output-Qualität durch gezielte Wissens-Injektion
+- **Wartbarkeit**: Markdown-Dateien können ohne Code-Änderungen aktualisiert werden
+
+**Ergebnis**: Höhere Qualität zu niedrigeren Kosten mit fokussiertem, relevanten Kontext.

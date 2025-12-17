@@ -1,0 +1,583 @@
+---
+title: 'Scenario Persistence'
+description: 'MongoDB-basierte Persistierung und Workflow-Management'
+---
+
+## Übersicht
+
+Das Scenario Persistence System ersetzt die localStorage-basierte Speicherung durch MongoDB Atlas. Szenarien werden automatisch an Workflow-Meilensteinen gespeichert, können manuell gesichert werden und sind geräte- und sitzungsübergreifend verfügbar.
+
+## Problemstellung
+
+Die ursprüngliche localStorage-Implementierung hatte erhebliche Einschränkungen:
+
+- **Datenverlust-Risiko**: Browser-Cache-Clearing, andere Geräte oder Browser-Abstürze vernichten alle Arbeit
+- **Keine Kollaboration**: Mehrere Nutzer können nicht gemeinsam an Szenarien arbeiten oder diese ansehen
+- **Keine Szenario-Bibliothek**: Nutzer können vorherige Szenarien nicht durchsuchen, organisieren oder wiederverwenden
+- **POC-Limitierungen**: Content Creators benötigen persistente Speicherung für Iteration über Tage/Wochen
+
+## Technologie-Entscheidung: MongoDB Atlas
+
+### Warum MongoDB?
+
+- **Dokumentenorientiert**: Passt perfekt zu unserer JSON-Szenario-Struktur
+- **Keine komplexen Relationships**: Szenarien sind eigenständige Dokumente
+- **Flexibles Schema**: Evolution ohne Migrationen möglich
+- **Managed Hosting**: Atlas bietet Backups, Monitoring, Skalierung
+- **Native JSON-Speicherung**: Keine Serialisierungs-Overhead
+- **Gute Node.js Integration**: Robuster Driver
+
+### Verworfene Alternativen
+
+| Alternative | Warum verworfen |
+|-------------|-----------------|
+| **PostgreSQL** | Over-engineered für Dokumenten-Speicherung; erfordert JSON-Columns |
+| **SQLite** | Single-File DB nicht geeignet für Multi-User Cloud Deployment |
+| **Redis** | Nicht für persistente Dokumenten-Speicherung konzipiert |
+| **File System** | Keine Query-Fähigkeit, manuelles Backup-Management |
+
+## Datenmodell
+
+### MongoDB Document Schema
+
+```javascript
+{
+  // Identity
+  _id: ObjectId,                    // MongoDB auto-generiert
+  title: String,                    // Aus formData.storyCore.title oder "Untitled Scenario"
+
+  // Workflow State
+  currentStage: String,             // Einer von: idle, toc_generation, toc_approval,
+                                    // event_generation, event_review, validation, complete
+  workflowStartedAt: Date,          // Wann Workflow begann
+
+  // Core Data
+  formData: Object,                 // Vollständige Formular-Konfiguration
+  toc: Object | null,               // Table of Contents (null wenn nicht generiert)
+  generatedEvents: Object | null,   // { event_id: { status, content, ... } }
+  validation: Object | null,        // Validierungs-Ergebnisse
+  finalScenario: Object | null,     // Kompiliertes Szenario
+
+  // Model & Costs
+  selectedModel: String,            // 'haiku' | 'sonnet' | 'opus'
+  lastUsedModel: String | null,     // Tatsächliches Modell aus API Response
+  totalCosts: {
+    total_tokens: Number,
+    total_cost_usd: Number,
+    by_stage: Object
+  },
+
+  // CrisisIQ Integration
+  crisisiqExportId: String | null,  // ID in CrisisIQ-Plattform nach Export
+  exportedAt: Date | null,          // Wann exportiert
+
+  // Metadata
+  createdAt: Date,
+  updatedAt: Date,
+  createdBy: String | null,         // Optionale User-Identifikation (zukünftig)
+
+  // Derived (für List View Effizienz)
+  eventCount: Number,               // toc.events.length
+  completedEventCount: Number,      // Anzahl completed events
+  hasValidation: Boolean,           // validation !== null
+  isExported: Boolean               // crisisiqExportId !== null
+}
+```
+
+### Workflow Stages
+
+```javascript
+const STAGES = [
+  'idle',              // Initialer Zustand, keine Arbeit begonnen
+  'toc_generation',    // TOC wird generiert
+  'toc_approval',      // TOC wartet auf User-Approval
+  'event_generation',  // Events werden generiert
+  'event_review',      // Events vollständig, Review möglich
+  'validation',        // Validierung läuft/abgeschlossen
+  'complete'           // Szenario fertig, exportiert
+]
+```
+
+## API Endpoints
+
+### Übersicht
+
+| Method | Endpoint | Beschreibung |
+|--------|----------|--------------|
+| `POST` | `/api/scenarios` | Neues Szenario erstellen |
+| `GET` | `/api/scenarios` | Alle Szenarien auflisten |
+| `GET` | `/api/scenarios/:id` | Einzelnes Szenario abrufen |
+| `PUT` | `/api/scenarios/:id` | Szenario aktualisieren (full replace) |
+| `PATCH` | `/api/scenarios/:id` | Partial Update (spezifische Felder) |
+| `DELETE` | `/api/scenarios/:id` | Szenario löschen |
+| `PATCH` | `/api/scenarios/:id/export` | Als nach CrisisIQ exportiert markieren |
+
+### POST /api/scenarios
+
+Erstellt ein neues Szenario. Gibt das erstellte Dokument mit `_id` zurück.
+
+**Request:**
+```json
+{
+  "formData": { ... },
+  "selectedModel": "sonnet"
+}
+```
+
+**Response:**
+```json
+{
+  "_id": "507f1f77bcf86cd799439011",
+  "title": "Ransomware-Angriff auf Stadtwerke",
+  "currentStage": "idle",
+  "createdAt": "2025-12-17T10:30:00Z",
+  ...
+}
+```
+
+### GET /api/scenarios
+
+Gibt Liste aller Szenarien mit Metadaten für List View zurück.
+
+**Query Params:**
+- `sort`: Feld zum Sortieren (default: `updatedAt`)
+- `order`: `asc` oder `desc` (default: `desc`)
+
+**Response:**
+```json
+{
+  "scenarios": [
+    {
+      "_id": "507f1f77bcf86cd799439011",
+      "title": "Ransomware-Angriff auf Stadtwerke",
+      "currentStage": "event_review",
+      "eventCount": 24,
+      "completedEventCount": 24,
+      "hasValidation": true,
+      "isExported": false,
+      "updatedAt": "2025-12-17T14:22:00Z",
+      "createdAt": "2025-12-17T10:30:00Z"
+    },
+    ...
+  ],
+  "total": 15
+}
+```
+
+### GET /api/scenarios/:id
+
+Gibt vollständiges Szenario-Dokument zurück.
+
+**Response:** Vollständiges Dokument gemäß Schema.
+
+### PUT /api/scenarios/:id
+
+Vollständiger Dokument-Ersatz (für Major Saves verwendet).
+
+**Request:** Vollständiges Dokument (ohne `_id`, `createdAt`).
+
+### PATCH /api/scenarios/:id
+
+Partial Update für Auto-Save Effizienz.
+
+**Request:**
+```json
+{
+  "toc": { ... },
+  "currentStage": "toc_approval"
+}
+```
+
+### DELETE /api/scenarios/:id
+
+Löscht Szenario permanent.
+
+**Response:**
+```json
+{
+  "deleted": true,
+  "id": "507f1f77bcf86cd799439011"
+}
+```
+
+### PATCH /api/scenarios/:id/export
+
+Markiert Szenario als nach CrisisIQ exportiert.
+
+**Request:**
+```json
+{
+  "crisisiqExportId": "crisis_12345"
+}
+```
+
+## Auto-Save Strategie
+
+### Trigger-Punkte
+
+| Trigger | Was wird gespeichert | Endpoint |
+|---------|---------------------|----------|
+| Nach TOC-Generierung abgeschlossen | `toc`, `currentStage`, `totalCosts` | `PATCH` |
+| Nach TOC Approval/Edit | `toc`, `currentStage` | `PATCH` |
+| Nach jedem Event-Batch abgeschlossen | `generatedEvents`, `currentStage`, `totalCosts` | `PATCH` |
+| Nach Validierung abgeschlossen | `validation`, `currentStage`, `totalCosts` | `PATCH` |
+| Nach "Fix All" abgeschlossen | `generatedEvents`, `validation`, `totalCosts` | `PATCH` |
+| Nach CrisisIQ Export | `crisisiqExportId`, `exportedAt`, `finalScenario` | `PATCH` |
+
+### Auto-Save Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ AUTO-SAVE FLOW                                                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐                │
+│  │   Workflow   │     │   Debounce   │     │   Backend    │                │
+│  │   Action     │────▶│   (500ms)    │────▶│   PATCH      │                │
+│  └──────────────┘     └──────────────┘     └──────────────┘                │
+│                              │                    │                         │
+│                              │                    ▼                         │
+│                              │             ┌──────────────┐                │
+│                              │             │   MongoDB    │                │
+│                              │             │   Update     │                │
+│                              │             └──────────────┘                │
+│                              │                    │                         │
+│                              ▼                    ▼                         │
+│                       ┌──────────────┐     ┌──────────────┐                │
+│                       │   Skip if    │     │   Update     │                │
+│                       │   same data  │     │   updatedAt  │                │
+│                       └──────────────┘     └──────────────┘                │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Debouncing
+
+- **500ms Debounce**: Verhindert excessive Writes bei schnellen Änderungen
+- **Skip bei gleichen Daten**: Kein API-Call wenn Daten unverändert
+- **Optimistic UI**: UI zeigt "Saving..." während Request läuft
+
+### Manuelle Speicherung
+
+- Save-Button immer sichtbar in UI
+- Erstellt neues Szenario wenn keines existiert (`POST`)
+- Aktualisiert bestehendes Szenario wenn ID vorhanden (`PUT`)
+- Zeigt Success/Error Toast-Benachrichtigung
+
+## Load & Resume Strategie
+
+### Load Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ SCENARIO LOAD FLOW                                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌──────────────┐                                                          │
+│  │  Scenario    │                                                          │
+│  │  List View   │                                                          │
+│  └──────┬───────┘                                                          │
+│         │ Click scenario                                                    │
+│         ▼                                                                   │
+│  ┌──────────────┐     ┌──────────────┐                                     │
+│  │   Fetch      │────▶│   Resume     │                                     │
+│  │   Full Doc   │     │   Dialog     │                                     │
+│  └──────────────┘     └──────┬───────┘                                     │
+│                              │                                              │
+│         ┌────────────────────┼────────────────────┐                        │
+│         ▼                    ▼                    ▼                         │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐                │
+│  │  Resume at   │     │  Resume at   │     │  Resume at   │                │
+│  │  TOC View    │     │  Events View │     │  Last Stage  │                │
+│  └──────────────┘     └──────────────┘     └──────────────┘                │
+│                                                                             │
+│  Note: Form View ist KEINE Option. Minimum Resume Point ist TOC View.       │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Resume-Optionen nach Stage
+
+| Gespeichertes Stage | Verfügbare Resume Points |
+|---------------------|-------------------------|
+| `idle` | Nicht ladbar (keine bedeutungsvollen Daten) |
+| `toc_generation` | TOC View (warte auf Generierung) |
+| `toc_approval` | TOC View |
+| `event_generation` | TOC View, Events View |
+| `event_review` | TOC View, Events View |
+| `validation` | TOC View, Events View, Validation View |
+| `complete` | TOC View, Events View, Validation View, Complete View |
+
+### Warum kein Form View Resume?
+
+Das Form View ist für initiale Konfiguration. Sobald ein Szenario über `idle` hinaus ist:
+
+- Änderung von formData würde TOC und Events invalidieren
+- Nutzer sollten neues Szenario erstellen bei anderer Config
+- Hält das Mental Model einfach: Gespeicherte Szenarien sind "in progress" oder "complete"
+
+## Konflikt-Auflösung
+
+### Strategie: Last-Write-Wins
+
+Gegeben die Anforderungen (einfach, kein RBAC, POC/Content Creation Fokus), nutzen wir Last-Write-Wins:
+
+```
+User A lädt Szenario bei t=0
+User B lädt Szenario bei t=0
+User A speichert Änderungen bei t=10
+User B speichert Änderungen bei t=15  ← User A's Änderungen werden überschrieben
+```
+
+### Basic Conflict Awareness (Optional Enhancement)
+
+Für zukünftige Erwägung könnten wir hinzufügen:
+- `lastModifiedBy` Feld zeigt wer zuletzt gespeichert hat
+- Warning Toast wenn `updatedAt` sich seit Load geändert hat
+- Kein Blocking - nur informational
+
+**Aktuell nicht implementiert** gemäß Anforderungen (Last-Write-Wins ist akzeptabel).
+
+## Frontend Integration
+
+### Neue UI-Komponenten
+
+| Komponente | Zweck |
+|------------|-------|
+| `ScenarioListView.vue` | Gespeicherte Szenarien durchsuchen |
+| `SaveScenarioButton.vue` | Manueller Save-Trigger |
+| `LoadScenarioDialog.vue` | Resume Point Auswahl |
+
+### State Management Änderungen
+
+```javascript
+// In useGenerationWorkflow.js hinzugefügt
+
+// Persistence State
+const scenarioId = ref(null)          // MongoDB _id (null = neu/ungespeichert)
+const isSaving = ref(false)
+const lastSavedAt = ref(null)
+const saveError = ref(null)
+
+// Neue Funktionen
+async function saveScenario() { ... }
+async function loadScenario(id) { ... }
+async function createScenario() { ... }
+function clearScenario() { ... }       // Start fresh
+```
+
+### Auto-Save Integration
+
+```javascript
+// In useGenerationWorkflow.js
+
+// Watch für Auto-Save Triggers
+watch([toc, generatedEvents, validation], async () => {
+  if (scenarioId.value) {
+    await debouncedAutoSave()
+  }
+}, { deep: true })
+
+// Debounced Auto-Save (500ms)
+const debouncedAutoSave = useDebounceFn(async () => {
+  await patchScenario(scenarioId.value, {
+    toc: toc.value,
+    generatedEvents: generatedEvents.value,
+    validation: validation.value,
+    currentStage: currentStage.value,
+    totalCosts: totalCosts.value
+  })
+}, 500)
+```
+
+### Navigation Flow
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ NAVIGATION MIT PERSISTENCE                                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌──────────────┐                                                          │
+│  │   App Start  │                                                          │
+│  └──────┬───────┘                                                          │
+│         │                                                                   │
+│         ▼                                                                   │
+│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐                │
+│  │  New         │     │  Browse      │     │  Continue    │                │
+│  │  Scenario    │     │  Scenarios   │     │  Last Work   │                │
+│  └──────┬───────┘     └──────┬───────┘     └──────┬───────┘                │
+│         │                    │                    │                         │
+│         ▼                    ▼                    │                         │
+│  ┌──────────────┐     ┌──────────────┐           │                         │
+│  │  Form View   │     │  List View   │           │                         │
+│  │  (empty)     │     │              │───────────┘                         │
+│  └──────────────┘     └──────────────┘                                     │
+│                              │                                              │
+│                              │ Select scenario                              │
+│                              ▼                                              │
+│                       ┌──────────────┐                                     │
+│                       │  Resume      │                                     │
+│                       │  Dialog      │                                     │
+│                       └──────────────┘                                     │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+## Implementierung
+
+### Backend Datei-Struktur
+
+```
+scenarioCreatorBackend/
+├── src/
+│   ├── db/
+│   │   ├── connection.js      # MongoDB Connection Setup
+│   │   └── models/
+│   │       └── Scenario.js    # Scenario Model
+│   ├── routes/
+│   │   └── scenarios.js       # CRUD Routes
+│   └── index.js               # Routes hinzufügen
+```
+
+### Frontend Datei-Struktur
+
+```
+scenarioCreator/
+├── src/
+│   ├── api/
+│   │   └── scenarioApi.js     # Persistence API Calls hinzufügen
+│   ├── composables/
+│   │   └── useGenerationWorkflow.js  # Persistence State hinzufügen
+│   ├── views/
+│   │   └── ScenarioListView.vue      # Neue View
+│   └── components/
+│       ├── SaveScenarioButton.vue    # Neue Komponente
+│       └── LoadScenarioDialog.vue    # Neue Komponente
+```
+
+## Error Handling
+
+| Szenario | Handling |
+|----------|----------|
+| Save schlägt fehl | Error Toast zeigen, lokalen State behalten, Retry erlauben |
+| Load schlägt fehl | Error zeigen, zurück zu List View |
+| Auto-Save schlägt fehl | Silent Retry (3×), dann Warning zeigen |
+| Netzwerk offline | Saves queuen, bei Online syncen (basic) |
+
+## Performance
+
+### List View Optimierung
+
+- **Nur Metadaten fetchen**: Nicht vollständige Dokumente laden
+- **Projection verwenden**: MongoDB returniert nur benötigte Felder
+- **Indexing**: Auf `updatedAt`, `createdAt`, `title`
+
+### Auto-Save Optimierung
+
+- **Debounce 500ms**: Verhindert excessive Writes
+- **Partial Updates**: PATCH statt PUT für Auto-Save
+- **Skip identische Daten**: Kein API-Call wenn Daten unverändert
+
+### Data Migration
+
+Bei Schema-Änderungen:
+1. Neue Felder mit Defaults hinzufügen
+2. Bestehende Dokumente bleiben valid
+3. Migration Script für Breaking Changes (selten)
+
+## Sicherheit & Backup
+
+### Sicherheits-Überlegungen
+
+- MongoDB Atlas IP Whitelist für Backend Server
+- Connection String in Environment Variables
+- Keine sensitiven Daten in Szenarien (nur Training Content)
+- Zukünftig: Authentication Layer hinzufügen
+
+### Backup-Strategie
+
+MongoDB Atlas bietet:
+- **Continuous Backups** mit Point-in-Time Recovery
+- **Daily Snapshots** für 7 Tage behalten
+- **On-Demand Snapshots** vor Major Changes
+
+### MongoDB Atlas Setup
+
+**Connection String Format:**
+```
+mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
+```
+
+**Environment Variables:**
+```bash
+MONGODB_URI=mongodb+srv://...
+MONGODB_DB_NAME=crisisiq_scenarios
+```
+
+**Indexes:**
+```javascript
+// Für List View Performance
+db.scenarios.createIndex({ updatedAt: -1 })
+db.scenarios.createIndex({ createdAt: -1 })
+db.scenarios.createIndex({ title: 1 })
+```
+
+## Nutzungs-Beispiele
+
+### Szenario erstellen
+
+```bash
+curl -X POST http://localhost:3001/api/scenarios \
+  -H "Content-Type: application/json" \
+  -d '{
+    "formData": {
+      "storyCore": {
+        "title": "Ransomware-Angriff",
+        "sector": "energy"
+      }
+    },
+    "selectedModel": "sonnet"
+  }'
+```
+
+### Szenarien auflisten
+
+```bash
+curl http://localhost:3001/api/scenarios?sort=updatedAt&order=desc
+```
+
+### Szenario laden
+
+```bash
+curl http://localhost:3001/api/scenarios/507f1f77bcf86cd799439011
+```
+
+### Auto-Save (PATCH)
+
+```bash
+curl -X PATCH http://localhost:3001/api/scenarios/507f1f77bcf86cd799439011 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "toc": { ... },
+    "currentStage": "toc_approval"
+  }'
+```
+
+### Szenario löschen
+
+```bash
+curl -X DELETE http://localhost:3001/api/scenarios/507f1f77bcf86cd799439011
+```
+
+## Zusammenfassung
+
+Das Scenario Persistence System ersetzt localStorage durch robuste MongoDB-basierte Speicherung:
+
+- **Persistenz**: Szenarien überleben Browser-Cache-Clearing, Geräte-Wechsel, Abstürze
+- **Auto-Save**: Automatische Speicherung an Workflow-Meilensteinen (500ms debounced)
+- **Szenario-Bibliothek**: Durchsuchen, Organisieren, Fortsetzen vorheriger Arbeit
+- **Multi-User**: Mehrere Nutzer können auf gleiche Szenarien zugreifen (Last-Write-Wins)
+- **CrisisIQ Integration**: Export-ID-Tracking für nahtlose Integration
+- **Production-Ready**: MongoDB Atlas Managed Hosting mit Backups und Monitoring
+
+**Ergebnis**: Zuverlässige, professionelle Persistierung-Lösung für Content Creation Workflows.
