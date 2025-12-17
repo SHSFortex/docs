@@ -1,326 +1,326 @@
 ---
-title: "Role Assignments"
-description: "Configure and manage user roles and permissions"
+title: "Rollenzuweisungen"
+description: "Benutzerrollen und Berechtigungen konfigurieren und verwalten"
 ---
 
-# Role Assignments
+# Rollenzuweisungen
 
-Manage who has access to what features through role-based access control.
+Verwalten Sie, wer Zugriff auf welche Funktionen hat, durch rollenbasierte Zugriffskontrolle.
 
-## Understanding Roles
+## Rollen verstehen
 
-crisisIQ uses roles to control feature access:
+crisisIQ verwendet Rollen zur Steuerung des Funktionszugriffs:
 
 <CardGroup cols={4}>
-  <Card title="Participant" icon="user">
-    Basic training access
+  <Card title="Teilnehmer" icon="user">
+    Grundlegender Schulungszugriff
   </Card>
   <Card title="Content Creator" icon="pen-fancy">
-    Scenario building
+    Szenarioerstellung
   </Card>
-  <Card title="Company Admin" icon="user-tie">
-    Organization management
+  <Card title="Unternehmensadministrator" icon="user-tie">
+    Organisationsverwaltung
   </Card>
-  <Card title="System Admin" icon="shield">
-    Platform administration
+  <Card title="Systemadministrator" icon="shield">
+    Plattformadministration
   </Card>
 </CardGroup>
 
-<Card title="Detailed Permissions" icon="list-check" href="/user-manual/dashboard/roles">
-  See full permission matrix
+<Card title="Detaillierte Berechtigungen" icon="list-check" href="/user-manual/dashboard/roles">
+  Vollständige Berechtigungsmatrix anzeigen
 </Card>
 
-## Assigning Roles
+## Rollen zuweisen
 
-### During Invitation
+### Während der Einladung
 
-When inviting new users:
+Beim Einladen neuer Benutzer:
 
-1. Enter email address
-2. **Select Role** from dropdown
-3. Send invitation
-4. User receives role upon accepting
+1. E-Mail-Adresse eingeben
+2. **Rolle auswählen** aus Dropdown-Menü
+3. Einladung senden
+4. Benutzer erhält Rolle bei Akzeptanz
 
-### For Existing Users
+### Für bestehende Benutzer
 
-To change a user's role:
+Um die Rolle eines Benutzers zu ändern:
 
 <Steps>
-  <Step title="Go to User Management">
-    Navigate to **Administration** > **User Management**
+  <Step title="Zur Benutzerverwaltung gehen">
+    Navigieren Sie zu **Administration** > **Benutzerverwaltung**
   </Step>
 
-  <Step title="Find User">
-    Locate user in the list or search
+  <Step title="Benutzer finden">
+    Benutzer in der Liste suchen oder Suche verwenden
   </Step>
 
-  <Step title="Edit User">
-    Click edit icon or user row
+  <Step title="Benutzer bearbeiten">
+    Auf Bearbeitungssymbol oder Benutzerzeile klicken
   </Step>
 
-  <Step title="Change Role">
-    Select new role from **Role** dropdown
+  <Step title="Rolle ändern">
+    Neue Rolle aus **Rollen**-Dropdown auswählen
   </Step>
 
-  <Step title="Save">
-    Click **Update User**
+  <Step title="Speichern">
+    Klicken Sie auf **Benutzer aktualisieren**
   </Step>
 
-  <Step title="User Notified">
-    User may receive email about role change (if enabled)
+  <Step title="Benutzer benachrichtigt">
+    Benutzer erhält möglicherweise eine E-Mail über Rollenänderung (falls aktiviert)
   </Step>
 </Steps>
 
 <Note>
-Role changes take effect immediately. Users should refresh their browser to see updated permissions.
+Rollenänderungen werden sofort wirksam. Benutzer sollten ihren Browser aktualisieren, um aktualisierte Berechtigungen zu sehen.
 </Note>
 
-## Bulk Role Assignment
+## Massen-Rollenzuweisung
 
-Change roles for multiple users at once:
+Rollen für mehrere Benutzer gleichzeitig ändern:
 
 <Steps>
-  <Step title="Select Users">
-    Check boxes next to users in the list
+  <Step title="Benutzer auswählen">
+    Kontrollkästchen neben Benutzern in der Liste aktivieren
   </Step>
 
-  <Step title="Bulk Actions">
-    Click **Bulk Actions** dropdown
+  <Step title="Massenaktionen">
+    Klicken Sie auf **Massenaktionen**-Dropdown
   </Step>
 
-  <Step title="Change Role">
-    Select **Assign Role**
+  <Step title="Rolle ändern">
+    Wählen Sie **Rolle zuweisen**
   </Step>
 
-  <Step title="Choose New Role">
-    Pick the role to assign to all selected users
+  <Step title="Neue Rolle wählen">
+    Wählen Sie die Rolle aus, die allen ausgewählten Benutzern zugewiesen werden soll
   </Step>
 
-  <Step title="Confirm">
-    Review and confirm the change
+  <Step title="Bestätigen">
+    Änderung überprüfen und bestätigen
   </Step>
 </Steps>
 
-## Role-Based Features
+## Rollenbasierte Funktionen
 
-### What Each Role Can Access
+### Worauf jede Rolle zugreifen kann
 
 <Tabs>
-  <Tab title="Participant">
-    **Participant Access:**
+  <Tab title="Teilnehmer">
+    **Teilnehmer-Zugriff:**
 
-    ✓ Join assigned simulations
-    ✓ Complete solo training
-    ✓ View personal reports
-    ✓ Download certificates
-    ✓ Update own profile
+    ✓ An zugewiesenen Simulationen teilnehmen
+    ✓ Solo-Training absolvieren
+    ✓ Persönliche Berichte anzeigen
+    ✓ Zertifikate herunterladen
+    ✓ Eigenes Profil aktualisieren
 
-    ✗ Create scenarios
-    ✗ Manage users
-    ✗ View others' reports
+    ✗ Szenarien erstellen
+    ✗ Benutzer verwalten
+    ✗ Berichte anderer anzeigen
   </Tab>
 
   <Tab title="Content Creator">
-    **Content Creator Access:**
+    **Content Creator-Zugriff:**
 
-    ✓ All Participant features
-    ✓ Create and edit scenarios
-    ✓ Build timelines
-    ✓ Upload media resources
-    ✓ Preview simulations
+    ✓ Alle Teilnehmer-Funktionen
+    ✓ Szenarien erstellen und bearbeiten
+    ✓ Zeitleisten erstellen
+    ✓ Medienressourcen hochladen
+    ✓ Simulationen in der Vorschau anzeigen
 
-    ✗ Assign simulations
-    ✗ Manage users
-    ✗ Company settings
+    ✗ Simulationen zuweisen
+    ✗ Benutzer verwalten
+    ✗ Unternehmenseinstellungen
   </Tab>
 
-  <Tab title="Company Admin">
-    **Company Admin Access:**
+  <Tab title="Unternehmensadministrator">
+    **Unternehmensadministrator-Zugriff:**
 
-    ✓ All Creator features
-    ✓ Invite and manage users
-    ✓ Assign simulations
-    ✓ View all reports
-    ✓ Company settings
-    ✓ Team management
+    ✓ Alle Ersteller-Funktionen
+    ✓ Benutzer einladen und verwalten
+    ✓ Simulationen zuweisen
+    ✓ Alle Berichte anzeigen
+    ✓ Unternehmenseinstellungen
+    ✓ Teamverwaltung
 
-    ✗ Other organizations
-    ✗ System settings
+    ✗ Andere Organisationen
+    ✗ Systemeinstellungen
   </Tab>
 
-  <Tab title="System Admin">
-    **System Admin Access:**
+  <Tab title="Systemadministrator">
+    **Systemadministrator-Zugriff:**
 
-    ✓ All Admin features
-    ✓ Manage all companies
-    ✓ System configuration
-    ✓ Platform monitoring
-    ✓ Audit logs
+    ✓ Alle Administrator-Funktionen
+    ✓ Alle Unternehmen verwalten
+    ✓ Systemkonfiguration
+    ✓ Plattformüberwachung
+    ✓ Audit-Protokolle
   </Tab>
 </Tabs>
 
-## Custom Permissions
+## Benutzerdefinierte Berechtigungen
 
-Some organizations may have custom roles configured:
+Einige Organisationen haben möglicherweise benutzerdefinierte Rollen konfiguriert:
 
-- **Trainer**: Between Participant and Creator
-- **Facilitator**: Can run but not create simulations
-- **Observer**: Read-only access to reports
-- **Custom Roles**: Configured by System Admin
+- **Trainer**: Zwischen Teilnehmer und Ersteller
+- **Moderator**: Kann Simulationen durchführen, aber nicht erstellen
+- **Beobachter**: Lesezugriff auf Berichte
+- **Benutzerdefinierte Rollen**: Vom Systemadministrator konfiguriert
 
 <Note>
-Custom roles require system-level configuration. Contact your System Admin if you need specialized permissions.
+Benutzerdefinierte Rollen erfordern Konfiguration auf Systemebene. Kontaktieren Sie Ihren Systemadministrator, wenn Sie spezielle Berechtigungen benötigen.
 </Note>
 
-## Role Promotion Workflow
+## Rollenbeförderungs-Workflow
 
-### Requesting a Role Change
+### Eine Rollenänderung anfordern
 
-If a user needs elevated permissions:
+Wenn ein Benutzer erweiterte Berechtigungen benötigt:
 
-1. **User Requests**: User contacts Company Admin
-2. **Admin Reviews**: Evaluates business need
-3. **Approval**: Determines if role change is appropriate
-4. **Assignment**: Admin updates user's role
-5. **Notification**: User informed of change
+1. **Benutzer fordert an**: Benutzer kontaktiert Unternehmensadministrator
+2. **Administrator überprüft**: Bewertet geschäftliche Notwendigkeit
+3. **Genehmigung**: Entscheidet, ob Rollenänderung angemessen ist
+4. **Zuweisung**: Administrator aktualisiert Benutzerrolle
+5. **Benachrichtigung**: Benutzer wird über Änderung informiert
 
-### Approving Role Requests
+### Rollenanfragen genehmigen
 
-Best practices for admins:
+Best Practices für Administratoren:
 
-<Check>Verify business need for elevated role</Check>
-<Check>Ensure user has necessary training</Check>
-<Check>Document reason for role change</Check>
-<Check>Set review date for temporary elevations</Check>
-<Check>Notify user of new responsibilities</Check>
+<Check>Geschäftliche Notwendigkeit für erweiterte Rolle überprüfen</Check>
+<Check>Sicherstellen, dass Benutzer notwendige Schulung hat</Check>
+<Check>Grund für Rollenänderung dokumentieren</Check>
+<Check>Überprüfungsdatum für temporäre Erhöhungen festlegen</Check>
+<Check>Benutzer über neue Verantwortlichkeiten informieren</Check>
 
-## Role Constraints
+## Rollenbeschränkungen
 
-### Subscription Limits
+### Abonnementlimits
 
-Some plans limit roles:
+Einige Pläne begrenzen Rollen:
 
-- **Starter Plan**: Limited admin seats
-- **Professional**: More Creator licenses
-- **Enterprise**: Unlimited roles
+- **Starter-Plan**: Begrenzte Administrator-Plätze
+- **Professional**: Mehr Creator-Lizenzen
+- **Enterprise**: Unbegrenzte Rollen
 
-Check your subscription details to see role limits.
+Überprüfen Sie Ihre Abonnementdetails, um Rollenlimits zu sehen.
 
-### Organization Rules
+### Organisationsregeln
 
-Admins may set policies:
+Administratoren können Richtlinien festlegen:
 
-- Minimum number of Admins (e.g., at least 2)
-- Maximum Creators (budget constraints)
-- Approval required for Admin promotion
-- Automatic role expiry (temporary elevations)
+- Mindestanzahl von Administratoren (z.B. mindestens 2)
+- Maximum an Erstellern (Budgetbeschränkungen)
+- Genehmigung erforderlich für Administrator-Beförderung
+- Automatischer Rollenablauf (temporäre Erhöhungen)
 
-## Monitoring Role Usage
+## Rollennutzung überwachen
 
-### Role Distribution Report
+### Rollenverteilungsbericht
 
-View how roles are distributed:
+Ansehen, wie Rollen verteilt sind:
 
-1. **Administration** > **Reports** > **Role Distribution**
-2. See breakdown by role type
-3. Compare to subscription limits
-4. Identify unused licenses
+1. **Administration** > **Berichte** > **Rollenverteilung**
+2. Aufschlüsselung nach Rollentyp anzeigen
+3. Mit Abonnementlimits vergleichen
+4. Nicht genutzte Lizenzen identifizieren
 
-### Role Activity Tracking
+### Rollenaktivitätsverfolgung
 
-Monitor what users do with their roles:
+Überwachen Sie, was Benutzer mit ihren Rollen machen:
 
-- **Admin Actions Log**: Who made what changes
-- **Creator Activity**: Scenarios created/edited
-- **Participant Engagement**: Simulation completion rates
+- **Administrator-Aktionsprotokoll**: Wer welche Änderungen vorgenommen hat
+- **Ersteller-Aktivität**: Erstellte/bearbeitete Szenarien
+- **Teilnehmer-Engagement**: Simulationsabschlussraten
 
-<Card title="User Analytics" icon="chart-line">
-  Access detailed usage reports in the Analytics section
+<Card title="Benutzeranalysen" icon="chart-line">
+  Zugriff auf detaillierte Nutzungsberichte im Analysebereich
 </Card>
 
-## Security Best Practices
+## Sicherheits-Best Practices
 
 <AccordionGroup>
-  <Accordion title="Principle of Least Privilege">
-    Grant users the minimum role necessary to perform their job. Most users should be Participants.
+  <Accordion title="Prinzip der geringsten Berechtigung">
+    Gewähren Sie Benutzern die minimal notwendige Rolle zur Ausführung ihrer Aufgabe. Die meisten Benutzer sollten Teilnehmer sein.
   </Accordion>
 
-  <Accordion title="Regular Role Audits">
-    Review all user roles quarterly:
-    - Are elevated roles still needed?
-    - Have users changed positions?
-    - Are there any inactive accounts with admin access?
+  <Accordion title="Regelmäßige Rollenprüfungen">
+    Überprüfen Sie alle Benutzerrollen vierteljährlich:
+    - Werden erweiterte Rollen noch benötigt?
+    - Haben Benutzer Positionen gewechselt?
+    - Gibt es inaktive Konten mit Administrator-Zugriff?
   </Accordion>
 
-  <Accordion title="Admin Role Limits">
-    Limit Company Admin roles to 2-5 trusted individuals. More admins increase security risk.
+  <Accordion title="Administrator-Rollenlimits">
+    Begrenzen Sie Unternehmensadministrator-Rollen auf 2-5 vertrauenswürdige Personen. Mehr Administratoren erhöhen das Sicherheitsrisiko.
   </Accordion>
 
-  <Accordion title="Document Role Changes">
-    Keep a log of when and why roles were changed for compliance and auditing.
+  <Accordion title="Rollenänderungen dokumentieren">
+    Führen Sie ein Protokoll darüber, wann und warum Rollen geändert wurden, für Compliance und Prüfungszwecke.
   </Accordion>
 
-  <Accordion title="Revoke Access Promptly">
-    When employees leave or change roles, update their crisisIQ access immediately.
+  <Accordion title="Zugriff umgehend widerrufen">
+    Wenn Mitarbeiter ausscheiden oder Rollen wechseln, aktualisieren Sie ihren crisisIQ-Zugriff sofort.
   </Accordion>
 
-  <Accordion title="Temporary Elevations">
-    For one-time tasks, consider temporarily elevating a role then downgrading after completion.
+  <Accordion title="Temporäre Erhöhungen">
+    Für einmalige Aufgaben erwägen Sie, eine Rolle temporär zu erhöhen und nach Abschluss wieder herabzustufen.
   </Accordion>
 </AccordionGroup>
 
-## Role Change Notifications
+## Rollenänderungs-Benachrichtigungen
 
-### Automatic Notifications
+### Automatische Benachrichtigungen
 
-Configure whether users are notified when their role changes:
+Konfigurieren Sie, ob Benutzer benachrichtigt werden, wenn sich ihre Rolle ändert:
 
-1. **Company Settings** > **Notifications**
-2. Toggle **"Notify on Role Change"**
-3. Customize email template (optional)
+1. **Unternehmenseinstellungen** > **Benachrichtigungen**
+2. Umschalten **"Bei Rollenänderung benachrichtigen"**
+3. E-Mail-Vorlage anpassen (optional)
 
-### What Users Receive
+### Was Benutzer erhalten
 
-When role changes, user gets email with:
+Wenn sich die Rolle ändert, erhält der Benutzer eine E-Mail mit:
 
-- **Old Role** → **New Role**
-- **Changed By**: Admin who made the change
-- **Date**: When change occurred
-- **Next Steps**: Link to documentation for new role
+- **Alte Rolle** → **Neue Rolle**
+- **Geändert von**: Administrator, der die Änderung vorgenommen hat
+- **Datum**: Wann die Änderung stattfand
+- **Nächste Schritte**: Link zur Dokumentation für neue Rolle
 
-## Troubleshooting
+## Fehlerbehebung
 
 <AccordionGroup>
-  <Accordion title="Cannot assign Admin role">
-    - Check subscription limits for Admin seats
-    - Verify you have permission to grant Admin (System Admin may be required)
-    - Ensure user's email is verified
+  <Accordion title="Administrator-Rolle kann nicht zugewiesen werden">
+    - Abonnementlimits für Administrator-Plätze überprüfen
+    - Überprüfen Sie, ob Sie die Berechtigung haben, Administrator zu vergeben (Systemadministrator kann erforderlich sein)
+    - Sicherstellen, dass die E-Mail des Benutzers verifiziert ist
   </Accordion>
 
-  <Accordion title="Role change not reflecting">
-    - User needs to log out and back in
-    - Clear browser cache and cookies
-    - Check if change was actually saved
+  <Accordion title="Rollenänderung wird nicht angezeigt">
+    - Benutzer muss sich ab- und wieder anmelden
+    - Browser-Cache und Cookies löschen
+    - Überprüfen, ob die Änderung tatsächlich gespeichert wurde
   </Accordion>
 
-  <Accordion title="User sees features they shouldn't">
-    - Verify the user's current role
-    - Check if they belong to multiple organizations with different roles
-    - Ensure they're viewing the correct company context
+  <Accordion title="Benutzer sieht Funktionen, die er nicht sollte">
+    - Aktuelle Rolle des Benutzers überprüfen
+    - Überprüfen, ob sie mehreren Organisationen mit unterschiedlichen Rollen angehören
+    - Sicherstellen, dass sie den richtigen Unternehmenskontext anzeigen
   </Accordion>
 
-  <Accordion title="Cannot remove last Admin">
-    Organizations must have at least one Company Admin. Promote another user to Admin before downgrading the last one.
+  <Accordion title="Letzter Administrator kann nicht entfernt werden">
+    Organisationen müssen mindestens einen Unternehmensadministrator haben. Befördern Sie einen anderen Benutzer zum Administrator, bevor Sie den letzten herabstufen.
   </Accordion>
 </AccordionGroup>
 
-## Next Steps
+## Nächste Schritte
 
 <CardGroup cols={2}>
-  <Card title="User Management" icon="users" href="/user-manual/administration/user-management">
-    Invite and manage users
+  <Card title="Benutzerverwaltung" icon="users" href="/user-manual/administration/user-management">
+    Benutzer einladen und verwalten
   </Card>
-  <Card title="Roles Reference" icon="book" href="/user-manual/dashboard/roles">
-    Detailed permission information
+  <Card title="Rollenreferenz" icon="book" href="/user-manual/dashboard/roles">
+    Detaillierte Berechtigungsinformationen
   </Card>
 </CardGroup>

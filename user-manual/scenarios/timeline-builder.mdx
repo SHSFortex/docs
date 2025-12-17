@@ -1,490 +1,490 @@
 ---
-title: "Timeline Builder"
-description: "Create dynamic event sequences for crisis simulations"
+title: "Zeitleisten-Builder"
+description: "Dynamische Ereignissequenzen für Krisensimulationen erstellen"
 ---
 
-# Timeline Builder
+# Zeitleisten-Builder
 
-The Timeline Builder allows you to create sequences of events that unfold during a simulation, making scenarios dynamic and realistic.
+Der Zeitleisten-Builder ermöglicht es Ihnen, Ereignissequenzen zu erstellen, die sich während einer Simulation entfalten und Szenarien dynamisch und realistisch machen.
 
-## What is a Timeline?
+## Was ist eine Zeitleiste?
 
-A timeline is the sequence of events that occur during a simulation:
+Eine Zeitleiste ist die Abfolge von Ereignissen, die während einer Simulation auftreten:
 
-- **News Updates**: Breaking news, reports, announcements
-- **Incoming Messages**: Emails, calls, texts from stakeholders
-- **Status Changes**: Situation escalations or improvements
-- **Media Releases**: Press coverage, social media activity
-- **Resource Updates**: New information becomes available
+- **Nachrichtenaktualisierungen**: Eilmeldungen, Berichte, Ankündigungen
+- **Eingehende Nachrichten**: E-Mails, Anrufe, Texte von Stakeholdern
+- **Statusänderungen**: Eskalationen oder Verbesserungen der Situation
+- **Medienveröffentlichungen**: Presseberichterstattung, Social-Media-Aktivität
+- **Ressourcenaktualisierungen**: Neue Informationen werden verfügbar
 
-## Accessing Timeline Builder
+## Zugriff auf den Zeitleisten-Builder
 
 <Steps>
-  <Step title="Open Scenario">
-    Navigate to **Scenarios** and select your scenario
+  <Step title="Öffnen Sie das Szenario">
+    Navigieren Sie zu **Szenarien** und wählen Sie Ihr Szenario aus
   </Step>
 
-  <Step title="Click 'Edit'">
-    Enter edit mode
+  <Step title="Klicken Sie auf 'Bearbeiten'">
+    Bearbeitungsmodus aktivieren
   </Step>
 
-  <Step title="Go to Timeline Tab">
-    Select the **Timeline** tab in the editor
+  <Step title="Gehen Sie zur Zeitleisten-Registerkarte">
+    Wählen Sie die Registerkarte **Zeitleiste** im Editor
   </Step>
 
-  <Step title="View Timeline Canvas">
-    See visual representation of event sequence
+  <Step title="Zeitleisten-Canvas anzeigen">
+    Visuelle Darstellung der Ereignissequenz anzeigen
   </Step>
 </Steps>
 
-## Timeline Interface
+## Zeitleisten-Oberfläche
 
-### Visual Layout
+### Visuelles Layout
 
 <Tabs>
-  <Tab title="Timeline View">
-    **Horizontal Timeline**
+  <Tab title="Zeitleisten-Ansicht">
+    **Horizontale Zeitleiste**
 
-    - Time runs left to right
-    - Events appear as cards on timeline
-    - Duration shown in minutes from simulation start
-    - Drag events to reposition
-    - Zoom in/out for detail
+    - Zeit läuft von links nach rechts
+    - Ereignisse erscheinen als Karten auf der Zeitleiste
+    - Dauer in Minuten ab Simulationsstart angezeigt
+    - Ereignisse zum Neupositionieren ziehen
+    - Für Details ein-/auszoomen
   </Tab>
 
-  <Tab title="List View">
-    **Event List**
+  <Tab title="Listenansicht">
+    **Ereignisliste**
 
-    - All events in chronological order
-    - Shows event type, trigger time, status
-    - Quick edit access
-    - Bulk operations
+    - Alle Ereignisse in chronologischer Reihenfolge
+    - Zeigt Ereignistyp, Auslösezeit, Status
+    - Schneller Bearbeitungszugriff
+    - Massenoperationen
   </Tab>
 
-  <Tab title="Graph View">
-    **Flowchart View**
+  <Tab title="Grafik-Ansicht">
+    **Flussdiagramm-Ansicht**
 
-    - Shows branching and dependencies
-    - Conditional events highlighted
-    - Event chains visualized
+    - Zeigt Verzweigungen und Abhängigkeiten
+    - Bedingte Ereignisse hervorgehoben
+    - Ereignisketten visualisiert
   </Tab>
 </Tabs>
 
-### Timeline Controls
+### Zeitleisten-Steuerung
 
-- **Zoom**: `+` / `-` buttons or mouse wheel
-- **Pan**: Click and drag timeline
-- **Add Event**: Click on timeline or **+ Add Event** button
-- **Delete**: Select event, press Delete or click trash icon
-- **Duplicate**: Copy event and modify
+- **Zoom**: `+` / `-` Schaltflächen oder Mausrad
+- **Schwenken**: Zeitleiste klicken und ziehen
+- **Ereignis hinzufügen**: Auf Zeitleiste klicken oder Schaltfläche **+ Ereignis hinzufügen**
+- **Löschen**: Ereignis auswählen, Entf drücken oder auf Papierkorbsymbol klicken
+- **Duplizieren**: Ereignis kopieren und ändern
 
-## Creating Events
+## Ereignisse erstellen
 
-### Add a New Event
+### Neues Ereignis hinzufügen
 
 <Steps>
-  <Step title="Click Add Event">
-    On timeline or use **+ Add Event** button
+  <Step title="Klicken Sie auf Ereignis hinzufügen">
+    Auf Zeitleiste oder verwenden Sie die Schaltfläche **+ Ereignis hinzufügen**
   </Step>
 
-  <Step title="Choose Event Type">
-    Select from:
-    - News Update
-    - Message/Email
-    - Phone Call
-    - Status Change
-    - Media Clip
-    - Document Release
-    - Custom Event
+  <Step title="Wählen Sie den Ereignistyp">
+    Auswahl aus:
+    - Nachrichtenaktualisierung
+    - Nachricht/E-Mail
+    - Telefonanruf
+    - Statusänderung
+    - Medienclip
+    - Dokumentenveröffentlichung
+    - Benutzerdefiniertes Ereignis
   </Step>
 
-  <Step title="Set Trigger Time">
-    When should this event occur?
-    - **Absolute Time**: X minutes from simulation start
-    - **Relative Time**: Y minutes after another event
-    - **Conditional**: Triggered by participant decision
+  <Step title="Auslösezeit festlegen">
+    Wann soll dieses Ereignis auftreten?
+    - **Absolute Zeit**: X Minuten ab Simulationsstart
+    - **Relative Zeit**: Y Minuten nach einem anderen Ereignis
+    - **Bedingt**: Ausgelöst durch Teilnehmerentscheidung
   </Step>
 
-  <Step title="Add Content">
-    - Title
-    - Description/body
-    - Attachments (images, videos, documents)
-    - Source (who is sending/reporting this)
+  <Step title="Inhalt hinzufügen">
+    - Titel
+    - Beschreibung/Haupttext
+    - Anhänge (Bilder, Videos, Dokumente)
+    - Quelle (wer sendet/meldet dies)
   </Step>
 
-  <Step title="Configure Display">
-    - Notification type (banner, modal, sidebar)
-    - Auto-dismiss or require acknowledgment
-    - Highlight as urgent (optional)
+  <Step title="Anzeige konfigurieren">
+    - Benachrichtigungstyp (Banner, Modal, Seitenleiste)
+    - Automatisch ausblenden oder Bestätigung erfordern
+    - Als dringend hervorheben (optional)
   </Step>
 
-  <Step title="Save Event">
-    Event appears on timeline
+  <Step title="Ereignis speichern">
+    Ereignis erscheint auf der Zeitleiste
   </Step>
 </Steps>
 
-## Event Types
+## Ereignistypen
 
-### News Update
+### Nachrichtenaktualisierung
 
-Breaking news or media reports:
+Eilmeldungen oder Medienberichte:
 
 <CardGroup cols={2}>
   <Card title="Format" icon="newspaper">
-    - Headline
-    - News body
-    - Source (news organization)
-    - Image/video
+    - Schlagzeile
+    - Nachrichtentext
+    - Quelle (Nachrichtenorganisation)
+    - Bild/Video
   </Card>
-  <Card title="Use Cases" icon="lightbulb">
-    - Situation escalation
-    - Public reaction
-    - External developments
-    - Media coverage
+  <Card title="Anwendungsfälle" icon="lightbulb">
+    - Situationseskalation
+    - Öffentliche Reaktion
+    - Externe Entwicklungen
+    - Medienberichterstattung
   </Card>
 </CardGroup>
 
-### Message/Email
+### Nachricht/E-Mail
 
-Communications from stakeholders:
+Kommunikation von Stakeholdern:
 
-- **From**: Sender name and role
-- **To**: Recipient (participant or role)
-- **Subject**: Email subject line
-- **Body**: Message content
-- **Attachments**: Documents, images
-- **Urgency**: Normal, Important, Urgent
+- **Von**: Sendername und Rolle
+- **An**: Empfänger (Teilnehmer oder Rolle)
+- **Betreff**: E-Mail-Betreffzeile
+- **Text**: Nachrichteninhalt
+- **Anhänge**: Dokumente, Bilder
+- **Dringlichkeit**: Normal, Wichtig, Dringend
 
-### Phone Call
+### Telefonanruf
 
-Simulated incoming calls:
+Simulierte eingehende Anrufe:
 
-- **Caller**: Name and organization
-- **Purpose**: Why they're calling
-- **Audio**: Optional audio message
-- **Transcript**: Written version
-- **Action Required**: Must respond? Call back?
+- **Anrufer**: Name und Organisation
+- **Zweck**: Warum sie anrufen
+- **Audio**: Optionale Audionachricht
+- **Transkript**: Schriftliche Version
+- **Erforderliche Aktion**: Muss antworten? Zurückrufen?
 
-### Status Change
+### Statusänderung
 
-Updates to the crisis situation:
+Aktualisierungen der Krisensituation:
 
-- **Element**: What changed (casualties, damage, resources)
-- **New Status**: Updated information
-- **Impact**: How this affects the situation
-- **Visual**: Dashboard widget update, map change
+- **Element**: Was sich geändert hat (Opferzahlen, Schäden, Ressourcen)
+- **Neuer Status**: Aktualisierte Informationen
+- **Auswirkung**: Wie dies die Situation beeinflusst
+- **Visuell**: Dashboard-Widget-Aktualisierung, Kartenänderung
 
-### Media Clip
+### Medienclip
 
-Video or audio content:
+Video- oder Audioinhalte:
 
-- **Type**: News broadcast, social media video, interview
-- **Duration**: Length of clip
-- **File**: Upload video/audio
-- **Transcript**: For accessibility
-- **Context**: When/where this is from
+- **Typ**: Nachrichtensendung, Social-Media-Video, Interview
+- **Dauer**: Länge des Clips
+- **Datei**: Video/Audio hochladen
+- **Transkript**: Für Barrierefreiheit
+- **Kontext**: Wann/wo dies stammt
 
-### Document Release
+### Dokumentenveröffentlichung
 
-New information becomes available:
+Neue Informationen werden verfügbar:
 
-- **Document Name**: Report, plan, data, etc.
-- **File**: PDF, image, spreadsheet
-- **Source**: Who released it
-- **Summary**: Quick overview
+- **Dokumentname**: Bericht, Plan, Daten usw.
+- **Datei**: PDF, Bild, Tabelle
+- **Quelle**: Wer es veröffentlicht hat
+- **Zusammenfassung**: Schneller Überblick
 
-## Event Timing
+## Ereignis-Timing
 
-### Absolute Timing
+### Absolutes Timing
 
-Fixed time from simulation start:
-
-```
-Event triggers at: 5 minutes
-Event triggers at: 15 minutes
-Event triggers at: 30 minutes
-```
-
-Best for:
-- Structured scenarios
-- Predictable progressions
-- Timed phases
-
-### Relative Timing
-
-Based on another event:
+Feste Zeit ab Simulationsstart:
 
 ```
-5 minutes after "Initial Briefing"
-10 minutes after "First Decision"
+Ereignis wird ausgelöst bei: 5 Minuten
+Ereignis wird ausgelöst bei: 15 Minuten
+Ereignis wird ausgelöst bei: 30 Minuten
 ```
 
-Best for:
-- Dependent events
-- Logical sequences
-- Reaction scenarios
+Am besten für:
+- Strukturierte Szenarien
+- Vorhersehbare Progressionen
+- Zeitgesteuerte Phasen
 
-### Conditional Timing
+### Relatives Timing
 
-Triggered by participant actions:
+Basierend auf einem anderen Ereignis:
 
 ```
-If Decision A → Option 1: Trigger "Positive Outcome Event"
-If Decision A → Option 2: Trigger "Negative Outcome Event"
-If no decision within 10 min: Trigger "Escalation Event"
+5 Minuten nach "Erstes Briefing"
+10 Minuten nach "Erste Entscheidung"
 ```
 
-Best for:
-- Branching scenarios
-- Consequence-based learning
-- Adaptive difficulty
+Am besten für:
+- Abhängige Ereignisse
+- Logische Sequenzen
+- Reaktionsszenarien
 
-## Event Dependencies
+### Bedingtes Timing
 
-### Creating Event Chains
+Ausgelöst durch Teilnehmeraktionen:
 
-Link events together:
+```
+Wenn Entscheidung A → Option 1: "Positives Ergebnis-Ereignis" auslösen
+Wenn Entscheidung A → Option 2: "Negatives Ergebnis-Ereignis" auslösen
+Wenn keine Entscheidung innerhalb von 10 Min.: "Eskalations-Ereignis" auslösen
+```
+
+Am besten für:
+- Verzweigte Szenarien
+- Konsequenzbasiertes Lernen
+- Adaptive Schwierigkeit
+
+## Ereignisabhängigkeiten
+
+### Ereignisketten erstellen
+
+Ereignisse miteinander verknüpfen:
 
 <Steps>
-  <Step title="Select Parent Event">
-    Click the event that should trigger others
+  <Step title="Wählen Sie das Eltern-Ereignis">
+    Klicken Sie auf das Ereignis, das andere auslösen soll
   </Step>
 
-  <Step title="Add Dependent Event">
-    Click **Add Dependent Event** or draw connection
+  <Step title="Abhängiges Ereignis hinzufügen">
+    Klicken Sie auf **Abhängiges Ereignis hinzufügen** oder zeichnen Sie eine Verbindung
   </Step>
 
-  <Step title="Set Condition">
-    - Always follow parent
-    - Only if decision X
-    - Only if time threshold met
+  <Step title="Bedingung festlegen">
+    - Immer dem Elternteil folgen
+    - Nur wenn Entscheidung X
+    - Nur wenn Zeitschwelle erreicht
   </Step>
 
-  <Step title="Configure Timing">
-    How long after parent event should child trigger?
+  <Step title="Timing konfigurieren">
+    Wie lange nach dem Eltern-Ereignis soll das Kind ausgelöst werden?
   </Step>
 </Steps>
 
-### Branching Scenarios
+### Verzweigte Szenarien
 
-Create different paths:
+Verschiedene Pfade erstellen:
 
 ```
-Decision Point: "Do you evacuate?"
-├─ Yes → Event: "Evacuation underway" → Event: "Traffic issues"
-└─ No → Event: "Staying in place" → Event: "Conditions worsen"
+Entscheidungspunkt: "Evakuieren Sie?"
+├─ Ja → Ereignis: "Evakuierung läuft" → Ereignis: "Verkehrsprobleme"
+└─ Nein → Ereignis: "Vor Ort bleiben" → Ereignis: "Bedingungen verschlechtern sich"
 ```
 
 <Note>
-Complex branching increases scenario difficulty and testing needs. Start simple, add complexity gradually.
+Komplexe Verzweigungen erhöhen die Szenarioschwierigkeit und den Testbedarf. Beginnen Sie einfach, fügen Sie schrittweise Komplexität hinzu.
 </Note>
 
-## Event Content Best Practices
+## Best Practices für Ereignisinhalte
 
 <AccordionGroup>
-  <Accordion title="Realistic Content">
-    Write events as they would actually appear:
-    - Authentic news language
-    - Realistic email formats
-    - Appropriate urgency and tone
+  <Accordion title="Realistische Inhalte">
+    Schreiben Sie Ereignisse so, wie sie tatsächlich erscheinen würden:
+    - Authentische Nachrichtensprache
+    - Realistische E-Mail-Formate
+    - Angemessene Dringlichkeit und Ton
   </Accordion>
 
-  <Accordion title="Gradual Escalation">
-    Build tension over time:
-    - Start with manageable situation
-    - Introduce complications gradually
-    - Peak at crisis midpoint
-    - Resolution opportunities near end
+  <Accordion title="Schrittweise Eskalation">
+    Spannung im Laufe der Zeit aufbauen:
+    - Mit handhabbarer Situation beginnen
+    - Komplikationen schrittweise einführen
+    - Höhepunkt in der Mitte der Krise
+    - Lösungsmöglichkeiten gegen Ende
   </Accordion>
 
-  <Accordion title="Varied Sources">
-    Mix event types and sources:
-    - News media
-    - Internal communications
-    - External stakeholders
-    - Social media
-    - Official channels
+  <Accordion title="Verschiedene Quellen">
+    Ereignistypen und Quellen mischen:
+    - Nachrichtenmedien
+    - Interne Kommunikation
+    - Externe Stakeholder
+    - Social Media
+    - Offizielle Kanäle
   </Accordion>
 
-  <Accordion title="Information Density">
-    Balance detail with clarity:
-    - Enough info to make decisions
-    - Not so much it's overwhelming
-    - Key details highlighted
-    - Supporting docs available
+  <Accordion title="Informationsdichte">
+    Detail und Klarheit ausbalancieren:
+    - Genug Informationen für Entscheidungen
+    - Nicht so viel, dass es überwältigend ist
+    - Wichtige Details hervorgehoben
+    - Unterstützende Dokumente verfügbar
   </Accordion>
 
-  <Accordion title="Pacing">
-    Time events appropriately:
-    - Don't flood participants
-    - Allow thinking time between events
-    - Increase pace during climax
-    - Slow down for resolution
+  <Accordion title="Taktung">
+    Ereignisse angemessen zeitlich planen:
+    - Teilnehmer nicht überfluten
+    - Denkzeit zwischen Ereignissen erlauben
+    - Tempo während des Höhepunkts erhöhen
+    - Für Auflösung verlangsamen
   </Accordion>
 </AccordionGroup>
 
-## Multimedia in Events
+## Multimedia in Ereignissen
 
-### Adding Images
+### Bilder hinzufügen
 
-1. Click **Add Image** in event editor
-2. Upload or select from media library
-3. Add caption
-4. Set display: Inline, attachment, or popup
+1. Klicken Sie auf **Bild hinzufügen** im Ereignis-Editor
+2. Hochladen oder aus Medienbibliothek auswählen
+3. Bildunterschrift hinzufügen
+4. Anzeige festlegen: Inline, Anhang oder Popup
 
-**Good Uses:**
-- Damage photos
-- Maps with highlighted areas
-- Charts and graphs
-- Social media screenshots
+**Gute Verwendungen:**
+- Schadensfotos
+- Karten mit hervorgehobenen Bereichen
+- Diagramme und Grafiken
+- Social-Media-Screenshots
 
-### Adding Videos
+### Videos hinzufügen
 
-1. Upload video file (MP4 recommended)
-2. Or embed from YouTube/Vimeo
-3. Add title and description
-4. Transcript for accessibility
+1. Videodatei hochladen (MP4 empfohlen)
+2. Oder von YouTube/Vimeo einbetten
+3. Titel und Beschreibung hinzufügen
+4. Transkript für Barrierefreiheit
 
-**Good Uses:**
-- News broadcasts
-- Eyewitness videos
-- Stakeholder statements
-- Instructional clips
+**Gute Verwendungen:**
+- Nachrichtensendungen
+- Augenzeugenvideos
+- Stakeholder-Erklärungen
+- Anleitungsclips
 
-### Audio Files
+### Audiodateien
 
-1. Upload audio (MP3, WAV)
-2. Provide transcript
-3. Set auto-play or manual
+1. Audio hochladen (MP3, WAV)
+2. Transkript bereitstellen
+3. Auto-Play oder manuell einstellen
 
-**Good Uses:**
-- Emergency radio
-- Phone call recordings
-- Public announcements
-- Ambient sounds
+**Gute Verwendungen:**
+- Notfallradio
+- Telefonanruf-Aufnahmen
+- Öffentliche Ankündigungen
+- Umgebungsgeräusche
 
-## Testing Your Timeline
+## Ihre Zeitleiste testen
 
-### Preview Mode
+### Vorschau-Modus
 
-Test the timeline before publishing:
+Testen Sie die Zeitleiste vor der Veröffentlichung:
 
 <Steps>
-  <Step title="Click 'Preview Timeline'">
-    Button in timeline editor
+  <Step title="Klicken Sie auf 'Zeitleiste Vorschau'">
+    Schaltfläche im Zeitleisten-Editor
   </Step>
 
-  <Step title="Set Speed">
-    - Real-time (as participants will experience)
-    - Fast-forward (2x, 5x, 10x speed)
-    - Step-by-step (manually advance)
+  <Step title="Geschwindigkeit festlegen">
+    - Echtzeit (wie Teilnehmer es erleben werden)
+    - Schnellvorlauf (2x, 5x, 10x Geschwindigkeit)
+    - Schritt-für-Schritt (manuell vorrücken)
   </Step>
 
-  <Step title="Run Through">
-    Watch events trigger in sequence
+  <Step title="Durchlaufen">
+    Ereignisse in Sequenz auslösen sehen
   </Step>
 
-  <Step title="Test Decisions">
-    Make different choices to see branching
+  <Step title="Entscheidungen testen">
+    Verschiedene Entscheidungen treffen, um Verzweigungen zu sehen
   </Step>
 
-  <Step title="Check Timing">
-    Verify pacing feels right
+  <Step title="Timing überprüfen">
+    Überprüfen, ob sich die Taktung richtig anfühlt
   </Step>
 
-  <Step title="Note Issues">
-    Document what needs adjustment
+  <Step title="Probleme notieren">
+    Dokumentieren, was angepasst werden muss
   </Step>
 </Steps>
 
-### Common Issues to Check
+### Häufige zu überprüfende Probleme
 
-<Check>Events in logical order</Check>
-<Check>No timing conflicts (multiple events at once)</Check>
-<Check>All branches reachable</Check>
-<Check>Media files load correctly</Check>
-<Check>Text readable and error-free</Check>
-<Check>Appropriate pacing (not too fast/slow)</Check>
+<Check>Ereignisse in logischer Reihenfolge</Check>
+<Check>Keine Timing-Konflikte (mehrere Ereignisse gleichzeitig)</Check>
+<Check>Alle Verzweigungen erreichbar</Check>
+<Check>Mediendateien laden korrekt</Check>
+<Check>Text lesbar und fehlerfrei</Check>
+<Check>Angemessene Taktung (nicht zu schnell/langsam)</Check>
 
-## Advanced Features
+## Erweiterte Funktionen
 
-### Random Events
+### Zufallsereignisse
 
-Add unpredictability:
+Unvorhersehbarkeit hinzufügen:
 
-1. Create **Random Event Pool**
-2. Add multiple possible events
-3. Set probability for each
-4. System randomly selects which fires
+1. **Zufallsereignis-Pool** erstellen
+2. Mehrere mögliche Ereignisse hinzufügen
+3. Wahrscheinlichkeit für jedes festlegen
+4. System wählt zufällig aus, welches ausgelöst wird
 
-**Example:**
+**Beispiel:**
 ```
-At 20 minutes, trigger ONE of:
-- 40% chance: Minor complication
-- 30% chance: Moderate complication
-- 20% chance: Major complication
-- 10% chance: Unexpected help
-```
-
-### Participant-Triggered Events
-
-Events that fire based on participant actions:
-
-- **Performance-Based**: Trigger if score above/below threshold
-- **Speed-Based**: If decisions made quickly/slowly
-- **Inactivity**: If no action for X minutes
-- **Collaboration**: If team communicates/doesn't communicate
-
-### Dynamic Content
-
-Content that adapts:
-
-- **Personalization**: Use participant's name, role, company
-- **Variables**: Reference previous decisions
-- **Calculations**: Show updated statistics based on choices
-
-**Example:**
-```
-"Based on your decision to [DECISION], casualties are now [CALCULATED_CASUALTIES]."
+Bei 20 Minuten, EINES auslösen von:
+- 40% Chance: Kleinere Komplikation
+- 30% Chance: Mittlere Komplikation
+- 20% Chance: Große Komplikation
+- 10% Chance: Unerwartete Hilfe
 ```
 
-## Timeline Templates
+### Teilnehmer-ausgelöste Ereignisse
 
-### Using Templates
+Ereignisse, die basierend auf Teilnehmeraktionen ausgelöst werden:
 
-Save time with pre-built timelines:
+- **Leistungsbasiert**: Auslösen, wenn Score über/unter Schwelle
+- **Geschwindigkeitsbasiert**: Wenn Entscheidungen schnell/langsam getroffen werden
+- **Inaktivität**: Wenn keine Aktion für X Minuten
+- **Zusammenarbeit**: Wenn Team kommuniziert/nicht kommuniziert
 
-1. **Browse Templates**: Standard crisis types (fire, cyber, natural disaster)
-2. **Select Template**: Choose closest match
-3. **Apply to Scenario**: Timeline populates
-4. **Customize**: Modify events to fit your needs
+### Dynamische Inhalte
 
-### Creating Templates
+Inhalte, die sich anpassen:
 
-Save your timeline for reuse:
+- **Personalisierung**: Name, Rolle, Firma des Teilnehmers verwenden
+- **Variablen**: Frühere Entscheidungen referenzieren
+- **Berechnungen**: Aktualisierte Statistiken basierend auf Entscheidungen anzeigen
 
-1. Build timeline
-2. Click **Save as Template**
-3. Name template
-4. Set visibility (personal or organization)
-5. Template available for future scenarios
+**Beispiel:**
+```
+"Basierend auf Ihrer Entscheidung zu [ENTSCHEIDUNG] sind die Opferzahlen jetzt [BERECHNETE_OPFERZAHLEN]."
+```
 
-## Collaborative Timeline Editing
+## Zeitleisten-Vorlagen
 
-### Working with Co-Creators
+### Vorlagen verwenden
 
-- **Real-Time Sync**: See others' changes live
-- **Event Locking**: Event locked while being edited
-- **Comments**: Add notes on events for collaborators
-- **Version Control**: Revert if needed
+Zeit sparen mit vorgefertigten Zeitleisten:
 
-## Next Steps
+1. **Vorlagen durchsuchen**: Standard-Krisentypen (Feuer, Cyber, Naturkatastrophe)
+2. **Vorlage auswählen**: Nächste Übereinstimmung wählen
+3. **Auf Szenario anwenden**: Zeitleiste wird gefüllt
+4. **Anpassen**: Ereignisse an Ihre Bedürfnisse anpassen
+
+### Vorlagen erstellen
+
+Ihre Zeitleiste zur Wiederverwendung speichern:
+
+1. Zeitleiste erstellen
+2. Klicken Sie auf **Als Vorlage speichern**
+3. Vorlage benennen
+4. Sichtbarkeit festlegen (persönlich oder Organisation)
+5. Vorlage für zukünftige Szenarien verfügbar
+
+## Gemeinsame Zeitleisten-Bearbeitung
+
+### Mit Co-Creators arbeiten
+
+- **Echtzeit-Synchronisation**: Änderungen anderer live sehen
+- **Ereignis-Sperrung**: Ereignis gesperrt während der Bearbeitung
+- **Kommentare**: Notizen zu Ereignissen für Mitarbeiter hinzufügen
+- **Versionskontrolle**: Bei Bedarf zurücksetzen
+
+## Nächste Schritte
 
 <CardGroup cols={2}>
-  <Card title="Creating Scenarios" icon="wand-magic-sparkles" href="/user-manual/scenarios/creating-scenarios">
-    Build complete scenarios
+  <Card title="Szenarien erstellen" icon="wand-magic-sparkles" href="/user-manual/scenarios/creating-scenarios">
+    Vollständige Szenarien erstellen
   </Card>
-  <Card title="Group Simulations" icon="users" href="/user-manual/group-simulations/overview">
-    Deploy scenarios to teams
+  <Card title="Gruppensimulationen" icon="users" href="/user-manual/group-simulations/overview">
+    Szenarien für Teams bereitstellen
   </Card>
 </CardGroup>

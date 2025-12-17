@@ -1,264 +1,264 @@
 ---
-title: "Logging In"
-description: "Access your crisisIQ account securely"
+title: "Anmeldung"
+description: "Sicherer Zugriff auf Ihr crisisIQ-Konto"
 ---
 
-# Logging In to crisis IQ
+# Anmeldung bei crisisIQ
 
-Learn how to access your crisisIQ account and manage your login sessions.
+Erfahren Sie, wie Sie auf Ihr crisisIQ-Konto zugreifen und Ihre Anmeldesitzungen verwalten.
 
-## Standard Login
+## Standard-Anmeldung
 
-Access crisisIQ using your email and password:
+Greifen Sie auf crisisIQ mit Ihrer E-Mail und Ihrem Passwort zu:
 
 <Steps>
-  <Step title="Navigate to Login Page">
-    Visit your organization's crisisIQ URL or the public instance login page
+  <Step title="Zur Login-Seite navigieren">
+    Besuchen Sie die crisisIQ-URL Ihrer Organisation oder die Login-Seite der öffentlichen Instanz
   </Step>
 
-  <Step title="Enter Credentials">
-    - **Email**: The email address associated with your account
-    - **Password**: Your account password
+  <Step title="Anmeldedaten eingeben">
+    - **E-Mail**: Die mit Ihrem Konto verknüpfte E-Mail-Adresse
+    - **Passwort**: Ihr Kontopasswort
   </Step>
 
-  <Step title="Click 'Login'">
-    Submit your credentials to access the platform
+  <Step title="Auf 'Login' klicken">
+    Senden Sie Ihre Anmeldedaten ab, um auf die Plattform zuzugreifen
   </Step>
 
-  <Step title="Complete 2FA (if enabled)">
-    If two-factor authentication is enabled, enter the verification code from your authenticator app
+  <Step title="2FA abschließen (falls aktiviert)">
+    Wenn Zwei-Faktor-Authentifizierung aktiviert ist, geben Sie den Verifizierungscode aus Ihrer Authenticator-App ein
   </Step>
 </Steps>
 
 <Info>
-Your session will remain active for 24 hours of inactivity. After that, you'll need to log in again.
+Ihre Sitzung bleibt bei 24 Stunden Inaktivität aktiv. Danach müssen Sie sich erneut anmelden.
 </Info>
 
-## Remember Me
+## Angemeldet bleiben
 
-The "Remember Me" option keeps you logged in across browser sessions:
+Die Option "Angemeldet bleiben" hält Sie über Browser-Sitzungen hinweg angemeldet:
 
 <Tabs>
-  <Tab title="Enabled">
-    **Remember Me Checked**
+  <Tab title="Aktiviert">
+    **Angemeldet bleiben aktiviert**
 
-    - Stays logged in even after closing the browser
-    - Session persists for up to 30 days
-    - Recommended for personal devices only
+    - Bleibt auch nach Schließen des Browsers angemeldet
+    - Sitzung bleibt bis zu 30 Tage bestehen
+    - Nur für persönliche Geräte empfohlen
   </Tab>
 
-  <Tab title="Disabled">
-    **Remember Me Unchecked**
+  <Tab title="Deaktiviert">
+    **Angemeldet bleiben deaktiviert**
 
-    - Session ends when browser is closed
-    - More secure for shared/public computers
-    - Recommended for work or public devices
+    - Sitzung endet beim Schließen des Browsers
+    - Sicherer für gemeinsam genutzte/öffentliche Computer
+    - Empfohlen für Arbeits- oder öffentliche Geräte
   </Tab>
 </Tabs>
 
 <Warning>
-Never use "Remember Me" on shared or public computers for security reasons.
+Verwenden Sie niemals "Angemeldet bleiben" auf gemeinsam genutzten oder öffentlichen Computern aus Sicherheitsgründen.
 </Warning>
 
-## Login Security
+## Anmeldesicherheit
 
-### Secure Connection
+### Sichere Verbindung
 
-crisisIQ uses industry-standard security measures:
+crisisIQ verwendet branchenübliche Sicherheitsmaßnahmen:
 
-<Check>**HTTPS Encryption** - All data encrypted in transit</Check>
-<Check>**Secure WebSockets (WSS)** - Real-time features protected</Check>
-<Check>**JWT Tokens** - Secure session management</Check>
-<Check>**Token Expiration** - Automatic logout after 24 hours</Check>
+<Check>**HTTPS-Verschlüsselung** - Alle Daten während der Übertragung verschlüsselt</Check>
+<Check>**Sichere WebSockets (WSS)** - Echtzeit-Funktionen geschützt</Check>
+<Check>**JWT-Token** - Sichere Sitzungsverwaltung</Check>
+<Check>**Token-Ablauf** - Automatische Abmeldung nach 24 Stunden</Check>
 
-### Failed Login Attempts
+### Fehlgeschlagene Anmeldeversuche
 
-Security measures for failed login attempts:
+Sicherheitsmaßnahmen bei fehlgeschlagenen Anmeldeversuchen:
 
-- **3 failed attempts**: Warning message displayed
-- **5 failed attempts**: 5-minute lockout
-- **10 failed attempts**: 30-minute lockout
-- **Continued failures**: Account temporarily suspended
+- **3 fehlgeschlagene Versuche**: Warnmeldung wird angezeigt
+- **5 fehlgeschlagene Versuche**: 5-minütige Sperre
+- **10 fehlgeschlagene Versuche**: 30-minütige Sperre
+- **Weitere Fehlversuche**: Konto vorübergehend gesperrt
 
 <Info>
-If your account is locked due to multiple failed attempts, wait for the lockout period to expire or use the "Forgot Password" option to reset your password.
+Wenn Ihr Konto aufgrund mehrerer fehlgeschlagener Versuche gesperrt ist, warten Sie, bis die Sperrzeit abgelaufen ist, oder verwenden Sie die Option "Passwort vergessen", um Ihr Passwort zurückzusetzen.
 </Info>
 
-## Session Management
+## Sitzungsverwaltung
 
-### Active Sessions
+### Aktive Sitzungen
 
-Your account can have multiple active sessions:
+Ihr Konto kann mehrere aktive Sitzungen haben:
 
-- Desktop browser
-- Mobile browser
-- PWA installation
-- Tablet device
+- Desktop-Browser
+- Mobiler Browser
+- PWA-Installation
+- Tablet-Gerät
 
-All sessions share the same authentication token and will be logged out simultaneously when you explicitly log out.
+Alle Sitzungen teilen sich dasselbe Authentifizierungstoken und werden gleichzeitig abgemeldet, wenn Sie sich explizit abmelden.
 
-### Auto-Logout
+### Automatische Abmeldung
 
-You'll be automatically logged out if:
+Sie werden automatisch abgemeldet, wenn:
 
-- You explicitly click "Logout"
-- Your session expires (24 hours of inactivity)
-- Your authentication token is revoked
-- You change your password
-- An administrator deactivates your account
+- Sie explizit auf "Abmelden" klicken
+- Ihre Sitzung abläuft (24 Stunden Inaktivität)
+- Ihr Authentifizierungstoken widerrufen wird
+- Sie Ihr Passwort ändern
+- Ein Administrator Ihr Konto deaktiviert
 
-### Staying Logged In
+### Angemeldet bleiben
 
-To prevent auto-logout:
+Um automatische Abmeldung zu verhindern:
 
-- Interact with the platform regularly
-- Keep the browser tab/window open
-- Install as PWA for persistent sessions
+- Interagieren Sie regelmäßig mit der Plattform
+- Halten Sie den Browser-Tab/das Fenster geöffnet
+- Als PWA installieren für dauerhafte Sitzungen
 
-## Multi-Device Login
+## Anmeldung auf mehreren Geräten
 
-You can be logged in on multiple devices simultaneously:
+Sie können gleichzeitig auf mehreren Geräten angemeldet sein:
 
 <CardGroup cols={2}>
   <Card title="Desktop" icon="desktop">
-    Access full features on your computer
+    Zugriff auf alle Funktionen auf Ihrem Computer
   </Card>
-  <Card title="Mobile/Tablet" icon="mobile">
-    Use crisisIQ on the go
+  <Card title="Mobil/Tablet" icon="mobile">
+    crisisIQ unterwegs nutzen
   </Card>
   <Card title="PWA" icon="window-restore">
-    Install as standalone app
+    Als eigenständige App installieren
   </Card>
-  <Card title="Multiple Browsers" icon="browsers">
-    Different browsers on same device
+  <Card title="Mehrere Browser" icon="browsers">
+    Verschiedene Browser auf demselben Gerät
   </Card>
 </CardGroup>
 
-All sessions sync in real-time, ensuring consistent experience across devices.
+Alle Sitzungen synchronisieren sich in Echtzeit und gewährleisten eine konsistente Erfahrung über alle Geräte hinweg.
 
-## Company Context
+## Unternehmenskontext
 
-If you belong to multiple organizations:
+Wenn Sie mehreren Organisationen angehören:
 
-### Company Switcher
+### Unternehmensumschalter
 
-1. Look for the **Company Switcher** dropdown in the top navigation
-2. Click to see all companies you belong to
-3. Select the company you want to work with
-4. Your dashboard and permissions update automatically
+1. Suchen Sie das Dropdown **Unternehmensumschalter** in der oberen Navigation
+2. Klicken Sie, um alle Unternehmen anzuzeigen, denen Sie angehören
+3. Wählen Sie das Unternehmen aus, mit dem Sie arbeiten möchten
+4. Ihr Dashboard und Ihre Berechtigungen werden automatisch aktualisiert
 
 <Note>
-Your role and available features may differ between companies. Switching companies updates your context without requiring re-login.
+Ihre Rolle und verfügbaren Funktionen können sich zwischen Unternehmen unterscheiden. Das Wechseln des Unternehmens aktualisiert Ihren Kontext ohne erneute Anmeldung.
 </Note>
 
-### Last Selected Company
+### Zuletzt ausgewähltes Unternehmen
 
-The platform remembers your last selected company:
+Die Plattform merkt sich Ihr zuletzt ausgewähltes Unternehmen:
 
-- Automatically loads that company on next login
-- Persists across sessions
-- Can be changed anytime via the Company Switcher
+- Lädt dieses Unternehmen automatisch bei der nächsten Anmeldung
+- Bleibt über Sitzungen hinweg bestehen
+- Kann jederzeit über den Unternehmensumschalter geändert werden
 
-## Language Selection
+## Sprachauswahl
 
-Change the interface language at login or anytime after:
+Ändern Sie die Sprache der Benutzeroberfläche bei der Anmeldung oder jederzeit danach:
 
-1. Click the **Language Selector** (flag icon)
-2. Choose **Deutsch (DE)** or **English (EN)**
-3. Interface updates immediately
+1. Klicken Sie auf den **Sprachauswähler** (Flaggensymbol)
+2. Wählen Sie **Deutsch (DE)** oder **English (EN)**
+3. Die Oberfläche wird sofort aktualisiert
 
-Your language preference is saved to your account.
+Ihre Sprachpräferenz wird in Ihrem Konto gespeichert.
 
-## Troubleshooting Login Issues
+## Fehlerbehebung bei Anmeldeproblemen
 
 <AccordionGroup>
-  <Accordion title="I forgot my password">
-    Use the [Forgot Password](/user-manual/authentication/password-reset) feature to reset it. See the Password Reset guide for detailed instructions.
+  <Accordion title="Ich habe mein Passwort vergessen">
+    Verwenden Sie die Funktion [Passwort vergessen](/user-manual/authentication/password-reset), um es zurückzusetzen. Siehe die Passwort-Zurücksetzungsanleitung für detaillierte Anweisungen.
   </Accordion>
 
-  <Accordion title="My email and password don't work">
-    Verify that:
-    - You're using the correct email address
-    - Caps Lock is not enabled
-    - You're on the correct crisisIQ instance URL
-    - Your account hasn't been deactivated
+  <Accordion title="Meine E-Mail und mein Passwort funktionieren nicht">
+    Überprüfen Sie, dass:
+    - Sie die richtige E-Mail-Adresse verwenden
+    - Die Feststelltaste nicht aktiviert ist
+    - Sie sich auf der richtigen crisisIQ-Instanz-URL befinden
+    - Ihr Konto nicht deaktiviert wurde
 
-    If issues persist, contact your administrator or support.
+    Wenn Probleme bestehen bleiben, kontaktieren Sie Ihren Administrator oder Support.
   </Accordion>
 
-  <Accordion title="I'm getting 'Account locked' message">
-    This occurs after multiple failed login attempts. Wait for the lockout period (5-30 minutes) or reset your password.
+  <Accordion title="Ich erhalte die Meldung 'Konto gesperrt'">
+    Dies tritt nach mehreren fehlgeschlagenen Anmeldeversuchen auf. Warten Sie die Sperrzeit ab (5-30 Minuten) oder setzen Sie Ihr Passwort zurück.
   </Accordion>
 
-  <Accordion title="Email verification required">
-    If you see a message about email verification, check your inbox for the verification email. See [Email Verification](/user-manual/authentication/email-verification) for details.
+  <Accordion title="E-Mail-Verifizierung erforderlich">
+    Wenn Sie eine Meldung zur E-Mail-Verifizierung sehen, überprüfen Sie Ihren Posteingang auf die Verifizierungs-E-Mail. Details finden Sie unter [E-Mail-Verifizierung](/user-manual/authentication/email-verification).
   </Accordion>
 
-  <Accordion title="Two-factor code not working">
-    Ensure:
-    - Your device clock is synchronized
-    - You're using the latest code from your authenticator app
-    - The code hasn't expired (codes refresh every 30 seconds)
+  <Accordion title="Zwei-Faktor-Code funktioniert nicht">
+    Stellen Sie sicher:
+    - Ihre Geräteuhr ist synchronisiert
+    - Sie verwenden den neuesten Code aus Ihrer Authenticator-App
+    - Der Code ist nicht abgelaufen (Codes werden alle 30 Sekunden erneuert)
 
-    If 2FA continues to fail, contact your administrator to reset it.
+    Wenn 2FA weiterhin fehlschlägt, kontaktieren Sie Ihren Administrator, um es zurückzusetzen.
   </Accordion>
 
-  <Accordion title="Session expires too quickly">
-    Standard sessions last 24 hours with activity. If you're being logged out prematurely:
-    - Check if "Remember Me" is enabled
-    - Verify your browser allows cookies and local storage
-    - Check for browser extensions that clear cookies
-    - Ensure you're not in private/incognito mode
+  <Accordion title="Sitzung läuft zu schnell ab">
+    Standard-Sitzungen dauern 24 Stunden bei Aktivität. Wenn Sie vorzeitig abgemeldet werden:
+    - Prüfen Sie, ob "Angemeldet bleiben" aktiviert ist
+    - Stellen Sie sicher, dass Ihr Browser Cookies und Local Storage zulässt
+    - Prüfen Sie auf Browser-Erweiterungen, die Cookies löschen
+    - Stellen Sie sicher, dass Sie sich nicht im privaten/Inkognito-Modus befinden
   </Accordion>
 </AccordionGroup>
 
 ## Best Practices
 
-### Security Recommendations
+### Sicherheitsempfehlungen
 
-<Check>Use a strong, unique password</Check>
-<Check>Enable two-factor authentication</Check>
-<Check>Never share your credentials</Check>
-<Check>Log out from shared/public computers</Check>
-<Check>Keep your browser updated</Check>
-<Check>Use "Remember Me" only on personal devices</Check>
+<Check>Verwenden Sie ein starkes, einzigartiges Passwort</Check>
+<Check>Aktivieren Sie Zwei-Faktor-Authentifizierung</Check>
+<Check>Geben Sie niemals Ihre Anmeldedaten weiter</Check>
+<Check>Melden Sie sich von gemeinsam genutzten/öffentlichen Computern ab</Check>
+<Check>Halten Sie Ihren Browser aktuell</Check>
+<Check>Verwenden Sie "Angemeldet bleiben" nur auf persönlichen Geräten</Check>
 
-### Password Management
+### Passwortverwaltung
 
-- Use a password manager (e.g., 1Password, LastPass, Bitwarden)
-- Change your password if you suspect it's been compromised
-- Don't reuse passwords from other services
-- Update your password periodically
+- Verwenden Sie einen Passwort-Manager (z.B. 1Password, LastPass, Bitwarden)
+- Ändern Sie Ihr Passwort, wenn Sie vermuten, dass es kompromittiert wurde
+- Verwenden Sie keine Passwörter von anderen Diensten wieder
+- Aktualisieren Sie Ihr Passwort regelmäßig
 
-### When to Contact Support
+### Wann Sie den Support kontaktieren sollten
 
-Reach out to support@crisisiq.com if:
+Wenden Sie sich an support@crisisiq.com, wenn:
 
-- You can't access your account after password reset
-- Your account appears compromised
-- You're unable to receive verification emails
-- You experience repeated technical login issues
+- Sie nach der Passwortzurücksetzung nicht auf Ihr Konto zugreifen können
+- Ihr Konto kompromittiert erscheint
+- Sie keine Verifizierungs-E-Mails erhalten können
+- Sie wiederholt technische Anmeldeprobleme haben
 
-## After Logging In
+## Nach der Anmeldung
 
-Once successfully logged in, you'll be directed to:
+Nach erfolgreicher Anmeldung werden Sie weitergeleitet zu:
 
-- **Dashboard**: Your main hub (for most users)
-- **Solo Training Dashboard**: If you're primarily a solo learner
-- **Active Simulation**: If you have an ongoing simulation
-- **Email Verification Page**: If your email isn't verified
+- **Dashboard**: Ihr Hauptcenter (für die meisten Benutzer)
+- **Solo-Training-Dashboard**: Wenn Sie primär ein Solo-Lerner sind
+- **Aktive Simulation**: Wenn Sie eine laufende Simulation haben
+- **E-Mail-Verifizierungsseite**: Wenn Ihre E-Mail nicht verifiziert ist
 
 <CardGroup cols={2}>
-  <Card title="Dashboard Guide" icon="gauge" href="/user-manual/dashboard/overview">
-    Navigate the main dashboard
+  <Card title="Dashboard-Anleitung" icon="gauge" href="/user-manual/dashboard/overview">
+    Navigieren Sie durch das Haupt-Dashboard
   </Card>
-  <Card title="Forgot Password" icon="key" href="/user-manual/authentication/password-reset">
-    Reset your account password
+  <Card title="Passwort vergessen" icon="key" href="/user-manual/authentication/password-reset">
+    Setzen Sie Ihr Kontopasswort zurück
   </Card>
-  <Card title="Email Verification" icon="envelope-circle-check" href="/user-manual/authentication/email-verification">
-    Verify your email address
+  <Card title="E-Mail-Verifizierung" icon="envelope-circle-check" href="/user-manual/authentication/email-verification">
+    Verifizieren Sie Ihre E-Mail-Adresse
   </Card>
-  <Card title="User Profile" icon="user" href="/user-manual/settings/profile">
-    Manage your account settings
+  <Card title="Benutzerprofil" icon="user" href="/user-manual/settings/profile">
+    Verwalten Sie Ihre Kontoeinstellungen
   </Card>
 </CardGroup>
