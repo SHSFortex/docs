@@ -152,30 +152,16 @@ Hardcodierte Modell-Auswahl basierend auf Task-Typ:
 
 ### Knowledge Augmentation
 
-Das System injiziert Domain-Expertise (KRITIS, NIS-2, Krisenprozesse, Storytelling-Techniken) durch selektives Laden von Wissensbasen in den System Prompt. Mit Prompt Caching werden 90% der Kosten bei wiederholten Kombinationen eingespart.
-
-**Hauptmerkmale**:
-- Selective Loading (~71K Tokens typisch vs. ~203K für vollständigen Kontext)
-- 420 mögliche Cache-Kombinationen basierend auf Regulatory Context + Sector + Incident
-- Strukturierte Wissensbasis: regulatory/, protocols/, incidents/, storytelling/, examples/
-- 90% Kosteneinsparung bei Cache Hits
+Domain-Expertise (KRITIS, NIS-2, Krisenprozesse) wird durch Wissensbasen in den Prompt injiziert. Selective Loading + Prompt Caching → 90% Kosteneinsparung.
 
 ### Scenario Persistence
 
-MongoDB Atlas-basierte Persistierung ersetzt localStorage. Szenarien werden automatisch an Workflow-Meilensteinen gespeichert und sind geräte-/sitzungsübergreifend verfügbar.
-
-**Hauptmerkmale**:
-- Auto-Save an Meilensteinen (debounced 500ms)
-- CRUD API mit PATCH für effiziente Partial Updates
-- Szenario-Bibliothek mit List/Load/Resume
-- Last-Write-Wins für Multi-User-Zugriff
-- CrisisIQ Export-ID Tracking
+MongoDB Atlas speichert Szenarien persistent. Auto-Save an Meilensteinen, CRUD API, Szenario-Bibliothek.
 
 ## Nächste Schritte
 
 Für detaillierte Informationen zu spezifischen Aspekten, siehe:
 
 - [Prompt-Architektur](/internal/prompt-architecture) - Detaillierte Analyse des Prompt-Systems
-- [Knowledge Augmentation](/internal/knowledge-augmentation) - Domain-Expertise-Injektion via Prompt Caching
-- [Scenario Persistence](/internal/scenario-persistence) - MongoDB-basierte Persistierung und Workflow-Management
+- [Knowledge Augmentation](/internal/knowledge-augmentation) - KRITIS/NIS-2 Fachwissen-Injektion
 - [Best Practices](/internal/best-practices) - Implementierte Best Practices und Optimierungen

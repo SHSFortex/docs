@@ -118,6 +118,7 @@
         "scenario-builder/toc-generation",
         "scenario-builder/event-review",
         "scenario-builder/validation-export",
+        "scenario-builder/save-load",
         "scenario-builder/best-practices"
       ]
     },
@@ -127,7 +128,6 @@
         "internal/overview",
         "internal/prompt-architecture",
         "internal/knowledge-augmentation",
-        "internal/scenario-persistence",
         "internal/best-practices"
       ]
     }
